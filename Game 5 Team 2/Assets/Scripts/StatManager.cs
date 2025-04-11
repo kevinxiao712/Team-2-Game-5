@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class StatManager : MonoBehaviour
@@ -39,6 +40,10 @@ public class StatManager : MonoBehaviour
     private InstrumentScriptableObject[] instrumentChoices;
     [SerializeField]
     private TMP_Dropdown[] managerItemDropdowns;
+
+    // TEMPORARY: The scene to load when the "next" button is pressed
+    [SerializeField]
+    private string nextSceneName;
 
     // Getters for the current stats, will incorporate the currently equipped items at some point
     public int StagePrep
@@ -125,6 +130,11 @@ public class StatManager : MonoBehaviour
     public void SetDrums(Int32 type)
     {
         bandInstruments[0] = instrumentChoices[type + 6];
+    }
+
+    public void LoadNextScene()
+    {
+        SceneManager.LoadScene(nextSceneName);
     }
 
     public void SetInventoryItem(int slot, ItemScriptableObject item)
