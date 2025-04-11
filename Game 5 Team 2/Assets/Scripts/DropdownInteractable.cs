@@ -13,7 +13,7 @@ public class DropdownInteractable : MonoBehaviour
         if (itemName == "None") return;
         Toggle toggle = GetComponent<Toggle>();
         StatManager statManager = FindAnyObjectByType<StatManager>();
-        foreach (ItemScriptableObject item in statManager.CurrentManagerItems)
+        foreach (ItemScriptableObject item in statManager.ManagerItems)
         {
             if (item != null && item.itemName == itemName)
                 toggle.interactable = false;

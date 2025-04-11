@@ -25,17 +25,13 @@ public class StatManager : MonoBehaviour
 
     // Currently equipped items
     [SerializeField]
-    private ItemScriptableObject managerItem1;
-    [SerializeField]
-    private ItemScriptableObject managerItem2;
-    [SerializeField]
-    private ItemScriptableObject managerItem3;
+    private ItemScriptableObject[] managerItems = new ItemScriptableObject[3];
 
     // Manager item inventory
     // This stuff will cause problems when StatManager becomes a singleton, will move some of this
     // to a SetupPhaseScene script when needed but for now I just want to make sure it works
     [SerializeField]
-    private ItemScriptableObject[] managerItemInventory;
+    private ItemScriptableObject[] managerItemChoices;
     [SerializeField]
     private TMP_Dropdown[] managerItemDropdowns;
 
@@ -70,16 +66,11 @@ public class StatManager : MonoBehaviour
         get { return vocalControl; } 
     }
 
-    public ItemScriptableObject[] CurrentManagerItems
+    public ItemScriptableObject[] ManagerItems
     {
         get
         {
-            return new ItemScriptableObject[]
-            {
-                managerItem1,
-                managerItem2,
-                managerItem3
-            };
+            return managerItems;
         }
     }
 
@@ -89,10 +80,11 @@ public class StatManager : MonoBehaviour
         foreach (TMP_Dropdown dropdown in managerItemDropdowns)
         {
             dropdown.ClearOptions();
-            foreach (ItemScriptableObject item in managerItemInventory)
+            foreach (ItemScriptableObject item in managerItemChoices)
             {
                 dropdown.options.Add(new TMP_Dropdown.OptionData(item.itemName));
             }
+            dropdown.value = 0;
         }
     }
 
@@ -102,17 +94,24 @@ public class StatManager : MonoBehaviour
         
     }
 
-    public void UpdateDropdownOptions(Int32 newOption)
+    // I don't like doing individual methods for each dropdown menu,
+    // but Unity UI is annoying to work with in that regard so here I am
+    public void SetInventoryItemOne(Int32 item)
     {
-        //foreach (TMP_Dropdown dropdown in managerItemDropdowns)
-        //{
-        //    foreach (TMP_Dropdown.OptionData option in dropdown.options)
-        //    {
-        //        Toggle toggle = 
-        //        if (option.text == managerItem1.itemName || option.text == managerItem2.itemName 
-        //            || option.text == managerItem3.itemName)
-        //            option.
-        //    }
-        //}
+        SetInventoryItem(0, managerItemChoices[item]);
+    }
+
+    public void SetInventoryItemTwo(Int32 item)
+    {
+        SetInventoryItem(1, managerItemChoices[item]);
+    }
+    public void SetInventoryItemThree(Int32 item)
+    {
+        SetInventoryItem(2, managerItemChoices[item]);
+    }
+
+    public void SetInventoryItem(int slot, ItemScriptableObject item)
+    {
+        managerItems[slot] = item;
     }
 }
