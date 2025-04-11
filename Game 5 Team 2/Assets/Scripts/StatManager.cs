@@ -4,25 +4,21 @@ using UnityEngine;
 
 public class StatManager : MonoBehaviour
 {
-    // Need to wait for Discord outage to end to clarify what the stats are
-    public struct InstrumentStat
-    {
-        public int InstrumentSkill; // How much this instrument scores during performances
-        public int InstrumentEase; // How lenient the timing is for minigames with this instrument
-    }
-
     // ~~~ MANAGER STATS ~~~
     [SerializeField]
-    private int managerialSkills = 5; // Affects various managerial tasks(?)
+    private int stagePrep = 5; // Decreases time for prep tasks
     [SerializeField]
-    private int showPresence = 5; // Affects how well a show does(?)
+    private int contractNegotiation = 5; // Increases payout (whatever that means)
     [SerializeField]
-    private int fanInteractions = 5; // Affects the success rate when interacting with fans(?)
+    private int crowdWrangling = 5; // Decreases time for security tasks
 
     // ~~~ BAND STATS ~~~
-    public InstrumentStat drumStats;
-    public InstrumentStat guitarStats;
-    public InstrumentStat bassStats;
+    [SerializeField]
+    private int showPresence = 5; // Improves leniency during minigames, increases final score
+    [SerializeField]
+    private int fanInteractions = 5; // Improves efficiency for fan interactions
+    [SerializeField]
+    private int vocalControl = 5; // Decreases time spent during practice, improves final score
 
     // Currently equipped items
     [SerializeField]
@@ -32,15 +28,35 @@ public class StatManager : MonoBehaviour
     [SerializeField]
     private ItemScriptableObject managerItem3;
 
-    // Getters for the current stats
-    public int ManagerialSkills
+    // Getters for the current stats, will incorporate the currently equipped items at some point
+    public int StagePrep
     {
-        get { return managerialSkills + managerItem1.managerialSkillsMod; }
+        get { return stagePrep; }
+    }
+
+    public int ContractNegotiation
+    {
+        get { return contractNegotiation; }
+    }
+
+    public int CrowdWrangling
+    { 
+        get { return crowdWrangling; } 
     }
 
     public int ShowPresence
-    {
-        get { return showPresence + managerItem2.showPresenceMod; }
+    { 
+        get { return showPresence; } 
+    }
+
+    public int FanInterations
+    { 
+        get { return fanInteractions; } 
+    }
+
+    public int VocalControl
+    { 
+        get { return vocalControl; } 
     }
 
     // Start is called before the first frame update
