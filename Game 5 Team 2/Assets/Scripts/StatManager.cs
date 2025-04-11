@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StatManager : MonoBehaviour
 {
@@ -27,6 +30,14 @@ public class StatManager : MonoBehaviour
     private ItemScriptableObject managerItem2;
     [SerializeField]
     private ItemScriptableObject managerItem3;
+
+    // Manager item inventory
+    // This stuff will cause problems when StatManager becomes a singleton, will move some of this
+    // to a SetupPhaseScene script when needed but for now I just want to make sure it works
+    [SerializeField]
+    private ItemScriptableObject[] managerItemInventory;
+    [SerializeField]
+    private TMP_Dropdown[] managerItemDropdowns;
 
     // Getters for the current stats, will incorporate the currently equipped items at some point
     public int StagePrep
@@ -62,12 +73,24 @@ public class StatManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        foreach (TMP_Dropdown dropdown in managerItemDropdowns)
+        {
+            dropdown.options.Clear();
+            foreach (ItemScriptableObject item in managerItemInventory)
+            {
+                dropdown.options.Add(new TMP_Dropdown.OptionData(item.itemName));
+            }
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void UpdateDropdownOptions(Int32 newOption)
+    {
+
     }
 }
