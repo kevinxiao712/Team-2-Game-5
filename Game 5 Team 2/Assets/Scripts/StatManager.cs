@@ -26,12 +26,17 @@ public class StatManager : MonoBehaviour
     // Currently equipped items
     [SerializeField]
     private ItemScriptableObject[] managerItems = new ItemScriptableObject[3];
+    // Index 0 is for guitar, index 1 is for bass, and index 2 is for drums
+    [SerializeField]
+    private InstrumentScriptableObject[] bandInstruments = new InstrumentScriptableObject[3];
 
     // Manager item inventory
     // This stuff will cause problems when StatManager becomes a singleton, will move some of this
     // to a SetupPhaseScene script when needed but for now I just want to make sure it works
     [SerializeField]
     private ItemScriptableObject[] managerItemChoices;
+    [SerializeField]
+    private InstrumentScriptableObject[] instrumentChoices;
     [SerializeField]
     private TMP_Dropdown[] managerItemDropdowns;
 
@@ -100,7 +105,6 @@ public class StatManager : MonoBehaviour
     {
         SetInventoryItem(0, managerItemChoices[item]);
     }
-
     public void SetInventoryItemTwo(Int32 item)
     {
         SetInventoryItem(1, managerItemChoices[item]);
@@ -108,6 +112,19 @@ public class StatManager : MonoBehaviour
     public void SetInventoryItemThree(Int32 item)
     {
         SetInventoryItem(2, managerItemChoices[item]);
+    }
+    // Very scuffed hard-coded values, will tweak to be more flexible later
+    public void SetGuitar(Int32 type)
+    {
+        bandInstruments[0] = instrumentChoices[type];
+    }
+    public void SetBass(Int32 type)
+    {
+        bandInstruments[1] = instrumentChoices[type + 3];
+    }
+    public void SetDrums(Int32 type)
+    {
+        bandInstruments[0] = instrumentChoices[type + 6];
     }
 
     public void SetInventoryItem(int slot, ItemScriptableObject item)
