@@ -132,6 +132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 87412278}
   - component: {fileID: 87412279}
+  - component: {fileID: 87412280}
   m_Layer: 5
   m_Name: Item
   m_TagString: Untagged
@@ -186,7 +187,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.46226418, g: 0.46226418, b: 0.46226418, a: 0.79607844}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -209,6 +210,18 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 1
+--- !u!114 &87412280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87412277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f92c4afeb8590e7409b37b8b6471f0d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &96486214
 GameObject:
   m_ObjectHideFlags: 0
@@ -644,7 +657,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 830125881}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.7777778
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1618,10 +1631,11 @@ MonoBehaviour:
   showPresence: 5
   fanInteractions: 5
   vocalControl: 5
-  managerItem1: {fileID: 0}
+  managerItem1: {fileID: 11400000, guid: 7ee01aaf357892d4d8aebadf5ac32928, type: 2}
   managerItem2: {fileID: 0}
   managerItem3: {fileID: 0}
   managerItemInventory:
+  - {fileID: 11400000, guid: eeead33e2cdd20e4eb69c662cf951448, type: 2}
   - {fileID: 11400000, guid: 7ee01aaf357892d4d8aebadf5ac32928, type: 2}
   - {fileID: 11400000, guid: 9db2b07d0edf980469765869322bbf3c, type: 2}
   - {fileID: 11400000, guid: ef2b84627ad50f1418f423db8f4d8791, type: 2}
@@ -1962,7 +1976,7 @@ GameObject:
   - component: {fileID: 2029615100}
   - component: {fileID: 2029615099}
   m_Layer: 5
-  m_Name: Dropdown
+  m_Name: Item1Dropdown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2049,13 +2063,13 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 1537627786}
+        m_TargetAssemblyTypeName: StatManager, Assembly-CSharp
+        m_MethodName: UpdateDropdownOptions
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

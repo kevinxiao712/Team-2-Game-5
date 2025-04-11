@@ -70,12 +70,25 @@ public class StatManager : MonoBehaviour
         get { return vocalControl; } 
     }
 
+    public ItemScriptableObject[] CurrentManagerItems
+    {
+        get
+        {
+            return new ItemScriptableObject[]
+            {
+                managerItem1,
+                managerItem2,
+                managerItem3
+            };
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         foreach (TMP_Dropdown dropdown in managerItemDropdowns)
         {
-            dropdown.options.Clear();
+            dropdown.ClearOptions();
             foreach (ItemScriptableObject item in managerItemInventory)
             {
                 dropdown.options.Add(new TMP_Dropdown.OptionData(item.itemName));
@@ -91,6 +104,15 @@ public class StatManager : MonoBehaviour
 
     public void UpdateDropdownOptions(Int32 newOption)
     {
-
+        //foreach (TMP_Dropdown dropdown in managerItemDropdowns)
+        //{
+        //    foreach (TMP_Dropdown.OptionData option in dropdown.options)
+        //    {
+        //        Toggle toggle = 
+        //        if (option.text == managerItem1.itemName || option.text == managerItem2.itemName 
+        //            || option.text == managerItem3.itemName)
+        //            option.
+        //    }
+        //}
     }
 }
