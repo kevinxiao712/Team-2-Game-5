@@ -3,105 +3,157 @@ using UnityEngine.UI;
 
 public class MinigameBox : MonoBehaviour
 {
-    [Header("Which Character(s) Can Interact")]
-    public CharacterController2D allowedCharacterA;   
-    public CharacterController2D allowedCharacterB; 
+    [Header("Which Character(s) Can Interact?")]
+    public CharacterController2D allowedCharacterA;
+    public CharacterController2D allowedCharacterB;
 
     [Header("Interaction Settings")]
-    public float interactionRange = 2f;  
+    public float interactionRange = 2f;
     public KeyCode interactKey = KeyCode.F;
-    public float fillDuration = 3f;     
+    public float fillDuration = 3f;
+
+    [Header("Cooldown Settings")]
+    public float cooldownDuration = 5f;   // How long it stays disabled after success/fail
+    private bool isOnCooldown = false;
+    private float cooldownTimer = 0f;
 
     [Header("UI Elements")]
-    public Image fillBar;             
+    public Image fillBar;
 
+    // Internal state
     private bool isFilling = false;
     private float currentFillTime = 0f;
-
     private CharacterController2D currentInteractingCharacter = null;
+
+    private SpriteRenderer spriteRenderer;
 
     private void Start()
     {
-        // Hide the fill bar at start
         if (fillBar != null)
         {
             fillBar.gameObject.SetActive(false);
             fillBar.fillAmount = 0f;
         }
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
-    void Update()
+
+    private void Update()
     {
-        if (!isFilling)
+        if (isOnCooldown)
         {
-            CheckForInteraction();
+            cooldownTimer -= Time.deltaTime;
+            if (cooldownTimer <= 0f)
+            {
+                EndCooldown();
+            }
         }
-        else
+
+        if (!isFilling && !isOnCooldown)
+        {
+            CheckForPlayerInRange(allowedCharacterA);
+            CheckForPlayerInRange(allowedCharacterB);
+        }
+
+        if (isFilling)
         {
             currentFillTime += Time.deltaTime;
-            fillBar.fillAmount = Mathf.Clamp01(currentFillTime / fillDuration);
+            float progress = currentFillTime / fillDuration;
+            if (fillBar != null)
+                fillBar.fillAmount = Mathf.Clamp01(progress);
 
-            if (currentFillTime >= fillDuration)
+            if (progress >= 1f)
             {
                 OnFillComplete();
             }
         }
     }
 
-    private void CheckForInteraction()
+    private void CheckForPlayerInRange(CharacterController2D character)
     {
-        if (allowedCharacterA != null && IsCharacterCloseEnough(allowedCharacterA))
-        {
-            // If within range, wait for input
-            if (Input.GetKeyDown(interactKey))
-            {
-                StartFilling(allowedCharacterA);
-            }
-        }
+        if (character == null) return;
 
-        if (allowedCharacterB != null && IsCharacterCloseEnough(allowedCharacterB))
-        {
-            if (Input.GetKeyDown(interactKey))
-            {
-                StartFilling(allowedCharacterB);
-            }
-        }
-    }
-
-    private bool IsCharacterCloseEnough(CharacterController2D character)
-    {
         float distance = Vector2.Distance(transform.position, character.transform.position);
-        return distance <= interactionRange;
+        bool closeEnough = distance <= interactionRange;
+
+        if (character.pressFIndicator != null)
+        {
+            character.pressFIndicator.SetActive(closeEnough && !isFilling && !isOnCooldown);
+        }
+
+        if (closeEnough && Input.GetKeyDown(interactKey))
+        {
+            StartFilling(character);
+        }
     }
 
     private void StartFilling(CharacterController2D character)
     {
-        currentInteractingCharacter = character;
-
         isFilling = true;
         currentFillTime = 0f;
-        fillBar.fillAmount = 0f;
-        fillBar.gameObject.SetActive(true);
+        currentInteractingCharacter = character;
 
+        if (fillBar != null)
+        {
+            fillBar.gameObject.SetActive(true);
+            fillBar.fillAmount = 0f;
+        }
 
+        if (character.pressFIndicator != null)
+        {
+            character.pressFIndicator.SetActive(false);
+        }
+
+        Debug.Log("Minigame started by " + character.name);
     }
 
     private void OnFillComplete()
     {
         isFilling = false;
-        fillBar.gameObject.SetActive(false);
 
-        float chance = Random.value; // 0.0 to 1.0
+        if (fillBar != null)
+        {
+            fillBar.gameObject.SetActive(false);
+        }
+
+        float chance = Random.value;
         if (chance < 0.5f)
         {
-            ScoreManager.Instance.AddScore(10);
+             ScoreManager.Instance.AddScore(10);
         }
         else
         {
-            Debug.Log("Minigame Failure for: " + currentInteractingCharacter.name);
+            Debug.Log("Minigame FAILURE for " + currentInteractingCharacter.name);
         }
 
-
+        StartCooldown();
 
         currentInteractingCharacter = null;
+    }
+
+    private void StartCooldown()
+    {
+        isOnCooldown = true;
+        cooldownTimer = cooldownDuration;
+
+        if (spriteRenderer != null)
+        {
+            Color c = spriteRenderer.color;
+            c.a = 0.5f;
+            spriteRenderer.color = c;
+        }
+    }
+
+    private void EndCooldown()
+    {
+        isOnCooldown = false;
+
+        if (spriteRenderer != null)
+        {
+            Color c = spriteRenderer.color;
+            c.a = 1f;
+            spriteRenderer.color = c;
+        }
+
+        Debug.Log("Minigame is active again.");
     }
 }

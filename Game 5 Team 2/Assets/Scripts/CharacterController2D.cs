@@ -5,12 +5,14 @@ public class CharacterController2D : MonoBehaviour
 {
     public float moveSpeed = 5f;
     private Rigidbody2D rb;
-
+    public GameObject pressFIndicator;
     private bool isActive;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        if (pressFIndicator != null)
+            pressFIndicator.SetActive(false);
     }
 
     public void SetActive(bool active)
@@ -32,4 +34,5 @@ public class CharacterController2D : MonoBehaviour
 
         rb.velocity = new Vector2(moveX, moveY) * moveSpeed;
     }
+
 }
