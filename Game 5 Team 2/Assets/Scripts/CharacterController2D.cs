@@ -7,7 +7,7 @@ public class CharacterController2D : MonoBehaviour
     private Rigidbody2D rb;
     public GameObject pressFIndicator;
     private bool isActive;
-
+    private int boxesInRangeCount = 0;
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -34,5 +34,21 @@ public class CharacterController2D : MonoBehaviour
 
         rb.velocity = new Vector2(moveX, moveY) * moveSpeed;
     }
+    public void AddInRange()
+    {
+        boxesInRangeCount++;
+        if (boxesInRangeCount > 0 && pressFIndicator != null)
+        {
+            pressFIndicator.SetActive(true);
+        }
+    }
+    public void RemoveInRange()
+    {
+        boxesInRangeCount = Mathf.Max(0, boxesInRangeCount - 1);
 
+        if (boxesInRangeCount == 0 && pressFIndicator != null)
+        {
+            pressFIndicator.SetActive(false);
+        }
+    }
 }

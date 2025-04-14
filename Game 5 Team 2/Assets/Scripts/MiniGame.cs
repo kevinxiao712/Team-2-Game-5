@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
 public class MinigameBox : MonoBehaviour
@@ -24,7 +25,7 @@ public class MinigameBox : MonoBehaviour
     private bool isFilling = false;
     private float currentFillTime = 0f;
     private CharacterController2D currentInteractingCharacter = null;
-
+    private bool wasInRangeLastFrame = false;
     private SpriteRenderer spriteRenderer;
 
     private void Start()
@@ -48,12 +49,30 @@ public class MinigameBox : MonoBehaviour
             }
         }
 
-        if (!isFilling && !isOnCooldown)
+        if (allowedCharacterA == null) return;
+
+
+        float distance = Vector2.Distance(transform.position, allowedCharacterA.transform.position);
+        bool closeEnough = distance <= interactionRange;
+
+        // Has the "in range" state changed since last frame?
+        if (closeEnough && !wasInRangeLastFrame)
         {
-            CheckForPlayerInRange(allowedCharacterA);
-            CheckForPlayerInRange(allowedCharacterB);
+            // We just entered range
+            allowedCharacterA.AddInRange();
+        }
+        else if (!closeEnough && wasInRangeLastFrame)
+        {
+            // We just left range
+            allowedCharacterA.RemoveInRange();
         }
 
+        wasInRangeLastFrame = closeEnough;
+
+        if (!isOnCooldown && !isFilling)
+        {
+            CheckForPlayerInRange(allowedCharacterA);
+        }
         if (isFilling)
         {
             currentFillTime += Time.deltaTime;
@@ -66,6 +85,7 @@ public class MinigameBox : MonoBehaviour
                 OnFillComplete();
             }
         }
+
     }
 
     private void CheckForPlayerInRange(CharacterController2D character)
@@ -75,10 +95,6 @@ public class MinigameBox : MonoBehaviour
         float distance = Vector2.Distance(transform.position, character.transform.position);
         bool closeEnough = distance <= interactionRange;
 
-        if (character.pressFIndicator != null)
-        {
-            character.pressFIndicator.SetActive(closeEnough && !isFilling && !isOnCooldown);
-        }
 
         if (closeEnough && Input.GetKeyDown(interactKey))
         {
