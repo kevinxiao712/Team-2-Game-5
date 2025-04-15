@@ -19,6 +19,6 @@ public class MainMenu : MonoBehaviour
 
     public void LoadNextScene()
     {
-        SceneManager.LoadScene("SetupPhaseScene");
+        SceneManager.LoadScene("Preshow Test");
     }
 }

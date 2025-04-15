@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 351d95ec2200dc44f96117ef231ef61b
   - enabled: 1
-    path: Assets/Scenes/SetupPhaseScene.unity
-    guid: dd9cab1a380d885488eb3faffed942ee
+    path: Assets/Scenes/Preshow Test.unity
+    guid: 600274ff49ccb664db3f0a850d95631b
   m_configObjects: {}
