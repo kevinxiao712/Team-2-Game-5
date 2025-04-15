@@ -141,4 +141,17 @@ public class StatManager : MonoBehaviour
     {
         managerItems[slot] = item;
     }
+
+    public static StatManager Instance;
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(this.gameObject);
+    }
 }

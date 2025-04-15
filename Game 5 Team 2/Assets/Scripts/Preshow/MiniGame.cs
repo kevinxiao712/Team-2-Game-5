@@ -1,9 +1,12 @@
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
 public class MinigameBox : MonoBehaviour
 {
+
+    public ItemScriptableObject guaranteedItem;
+
+
     [Header("Which Character(s) Can Interact?")]
     public CharacterController2D allowedCharacterA;
     public CharacterController2D allowedCharacterB;
@@ -19,14 +22,19 @@ public class MinigameBox : MonoBehaviour
     private float cooldownTimer = 0f;
 
     [Header("UI Elements")]
-    public Image fillBar;
+    public Image fillBar; 
 
     // Internal state
     private bool isFilling = false;
     private float currentFillTime = 0f;
     private CharacterController2D currentInteractingCharacter = null;
     private bool wasInRangeLastFrame = false;
+
+    private Color originalFillBarColor;
+
     private SpriteRenderer spriteRenderer;
+
+
 
     private void Start()
     {
@@ -34,7 +42,9 @@ public class MinigameBox : MonoBehaviour
         {
             fillBar.gameObject.SetActive(false);
             fillBar.fillAmount = 0f;
+            originalFillBarColor = fillBar.color;
         }
+
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
@@ -49,43 +59,44 @@ public class MinigameBox : MonoBehaviour
             }
         }
 
-        if (allowedCharacterA == null) return;
 
+        if (allowedCharacterA == null) return;
 
         float distance = Vector2.Distance(transform.position, allowedCharacterA.transform.position);
         bool closeEnough = distance <= interactionRange;
 
-        // Has the "in range" state changed since last frame?
+        // Range logic for "AddInRange" / "RemoveInRange"
         if (closeEnough && !wasInRangeLastFrame)
         {
-            // We just entered range
             allowedCharacterA.AddInRange();
         }
         else if (!closeEnough && wasInRangeLastFrame)
         {
-            // We just left range
             allowedCharacterA.RemoveInRange();
         }
-
         wasInRangeLastFrame = closeEnough;
 
+        // If not on cooldown and not filling, check if we can start filling
         if (!isOnCooldown && !isFilling)
         {
             CheckForPlayerInRange(allowedCharacterA);
         }
+
+        // If filling, update bar
         if (isFilling)
         {
             currentFillTime += Time.deltaTime;
             float progress = currentFillTime / fillDuration;
+
             if (fillBar != null)
                 fillBar.fillAmount = Mathf.Clamp01(progress);
 
+            // Fill complete
             if (progress >= 1f)
             {
                 OnFillComplete();
             }
         }
-
     }
 
     private void CheckForPlayerInRange(CharacterController2D character)
@@ -94,7 +105,6 @@ public class MinigameBox : MonoBehaviour
 
         float distance = Vector2.Distance(transform.position, character.transform.position);
         bool closeEnough = distance <= interactionRange;
-
 
         if (closeEnough && Input.GetKeyDown(interactKey))
         {
@@ -112,8 +122,10 @@ public class MinigameBox : MonoBehaviour
         {
             fillBar.gameObject.SetActive(true);
             fillBar.fillAmount = 0f;
+            fillBar.color = originalFillBarColor;  // Ensure it's the normal color
         }
 
+        // Hide "F" indicator
         if (character.pressFIndicator != null)
         {
             character.pressFIndicator.SetActive(false);
@@ -126,24 +138,56 @@ public class MinigameBox : MonoBehaviour
     {
         isFilling = false;
 
-        if (fillBar != null)
-        {
-            fillBar.gameObject.SetActive(false);
-        }
-
+        // Decide success or fail
         float chance = Random.value;
-        if (chance < 0.5f)
+        bool success = (chance < 0.5f);
+
+        if (PlayerHasGuaranteedItem())
         {
-             ScoreManager.Instance.AddScore(10);
+            Debug.Log("Auto-Success! Player has the guaranteed item for this minigame.");
+            // e.g., add points or do success logic
+            ScoreManager.Instance.AddScore(10);
         }
         else
         {
-            Debug.Log("Minigame FAILURE for " + currentInteractingCharacter.name);
+            if (success)
+            {
+                // success
+                ScoreManager.Instance.AddScore(10);
+            }
+            else
+            {
+                Debug.Log("Minigame FAILURE");
+            }
         }
 
-        StartCooldown();
+        // Start a coroutine to flash the fill bar color 
+        StartCoroutine(FlashFillBar(success));
 
         currentInteractingCharacter = null;
+    }
+
+    private System.Collections.IEnumerator FlashFillBar(bool success)
+    {
+        if (fillBar != null)
+        {
+            // Choose green if success, red if fail
+            fillBar.color = success ? Color.green : Color.red;
+        }
+
+        // Keep the fill bar visible for 1 second
+        yield return new WaitForSeconds(1f);
+
+        // Revert fill bar color
+        if (fillBar != null)
+        {
+            fillBar.color = originalFillBarColor;
+            // Now hide the bar entirely
+            fillBar.gameObject.SetActive(false);
+        }
+
+        // Then go to cooldown
+        StartCooldown();
     }
 
     private void StartCooldown()
@@ -171,5 +215,19 @@ public class MinigameBox : MonoBehaviour
         }
 
         Debug.Log("Minigame is active again.");
+    }
+
+    private bool PlayerHasGuaranteedItem()
+    {
+        var items = StatManager.Instance.ManagerItems;
+        if (guaranteedItem == null) return false;
+        foreach (var item in items)
+        {
+            if (item == guaranteedItem)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
