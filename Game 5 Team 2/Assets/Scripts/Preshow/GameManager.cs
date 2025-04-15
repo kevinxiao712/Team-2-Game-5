@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     public Canvas PrepmainCanvas;       
     public GameObject PreshowCanvas;
     public GameObject ThirdPhaseObject;
+    public GameObject instructionsCanvas;
+
 
     [Header("Preshow Timer UI")]
     public TextMeshPro preshowTimerText;
@@ -22,7 +24,7 @@ public class GameManager : MonoBehaviour
     public float preshowDuration = 300f; // 5 minutes = 300 seconds
     private float preshowTimeLeft;
     private bool isPreshowActive = false;
-
+    private bool isInstructionOpen = false;
 
     private void Start()
     {
@@ -32,20 +34,21 @@ public class GameManager : MonoBehaviour
 
         if (ThirdPhaseObject != null)
             ThirdPhaseObject.SetActive(false);
+
+        if (instructionsCanvas != null)
+            instructionsCanvas.SetActive(false);
     }
 
     private void Update()
     {
-        // Allow Tab switching
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             SwitchActiveCharacter();
         }
 
-        if (isPreshowActive)
+        // If preshow is active AND the instructions are not open, count down
+        if (isPreshowActive && !isInstructionOpen)
         {
-            Debug.Log(preshowTimeLeft);
-
             preshowTimeLeft -= Time.deltaTime;
             if (preshowTimeLeft <= 0f)
             {
@@ -53,16 +56,28 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                // Update the text to show MM:SS
                 if (preshowTimerText != null)
                 {
                     preshowTimerText.text = FormatTime(preshowTimeLeft);
-                    Debug.Log(preshowTimeLeft);
                 }
             }
         }
+
+        // If the instructions are open, wait for key press to close it
+        if (isInstructionOpen && Input.GetKeyDown(KeyCode.Space))
+        {
+            CloseInstructions();
+        }
     }
 
+    private void CloseInstructions()
+    {
+        if (instructionsCanvas != null)
+        {
+            instructionsCanvas.SetActive(false);
+        }
+        isInstructionOpen = false; // Now the timer can run
+    }
     private void SwitchActiveCharacter()
     {
         // Deactivate the current
@@ -86,17 +101,23 @@ public class GameManager : MonoBehaviour
         // Disable the Prep canvas
         PrepmainCanvas.gameObject.SetActive(false);
 
-        // Enable the Preshow Canvas
+        // Enable the Preshow
         PreshowCanvas.gameObject.SetActive(true);
 
-        // Initialize the timer
-        preshowTimeLeft = preshowDuration;  // e.g., 300f for 5 minutes
+        // Show the instructions right away
+        if (instructionsCanvas != null)
+        {
+            instructionsCanvas.SetActive(true);
+            isInstructionOpen = true;
+        }
+
+        // Initialize the timer but don't start counting down yet
+        preshowTimeLeft = preshowDuration;
         isPreshowActive = true;
 
-        // Make sure the text is visible and reset
+        // Update the UI text to show full time
         if (preshowTimerText != null)
         {
-            preshowTimerText.gameObject.SetActive(true);
             preshowTimerText.text = FormatTime(preshowTimeLeft);
         }
     }
