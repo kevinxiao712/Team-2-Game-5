@@ -9,4 +9,5 @@ public class ItemScriptableObject : ScriptableObject
     public int scoreBoost = 0;
     public bool affectsPreShow = false;
     public bool affectsShow = false;
+    public string description;
 }

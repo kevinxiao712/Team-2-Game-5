@@ -16,3 +16,4 @@ MonoBehaviour:
   scoreBoost: 5
   affectsPreShow: 1
   affectsShow: 0
+  description: Cleaning supplies.

@@ -16,3 +16,4 @@ MonoBehaviour:
   scoreBoost: 3
   affectsPreShow: 1
   affectsShow: 1
+  description: A baton.

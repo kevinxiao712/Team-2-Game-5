@@ -142,6 +142,16 @@ public class StatManager : MonoBehaviour
         managerItems[slot] = item;
     }
 
+    public ItemScriptableObject FindItemOfName(string name)
+    {
+        foreach (ItemScriptableObject item in managerItemChoices)
+        {
+            if (item.itemName == name)
+                return item;
+        }
+        return null;
+    }
+
     public static StatManager Instance;
 
     private void Awake()
