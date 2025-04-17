@@ -13,7 +13,5 @@ MonoBehaviour:
   m_Name: CleaningSupplies
   m_EditorClassIdentifier: 
   itemName: Cleaning Supplies
-  scoreBoost: 5
-  affectsPreShow: 1
-  affectsShow: 0
-  description: Cleaning supplies.
+  description: A variety of cleaning supplies. Helps with the cleaning task in the
+    pre-show.

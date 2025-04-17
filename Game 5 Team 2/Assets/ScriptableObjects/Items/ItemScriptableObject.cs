@@ -6,8 +6,10 @@ using UnityEngine;
 public class ItemScriptableObject : ScriptableObject
 {
     public string itemName;
-    public int scoreBoost = 0;
-    public bool affectsPreShow = false;
-    public bool affectsShow = false;
+    //public int scoreBoost = 0;
+    //public bool affectsPreShow = false;
+    //public bool affectsShow = false;
+    //public bool affectsPostShow = false;
+    [TextArea]
     public string description;
 }

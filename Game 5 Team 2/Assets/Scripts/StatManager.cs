@@ -35,7 +35,7 @@ public class StatManager : MonoBehaviour
     // This stuff will cause problems when StatManager becomes a singleton, will move some of this
     // to a SetupPhaseScene script when needed but for now I just want to make sure it works
     [SerializeField]
-    private ItemScriptableObject[] managerItemChoices;
+    private List<ItemScriptableObject> managerItemChoices = new List<ItemScriptableObject>();
     [SerializeField]
     private InstrumentScriptableObject[] instrumentChoices;
     [SerializeField]
@@ -150,6 +150,12 @@ public class StatManager : MonoBehaviour
                 return item;
         }
         return null;
+    }
+
+    public void AddItemToInventory(ItemScriptableObject item)
+    {
+        if (!managerItemChoices.Contains(item))
+            managerItemChoices.Add(item);
     }
 
     public static StatManager Instance;

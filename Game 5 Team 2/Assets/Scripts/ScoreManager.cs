@@ -29,7 +29,6 @@ public class ScoreManager : MonoBehaviour
 
     private void Start()
     {
-
         currentScore = 0;
         UpdateScoreText();
     }
