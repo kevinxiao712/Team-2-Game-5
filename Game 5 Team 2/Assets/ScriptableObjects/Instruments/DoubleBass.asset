@@ -16,3 +16,5 @@ MonoBehaviour:
   instrumentType: 0
   minigameLeniency: 0.8
   minigameScoreScale: 1.25
+  description: A double bass. The bass sections of the rhythm minigame will be more
+    difficult, but you'll score more.

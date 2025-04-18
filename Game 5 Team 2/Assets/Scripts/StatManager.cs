@@ -151,6 +151,15 @@ public class StatManager : MonoBehaviour
         }
         return null;
     }
+    public InstrumentScriptableObject FindInstrumentOfName(string name)
+    {
+        foreach (InstrumentScriptableObject inst in instrumentChoices)
+        {
+            if (inst.instrumentName == name)
+                return inst;
+        }
+        return null;
+    }
 
     public void AddItemToInventory(ItemScriptableObject item)
     {

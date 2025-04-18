@@ -16,3 +16,4 @@ MonoBehaviour:
   instrumentType: 0
   minigameLeniency: 1
   minigameScoreScale: 1
+  description: A simple bass guitar.

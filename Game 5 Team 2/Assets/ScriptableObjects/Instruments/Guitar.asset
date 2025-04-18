@@ -16,3 +16,4 @@ MonoBehaviour:
   instrumentType: 1
   minigameLeniency: 1
   minigameScoreScale: 1
+  description: A basic acoustic guitar.

@@ -16,3 +16,4 @@ MonoBehaviour:
   instrumentType: 2
   minigameLeniency: 1
   minigameScoreScale: 1
+  description: A basic drum kit.

@@ -16,5 +16,6 @@ public class InstrumentScriptableObject : ScriptableObject
     public InstrumentType instrumentType = InstrumentType.Bass;
     public float minigameLeniency = 1f;
     public float minigameScoreScale = 1f;
+    [TextArea]
     public string description;
 }

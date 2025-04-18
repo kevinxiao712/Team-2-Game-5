@@ -16,3 +16,5 @@ MonoBehaviour:
   instrumentType: 0
   minigameLeniency: 1.25
   minigameScoreScale: 0.8
+  description: An slap bass. The bass sections of the rhythm minigame will be easier,
+    but you'll score less.
