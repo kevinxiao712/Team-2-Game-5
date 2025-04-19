@@ -155,10 +155,10 @@ TextureImporter:
       name: BoyBandEnvironmentProps_2
       rect:
         serializedVersion: 2
-        x: 2975
+        x: 2954
         y: 1
-        width: 520
-        height: 383
+        width: 783
+        height: 403
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -181,7 +181,7 @@ TextureImporter:
         width: 814
         height: 1642
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -189,6 +189,237 @@ TextureImporter:
       bones: []
       spriteID: 8534518bf6674f542b9c9f065d838b85
       internalID: 1539926800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BoyBandEnvironmentProps_4
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 1411
+        width: 1020
+        height: 564
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3cebc4f3e9650dd4d9559dcbabf4800f
+      internalID: 1998134754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BoyBandEnvironmentProps_5
+      rect:
+        serializedVersion: 2
+        x: 1179
+        y: 1688
+        width: 407
+        height: 411
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb3a94587b15e7344822fa9fc1fafb3b
+      internalID: 2086775705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BoyBandEnvironmentProps_6
+      rect:
+        serializedVersion: 2
+        x: 1611
+        y: 1812
+        width: 335
+        height: 348
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 533c4dbd724582041a09f6b2e1d8972b
+      internalID: 319498797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BoyBandEnvironmentProps_7
+      rect:
+        serializedVersion: 2
+        x: 1630
+        y: 1591
+        width: 291
+        height: 196
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96db9bdffcf3ace4aa0602034cb1841c
+      internalID: -844556452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BoyBandEnvironmentProps_8
+      rect:
+        serializedVersion: 2
+        x: 1963
+        y: 1732
+        width: 738
+        height: 393
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c028d0f346119a24a84824af944978ff
+      internalID: -1014005597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BoyBandEnvironmentProps_9
+      rect:
+        serializedVersion: 2
+        x: 1181
+        y: 616
+        width: 253
+        height: 139
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6dddda513de28a14c93d79084afab1c1
+      internalID: 1946850837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BoyBandEnvironmentProps_10
+      rect:
+        serializedVersion: 2
+        x: 1659
+        y: 618
+        width: 257
+        height: 141
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79b55bb2ac8c59345ba55e305a2b4298
+      internalID: 1091366365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BoyBandEnvironmentProps_11
+      rect:
+        serializedVersion: 2
+        x: 1514
+        y: 144
+        width: 411
+        height: 440
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4924ee2bca441234abe0e20a5ac7b3cf
+      internalID: -103376977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BoyBandEnvironmentProps_12
+      rect:
+        serializedVersion: 2
+        x: 2038
+        y: 33
+        width: 590
+        height: 370
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8de76afa3bd98ea469d9b4afa03a162c
+      internalID: -389384305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BoyBandEnvironmentProps_13
+      rect:
+        serializedVersion: 2
+        x: 2610
+        y: 798
+        width: 67
+        height: 424
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d73147532b7745e41aca6cafe388c59c
+      internalID: -272849720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BoyBandEnvironmentProps_14
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 196
+        width: 477
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad911299ebbeeaa4c8edb6983f8b8b30
+      internalID: 1391266435
       vertices: []
       indices: 
       edges: []
@@ -206,8 +437,19 @@ TextureImporter:
     nameFileIdTable:
       BoyBandEnvironmentProps_0: 874205728
       BoyBandEnvironmentProps_1: -1456857014
+      BoyBandEnvironmentProps_10: 1091366365
+      BoyBandEnvironmentProps_11: -103376977
+      BoyBandEnvironmentProps_12: -389384305
+      BoyBandEnvironmentProps_13: -272849720
+      BoyBandEnvironmentProps_14: 1391266435
       BoyBandEnvironmentProps_2: 1767912498
       BoyBandEnvironmentProps_3: 1539926800
+      BoyBandEnvironmentProps_4: 1998134754
+      BoyBandEnvironmentProps_5: 2086775705
+      BoyBandEnvironmentProps_6: 319498797
+      BoyBandEnvironmentProps_7: -844556452
+      BoyBandEnvironmentProps_8: -1014005597
+      BoyBandEnvironmentProps_9: 1946850837
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
