@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5981601433435034507}
   - component: {fileID: 8948007955419827054}
   - component: {fileID: 7654950546466279089}
+  - component: {fileID: 3256707395815296630}
   m_Layer: 0
   m_Name: DrugSlot
   m_TagString: Slot
@@ -130,3 +131,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &3256707395815296630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8830057492701158861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 723a3d6462521184ca8cba1eb5d5931e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  correctCharacter: 1
+  occupant: {fileID: 0}
