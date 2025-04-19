@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 
 public class PostShowManager : MonoBehaviour
 {
@@ -7,11 +8,13 @@ public class PostShowManager : MonoBehaviour
     public Transform spawnPoint;
     public GameObject[] characterPrefabs;   // size 5, order matches enum
     [Header("Slots")]
-    public Transform slotParent;     
-
+    public Transform slotParent;
+    public CharacterSlot[] slots;
     private int activeIndex = 0; 
     private GameObject currentChar;
     private List<Collider2D> slotColliders = new List<Collider2D>();
+    public Canvas resultCanvas;
+
 
     void Start()
     {
@@ -31,19 +34,16 @@ public class PostShowManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            Collider2D slot = DetectClosestSlot(currentChar.transform.position);
-            if (slot != null)
-            {
-                LockCurrentInSlot(slot);
-                activeIndex++;
+            Collider2D hitCol = DetectClosestSlot(currentChar.transform.position);
+            if (hitCol == null) return;
 
-                if (activeIndex < characterPrefabs.Length)
-                    SpawnNextCharacter();
-                else
-                    Debug.Log("All 5 placed.");
-            }
+            CharacterSlot slot = hitCol.GetComponent<CharacterSlot>();
+            if (slot == null) return;
+
+            LockCurrentInSlot(slot);   // this already increments and spawns
         }
     }
+
 
 
     Collider2D DetectClosestSlot(Vector2 pos)
@@ -62,10 +62,18 @@ public class PostShowManager : MonoBehaviour
         return best;
     }
 
-    void LockCurrentInSlot(Collider2D slot)
+    void LockCurrentInSlot(CharacterSlot slot)
     {
         currentChar.transform.position = slot.transform.position;
         currentChar.GetComponent<CharacterController2D>().SetActive(false);
+
+        slot.occupant = currentChar;           // remember who¡¯s here
+
+        activeIndex++;
+        if (activeIndex < characterPrefabs.Length)
+            SpawnNextCharacter();
+        else
+            EvaluatePlacements();              // <= NEW
     }
 
     void SpawnNextCharacter()
@@ -73,5 +81,35 @@ public class PostShowManager : MonoBehaviour
         currentChar = Instantiate(characterPrefabs[activeIndex], spawnPoint.position, Quaternion.identity);
         currentChar.GetComponent<CharacterController2D>().SetActive(true);
         Debug.Log($"Spawned {currentChar.name}");
+    }
+
+    void EvaluatePlacements()
+    {
+        int correct = 0;
+
+        foreach (CharacterSlot slot in slots)
+        {
+            if (slot.occupant == null) continue;
+
+            CharacterID placed =
+                slot.occupant.GetComponent<CharacterIdentity>().id;
+
+            bool isRight = placed == slot.correctCharacter;
+
+            SpriteRenderer sr = slot.GetComponent<SpriteRenderer>();
+            if (sr != null)
+                sr.color = isRight ? Color.green : Color.red;
+
+            if (isRight) correct++;
+        }
+
+        // display result
+        if (resultCanvas != null)
+        {
+            resultCanvas.gameObject.SetActive(true);
+            resultCanvas.GetComponentInChildren<TMPro.TMP_Text>().text = $"{correct} / 5 correct!";
+        }
+
+        Debug.Log($"Player matched {correct} of 5.");
     }
 }

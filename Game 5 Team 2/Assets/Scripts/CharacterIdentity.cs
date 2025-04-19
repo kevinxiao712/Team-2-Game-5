@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum CharacterID { Manager, Guitar, Bass, Drums, Vocals, Dancer}
+public enum CharacterID {None, Manager, Guitar, Bass, Drums, Vocals, Dancer}
 
 public class CharacterIdentity : MonoBehaviour
 {
