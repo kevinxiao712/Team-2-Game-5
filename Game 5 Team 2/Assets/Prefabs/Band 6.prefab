@@ -223,7 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7b42a3667f96be4180ad5f9b5e031da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupKey: 113
+  pickupKey: 102
   followOffset: {fileID: 179973555435612105}
 --- !u!1 &6012579183217425548
 GameObject:

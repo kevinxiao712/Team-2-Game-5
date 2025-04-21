@@ -37,7 +37,7 @@ public class PostShowManager : MonoBehaviour
     {
         if (currentChar == null) return;
 
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             Collider2D hitCol = DetectClosestSlot(currentChar.transform.position);
             if (hitCol == null) return;
