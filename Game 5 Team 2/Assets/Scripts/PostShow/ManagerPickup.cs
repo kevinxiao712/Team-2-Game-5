@@ -20,35 +20,38 @@ public class RoadieController : MonoBehaviour
             if (Input.GetKeyDown(pickupKey))
             {
 
-                Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, 0.8f, LayerMask.GetMask("Character"));
+                Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position,
+                                                              0.8f,
+                                                              LayerMask.GetMask("Character"));
 
                 foreach (Collider2D h in hits)
                 {
-                    // ignore our own collider
-                    if (h.gameObject == gameObject) continue;
+                    if (h.gameObject == gameObject) continue;               // skip self
+                    if (h.GetComponent<PickUpable>() == null) continue;     // need tag
 
+                    carried = h.gameObject;
+                    Debug.Log("Picked up " + carried.name);
 
-                    if (h.GetComponent<PickUpable>() != null)
+                    // 1)  Disable physics & collisions on the carried object
+                    var rb = carried.GetComponent<Rigidbody2D>();
+                    if (rb != null)
                     {
-                        Debug.Log("Picked up " + h.name);
-                        carried = h.gameObject;
-
-                        // wake up rigid‑body
-/*                        var rb = carried.GetComponent<Rigidbody2D>();
-                        if (rb != null)
-                        {
-                            rb.velocity = Vector2.zero;
-                            rb.angularVelocity = 0f;
-                            rb.bodyType = RigidbodyType2D.Kinematic;
-                            rb.simulated = true;
-                        }*/
-
-                        carried.GetComponent<CharacterController2D>().SetActive(false);
-                        carried.transform.SetParent(followOffset, worldPositionStays: false);
-                        carried.transform.localPosition = Vector3.zero;
-                        break;                   
+                        rb.velocity = Vector2.zero;
+                        rb.angularVelocity = 0f;
+                        rb.simulated = false;                 // physics off
                     }
+                    var col = carried.GetComponent<Collider2D>();
+                    if (col != null) col.enabled = false;        // collider off
+
+                    // 2)  Disable its own controller
+                    carried.GetComponent<CharacterController2D>().SetActive(false);
+
+                    // 3)  Parent so it visually follows
+                    carried.transform.SetParent(followOffset, worldPositionStays: false);
+                    carried.transform.localPosition = Vector3.zero;
+                    break;
                 }
+
             }
         }
         else
