@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Baton
   description: A baton for security guards.
+  unlockFlavorText: The band saw their need for increased security, and bought a
+    baton for security guards.

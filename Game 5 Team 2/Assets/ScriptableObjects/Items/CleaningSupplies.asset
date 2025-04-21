@@ -15,3 +15,4 @@ MonoBehaviour:
   itemName: Cleaning Supplies
   description: A variety of cleaning supplies. Helps with the cleaning task in the
     pre-show.
+  unlockFlavorText: Cleanliness is important

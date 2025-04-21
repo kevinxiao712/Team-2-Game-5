@@ -15,3 +15,5 @@ MonoBehaviour:
   itemName: Catering Order
   description: An order for high-quality food from a well-known catering company.
     Guarantees a successful pre-show meal.
+  unlockFlavorText: With their rising funds, the band became able to afford higher-quality
+    food.

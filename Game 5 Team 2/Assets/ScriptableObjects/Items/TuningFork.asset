@@ -15,3 +15,5 @@ MonoBehaviour:
   itemName: Tuning Fork
   description: A tuning fork used to tune instruments. Helps with the tuning task
     in the pre-show.
+  unlockFlavorText: With their rising popularity, the band purchased a tuning fork
+    to ensure their instruments were all in-tune.

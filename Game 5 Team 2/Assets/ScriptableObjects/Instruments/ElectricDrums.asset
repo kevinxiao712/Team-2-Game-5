@@ -15,6 +15,7 @@ MonoBehaviour:
   itemName: Electric Drums
   description: An electric drum kit. The drum sections of the rhythm minigame will
     be more difficult, but you'll score more.
+  unlockFlavorText: With more funds, the band purchased an electric drum kit.
   instrumentType: 0
   minigameLeniency: 0.8
   minigameScoreScale: 1.25

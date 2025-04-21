@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: Double Bass
   description: A double bass. The bass sections of the rhythm minigame will be more
     difficult, but you'll score more.
-  unlockFlavorText: 
+  unlockFlavorText: With more funds, the band purchased a double bass.
   instrumentType: 1
   minigameLeniency: 0.8
   minigameScoreScale: 1.25

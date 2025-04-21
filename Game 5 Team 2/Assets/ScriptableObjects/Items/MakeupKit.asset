@@ -15,3 +15,5 @@ MonoBehaviour:
   itemName: Makeup Kit
   description: A retinue of big-brand makeup, some of which is endoresed by 5TiPs
     themselves. Helps with applying makeup in the pre-show.
+  unlockFlavorText: With their rising popularity, the band started endorsing some
+    big-brand makeup.

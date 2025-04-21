@@ -35,6 +35,15 @@ public class ScoreManager : MonoBehaviour
         statManager = FindAnyObjectByType<StatManager>();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            AddScore(75);
+            AddItemsByScore();
+        }
+    }
+
     private void Start()
     {
         currentScore = 0;

@@ -15,3 +15,4 @@ MonoBehaviour:
   itemName: Floor Plans
   description: A detailed layout of the venue. Helps with the lights task in the
     pre-show.
+  unlockFlavorText: Floor plans
