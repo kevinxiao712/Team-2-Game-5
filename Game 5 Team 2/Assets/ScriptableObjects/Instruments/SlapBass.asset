@@ -15,6 +15,7 @@ MonoBehaviour:
   itemName: Slap Bass
   description: An slap bass. The bass sections of the rhythm minigame will be easier,
     but you'll score less.
-  instrumentType: 0
+  unlockFlavorText: 
+  instrumentType: 1
   minigameLeniency: 1.25
   minigameScoreScale: 0.8

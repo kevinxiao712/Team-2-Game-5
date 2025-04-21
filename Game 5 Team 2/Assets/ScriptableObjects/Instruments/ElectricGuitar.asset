@@ -15,6 +15,7 @@ MonoBehaviour:
   itemName: Electric Guitar
   description: An electric guitar kit. The guitar sections of the rhythm minigame
     will be more difficult, but you'll score more.
-  instrumentType: 1
+  unlockFlavorText: 
+  instrumentType: 0
   minigameLeniency: 0.8
   minigameScoreScale: 1.25

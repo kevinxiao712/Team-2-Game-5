@@ -7,8 +7,8 @@ public class InstrumentScriptableObject : ItemScriptableObject
 {
     public enum InstrumentType
     {
-        Bass,
         Guitar,
+        Bass,
         Drums
     }
 

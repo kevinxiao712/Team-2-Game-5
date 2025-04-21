@@ -15,16 +15,24 @@ public class ScoreManager : MonoBehaviour
     //default, will go up based on streak
     private int scorePerNote = 10;
     private int notesHit;
+
+    [SerializeField]
+    private int[] scoreThresholds;
+    [SerializeField]
+    private ItemScriptableObject[] itemsPerScore;
+    private int currentScoreThreshold;
+    private StatManager statManager;
     
     private void Awake()
     {
-
         if (Instance != null && Instance != this)
         {
             Destroy(this.gameObject);
             return;
         }
         Instance = this;
+        currentScoreThreshold = 0;
+        statManager = FindAnyObjectByType<StatManager>();
     }
 
     private void Start()
@@ -50,6 +58,16 @@ public class ScoreManager : MonoBehaviour
         if (scoreText != null)
         {
             scoreText.text = "Score: " + currentScore;
+        }
+    }
+
+    private void AddItemsByScore()
+    {
+        while (currentScoreThreshold < scoreThresholds.Length &&
+            currentScore <= scoreThresholds[currentScoreThreshold])
+        {
+            statManager.AddItemToInventory(itemsPerScore[currentScoreThreshold]);
+            currentScoreThreshold++;
         }
     }
 }

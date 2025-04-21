@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Bass
   description: A simple bass guitar.
-  instrumentType: 0
+  unlockFlavorText: 
+  instrumentType: 1
   minigameLeniency: 1
   minigameScoreScale: 1

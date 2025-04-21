@@ -1113,14 +1113,14 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1537627786}
         m_TargetAssemblyTypeName: StatManager, Assembly-CSharp
-        m_MethodName: SetInventoryItemTwo
-        m_Mode: 0
+        m_MethodName: SetInventoryItem
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -3033,10 +3033,10 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1537627786}
         m_TargetAssemblyTypeName: StatManager, Assembly-CSharp
         m_MethodName: SetDrums
-        m_Mode: 0
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4435,10 +4435,10 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1537627786}
         m_TargetAssemblyTypeName: StatManager, Assembly-CSharp
         m_MethodName: SetGuitar
-        m_Mode: 0
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4933,14 +4933,14 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1537627786}
         m_TargetAssemblyTypeName: StatManager, Assembly-CSharp
-        m_MethodName: SetInventoryItemThree
-        m_Mode: 0
+        m_MethodName: SetInventoryItem
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -8630,6 +8630,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 2077135680}
   currentScore: 0
+  scoreThresholds: 64000000c80000002c01000090010000f4010000
+  itemsPerScore:
+  - {fileID: 11400000, guid: 7ee01aaf357892d4d8aebadf5ac32928, type: 2}
+  - {fileID: 11400000, guid: f9b7d49b345832949b35413f6487be34, type: 2}
+  - {fileID: 11400000, guid: 9db2b07d0edf980469765869322bbf3c, type: 2}
+  - {fileID: 11400000, guid: 63b360b48934ba845a78b4f1ddae173b, type: 2}
+  - {fileID: 11400000, guid: ef2b84627ad50f1418f423db8f4d8791, type: 2}
 --- !u!1 &667686682
 GameObject:
   m_ObjectHideFlags: 0
@@ -10146,10 +10153,10 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1537627786}
         m_TargetAssemblyTypeName: StatManager, Assembly-CSharp
-        m_MethodName: SetInventoryItemOne
-        m_Mode: 0
+        m_MethodName: SetInventoryItem
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -17119,10 +17126,10 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1537627786}
         m_TargetAssemblyTypeName: StatManager, Assembly-CSharp
-        m_MethodName: SetBass
-        m_Mode: 0
+        m_MethodName: SetGuitar
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -19180,18 +19187,19 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 49883ef137567ee438b902879e091341, type: 2}
   instrumentChoices:
   - {fileID: 11400000, guid: 32afef756f7026a45b274e4b0f31bf34, type: 2}
-  - {fileID: 11400000, guid: c4e76a8cf18974f4a85a047c5b2a2f53, type: 2}
   - {fileID: 11400000, guid: 3ceb549d0f2aa534e8b05fb5bdff5c35, type: 2}
   - {fileID: 11400000, guid: c3b6f0972b9930b4fa434e637a166e67, type: 2}
-  - {fileID: 11400000, guid: 0f4ac5bc6984bd94196b0c9741d39934, type: 2}
   - {fileID: 11400000, guid: 8c1127f4092bbaf4ebb17372c1256b2a, type: 2}
   - {fileID: 11400000, guid: 348450c6ad986a944bc6ef3e78cecd15, type: 2}
-  - {fileID: 11400000, guid: af9157bbbc9d5b14d90c464c6a7fe7ec, type: 2}
   - {fileID: 11400000, guid: 167befe4744b01d478d7984fe699fe8d, type: 2}
   managerItemDropdowns:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 862875407}
+  - {fileID: 95503336}
+  - {fileID: 437082969}
+  instrumentDropdowns:
+  - {fileID: 384270657}
+  - {fileID: 1433623866}
+  - {fileID: 257858290}
   nextSceneName: MainMenu
 --- !u!4 &1537627787
 Transform:
