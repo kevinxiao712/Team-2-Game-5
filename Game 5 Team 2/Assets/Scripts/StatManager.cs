@@ -155,7 +155,7 @@ public class StatManager : MonoBehaviour
     {
         foreach (InstrumentScriptableObject inst in instrumentChoices)
         {
-            if (inst.instrumentName == name)
+            if (inst.itemName == name)
                 return inst;
         }
         return null;
