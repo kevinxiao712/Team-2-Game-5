@@ -168,8 +168,6 @@ public class PostShowManager : MonoBehaviour
             Debug.Log("Perfect placement");
             EndPostShow();
         }
-        // For now, each correct drug adds 15 points to the current score and hard-cuts to the endgame canvas
-        FindAnyObjectByType<ScoreManager>().AddScore(correct * 15);
 
     }
 
@@ -186,6 +184,9 @@ public class PostShowManager : MonoBehaviour
     {
         Debug.Log("No more postshow");
         // TODO: put any cleanup or next‑step logic here
+        // For now, each correct drug adds 15 points to the current score and hard-cuts to the endgame canvas
+        //FindAnyObjectByType<ScoreManager>().AddScore(correct * 15);
+        FindAnyObjectByType<ScoreManager>().DisplayEndgameCanvas();
     }
 
 }

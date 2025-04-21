@@ -12,7 +12,7 @@ public class ScoreManager : MonoBehaviour
 
     [Header("Endgame Canvas UI")]
     [SerializeField]
-    private Canvas endgameCanvas;
+    private GameObject endgameCanvas;
     [SerializeField]
     private TextMeshProUGUI endgameTextbox;
 
@@ -58,6 +58,7 @@ public class ScoreManager : MonoBehaviour
         currentScore = 0;
         totalScore = 0;
         UpdateScoreText();
+        endgameCanvas.SetActive(false);
     }
 
     public void AddScore(int amount)
@@ -78,7 +79,7 @@ public class ScoreManager : MonoBehaviour
         endgameTextbox.text = "Nightly Score: " + currentScore +
             "\n\nTotal Score: " + totalScore + "\n\n";
         AddItemsByScore();
-        endgameCanvas.enabled = true;
+        endgameCanvas.SetActive(true);
     }
 
     private void UpdateScoreText()
@@ -93,7 +94,7 @@ public class ScoreManager : MonoBehaviour
     {
         string newItemText = "";
         while (currentScoreThreshold < scoreThresholds.Length &&
-            totalScore <= scoreThresholds[currentScoreThreshold])
+            totalScore >= scoreThresholds[currentScoreThreshold])
         {
             statManager.AddItemToInventory(itemsPerScore[currentScoreThreshold]);
             newItemText += itemsPerScore[currentScoreThreshold].unlockFlavorText + "\n";

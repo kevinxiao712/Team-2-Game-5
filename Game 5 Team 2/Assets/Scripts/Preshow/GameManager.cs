@@ -15,7 +15,6 @@ public class GameManager : MonoBehaviour
     public GameObject ThirdPhaseObject;
     public GameObject instructionsCanvas;
 
-
     [Header("Preshow Timer UI")]
     public TextMeshPro preshowTimerText;
 
@@ -136,6 +135,11 @@ public class GameManager : MonoBehaviour
             ThirdPhaseObject.SetActive(true);
         }
 
+    }
+
+    public void PausePreshow(bool isPaused)
+    {
+        //instru
     }
 
     private string FormatTime(float time)
