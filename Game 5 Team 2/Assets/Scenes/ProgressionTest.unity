@@ -3036,7 +3036,7 @@ MonoBehaviour:
       - m_Target: {fileID: 1537627786}
         m_TargetAssemblyTypeName: StatManager, Assembly-CSharp
         m_MethodName: SetDrums
-        m_Mode: 3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4438,7 +4438,7 @@ MonoBehaviour:
       - m_Target: {fileID: 1537627786}
         m_TargetAssemblyTypeName: StatManager, Assembly-CSharp
         m_MethodName: SetGuitar
-        m_Mode: 3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -17128,8 +17128,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1537627786}
         m_TargetAssemblyTypeName: StatManager, Assembly-CSharp
-        m_MethodName: SetGuitar
-        m_Mode: 3
+        m_MethodName: SetBass
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
