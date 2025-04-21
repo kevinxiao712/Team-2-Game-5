@@ -46,11 +46,11 @@ public class ScoreManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            AddScore(75);
-            AddItemsByScore();
-        }
+        //if (Input.GetKeyDown(KeyCode.K))
+        //{
+        //    AddScore(75);
+        //    AddItemsByScore();
+        //}
     }
 
     private void Start()
