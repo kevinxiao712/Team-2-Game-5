@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class StatManager : MonoBehaviour
 {
@@ -35,11 +36,13 @@ public class StatManager : MonoBehaviour
     // This stuff will cause problems when StatManager becomes a singleton, will move some of this
     // to a SetupPhaseScene script when needed but for now I just want to make sure it works
     [SerializeField]
-    private ItemScriptableObject[] managerItemChoices;
+    private List<ItemScriptableObject> managerItemChoices = new();
     [SerializeField]
-    private InstrumentScriptableObject[] instrumentChoices;
+    private List<InstrumentScriptableObject> instrumentChoices = new();
     [SerializeField]
-    private TMP_Dropdown[] managerItemDropdowns;
+    private TMP_Dropdown[] managerItemDropdowns; 
+    [SerializeField]
+    private TMP_Dropdown[] instrumentDropdowns;
 
     // TEMPORARY: The scene to load when the "next" button is pressed
     [SerializeField]
@@ -87,15 +90,7 @@ public class StatManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        foreach (TMP_Dropdown dropdown in managerItemDropdowns)
-        {
-            dropdown.ClearOptions();
-            foreach (ItemScriptableObject item in managerItemChoices)
-            {
-                dropdown.options.Add(new TMP_Dropdown.OptionData(item.itemName));
-            }
-            dropdown.value = 0;
-        }
+        RefreshDropdowns();
     }
 
     // Update is called once per frame
@@ -104,42 +99,31 @@ public class StatManager : MonoBehaviour
         
     }
 
-    // I don't like doing individual methods for each dropdown menu,
-    // but Unity UI is annoying to work with in that regard so here I am
-    public void SetInventoryItemOne(Int32 item)
-    {
-        SetInventoryItem(0, managerItemChoices[item]);
-    }
-    public void SetInventoryItemTwo(Int32 item)
-    {
-        SetInventoryItem(1, managerItemChoices[item]);
-    }
-    public void SetInventoryItemThree(Int32 item)
-    {
-        SetInventoryItem(2, managerItemChoices[item]);
-    }
     // Very scuffed hard-coded values, will tweak to be more flexible later
-    public void SetGuitar(Int32 type)
+    public void SetGuitar()
     {
-        bandInstruments[0] = instrumentChoices[type];
+        bandInstruments[0] = FindInstrumentOfName(instrumentDropdowns[0].options[instrumentDropdowns[0].value].text);
+        Debug.Log(bandInstruments[0].itemName);
     }
-    public void SetBass(Int32 type)
+    public void SetBass()
     {
-        bandInstruments[1] = instrumentChoices[type + 3];
+        bandInstruments[1] = FindInstrumentOfName(instrumentDropdowns[1].options[instrumentDropdowns[1].value].text);
+        Debug.Log(bandInstruments[1].itemName);
     }
-    public void SetDrums(Int32 type)
+    public void SetDrums()
     {
-        bandInstruments[0] = instrumentChoices[type + 6];
-    }
-
-    public void LoadNextScene()
-    {
-        SceneManager.LoadScene(nextSceneName);
+        bandInstruments[2] = FindInstrumentOfName(instrumentDropdowns[2].options[instrumentDropdowns[2].value].text);
+        Debug.Log(bandInstruments[2].itemName);
     }
 
-    public void SetInventoryItem(int slot, ItemScriptableObject item)
+    public void ShowPrepScreen()
     {
-        managerItems[slot] = item;
+        gameObject.SetActive(true);
+    }
+
+    public void SetInventoryItem(int slot)
+    {
+        managerItems[slot] = managerItemChoices[managerItemDropdowns[slot].value];
     }
 
     public ItemScriptableObject FindItemOfName(string name)
@@ -150,6 +134,61 @@ public class StatManager : MonoBehaviour
                 return item;
         }
         return null;
+    }
+    public InstrumentScriptableObject FindInstrumentOfName(string name)
+    {
+        foreach (InstrumentScriptableObject inst in instrumentChoices)
+        {
+            if (inst.itemName == name)
+                return inst;
+        }
+        return null;
+    }
+
+    public void AddItemToInventory(ItemScriptableObject item)
+    {
+        if (item is InstrumentScriptableObject && 
+            !instrumentChoices.Contains((InstrumentScriptableObject)item))
+            instrumentChoices.Add((InstrumentScriptableObject)item);
+
+        else if (!(item is InstrumentScriptableObject) && !managerItemChoices.Contains(item))
+            managerItemChoices.Add(item);
+
+        Debug.Log(item.unlockFlavorText);
+        RefreshDropdowns();
+    }
+
+    private void RefreshDropdowns()
+    {
+        // Update the three manager item dropdowns
+        foreach (TMP_Dropdown dropdown in managerItemDropdowns)
+        {
+            dropdown.ClearOptions();
+            foreach (ItemScriptableObject item in managerItemChoices)
+            {
+                dropdown.options.Add(new TMP_Dropdown.OptionData(item.itemName));
+            }
+            dropdown.value = 0;
+            dropdown.RefreshShownValue();
+        }
+
+        // Update each of the instrument dropdowns
+        UpdateInstrumentDropdown(InstrumentScriptableObject.InstrumentType.Guitar);
+        UpdateInstrumentDropdown(InstrumentScriptableObject.InstrumentType.Bass);
+        UpdateInstrumentDropdown(InstrumentScriptableObject.InstrumentType.Drums);
+    }
+
+    private void UpdateInstrumentDropdown(InstrumentScriptableObject.InstrumentType type)
+    {
+        TMP_Dropdown dropdown = instrumentDropdowns[(int)type];
+        dropdown.ClearOptions();
+        foreach (InstrumentScriptableObject inst in instrumentChoices)
+        {
+            if (inst.instrumentType == type)
+                dropdown.options.Add(new TMP_Dropdown.OptionData(inst.itemName));
+        }
+        dropdown.value = 0;
+        dropdown.RefreshShownValue();
     }
 
     public static StatManager Instance;

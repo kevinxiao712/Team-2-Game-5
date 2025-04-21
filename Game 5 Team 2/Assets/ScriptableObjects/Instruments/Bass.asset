@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83740c49102e0454bb8cc1c2afa7503a, type: 3}
   m_Name: Bass
   m_EditorClassIdentifier: 
-  instrumentName: Bass
-  instrumentType: 0
+  itemName: Bass
+  description: A simple bass guitar.
+  unlockFlavorText: 
+  instrumentType: 1
   minigameLeniency: 1
   minigameScoreScale: 1

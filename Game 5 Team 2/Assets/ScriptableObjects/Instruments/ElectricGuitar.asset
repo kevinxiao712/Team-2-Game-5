@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83740c49102e0454bb8cc1c2afa7503a, type: 3}
   m_Name: ElectricGuitar
   m_EditorClassIdentifier: 
-  instrumentName: ElectricGuitar
-  instrumentType: 1
+  itemName: Electric Guitar
+  description: An electric guitar kit. The guitar sections of the rhythm minigame
+    will be more difficult, but you'll score more.
+  unlockFlavorText: With more funds, the band purchased an electric guitar.
+  instrumentType: 0
   minigameLeniency: 0.8
   minigameScoreScale: 1.25

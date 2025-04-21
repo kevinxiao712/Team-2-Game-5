@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Baton
   m_EditorClassIdentifier: 
   itemName: Baton
-  scoreBoost: 3
-  affectsPreShow: 1
-  affectsShow: 1
-  description: A baton.
+  description: A baton for security guards.
+  unlockFlavorText: The band saw their need for increased security, and bought a
+    baton for security guards.

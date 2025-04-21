@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 076c844c4e75481499270c7d15ce3a78, type: 3}
-  m_Name: CleaningSupplies
+  m_Name: TuningFork
   m_EditorClassIdentifier: 
-  itemName: Cleaning Supplies
-  description: A variety of cleaning supplies. Helps with the cleaning task in the
-    pre-show.
-  unlockFlavorText: Cleanliness is important
+  itemName: Tuning Fork
+  description: A tuning fork used to tune instruments. Helps with the tuning task
+    in the pre-show.
+  unlockFlavorText: With their rising popularity, the band purchased a tuning fork
+    to ensure their instruments were all in-tune.

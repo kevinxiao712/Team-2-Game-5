@@ -6,8 +6,8 @@ using UnityEngine;
 public class ItemScriptableObject : ScriptableObject
 {
     public string itemName;
-    public int scoreBoost = 0;
-    public bool affectsPreShow = false;
-    public bool affectsShow = false;
+    [TextArea]
     public string description;
+    [TextArea]
+    public string unlockFlavorText;
 }
