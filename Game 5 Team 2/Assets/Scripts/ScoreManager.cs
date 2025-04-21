@@ -82,6 +82,12 @@ public class ScoreManager : MonoBehaviour
         endgameCanvas.SetActive(true);
     }
 
+    public void ResetDailyScore()
+    {
+        currentScore = 0;
+        endgameCanvas.SetActive(false);
+    }
+
     private void UpdateScoreText()
     {
         if (scoreText != null)

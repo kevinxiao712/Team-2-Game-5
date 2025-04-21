@@ -72,7 +72,7 @@ public class PostShowManager : MonoBehaviour
         currentChar.transform.position = slot.transform.position;
         currentChar.GetComponent<CharacterController2D>().SetActive(false);
         var rb = currentChar.GetComponent<Rigidbody2D>();
-        if (rb != null)
+        if (rb != null && rb.bodyType != RigidbodyType2D.Static)
         {
             rb.velocity = Vector2.zero;
             rb.angularVelocity = 0f;
@@ -137,6 +137,8 @@ public class PostShowManager : MonoBehaviour
             }
         }
 
+        // For now, each correct drug adds 15 points to the current score
+        FindAnyObjectByType<ScoreManager>().AddScore(correct * 15);
 
         if (resultCanvas != null)
         {
@@ -184,8 +186,6 @@ public class PostShowManager : MonoBehaviour
     {
         Debug.Log("No more postshow");
         // TODO: put any cleanup or next‑step logic here
-        // For now, each correct drug adds 15 points to the current score and hard-cuts to the endgame canvas
-        //FindAnyObjectByType<ScoreManager>().AddScore(correct * 15);
         FindAnyObjectByType<ScoreManager>().DisplayEndgameCanvas();
     }
 

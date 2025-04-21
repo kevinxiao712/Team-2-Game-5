@@ -116,9 +116,9 @@ public class StatManager : MonoBehaviour
         Debug.Log(bandInstruments[2].itemName);
     }
 
-    public void LoadNextScene()
+    public void ShowPrepScreen()
     {
-        SceneManager.LoadScene(nextSceneName);
+        gameObject.SetActive(true);
     }
 
     public void SetInventoryItem(int slot)
