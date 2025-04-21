@@ -166,6 +166,7 @@ public class PostShowManager : MonoBehaviour
         else
         {
             Debug.Log("Perfect placement");
+            EndPostShow();
         }
 
     }
@@ -176,7 +177,13 @@ public class PostShowManager : MonoBehaviour
         if (wrongRemaining <= 0)
         {
             Debug.Log("All wrong characters removed");
+            EndPostShow();
         }
+    }
+    private void EndPostShow()
+    {
+        Debug.Log("No more postshow");
+        // TODO: put any cleanup or next‑step logic here
     }
 
 }
