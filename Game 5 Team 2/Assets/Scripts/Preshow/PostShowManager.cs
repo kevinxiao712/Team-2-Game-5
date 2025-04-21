@@ -49,7 +49,39 @@ public class PostShowManager : MonoBehaviour
         }
     }
 
+    public void ResetPostShow()
+    {
 
+        if (resultCanvas != null)
+            resultCanvas.gameObject.SetActive(false);
+
+
+        if (currentChar != null)
+        {
+            Destroy(currentChar);
+            currentChar = null;
+        }
+
+        foreach (var slot in slots)
+        {
+            if (slot.occupant != null)
+            {
+                Destroy(slot.occupant);
+                slot.occupant = null;
+            }
+
+            var sr = slot.GetComponent<SpriteRenderer>();
+            if (sr != null)
+                sr.color = Color.white;
+        }
+
+        wrongCharacters.Clear();
+        wrongRemaining = 0;
+        activeIndex = 0;
+
+        // 5) Respawn the very first character
+        SpawnNextCharacter();
+    }
 
     Collider2D DetectClosestSlot(Vector2 pos)
     {
