@@ -287,7 +287,7 @@ Transform:
   m_GameObject: {fileID: 67687177}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.8073394, y: 2.78, z: -89.99998}
+  m_LocalPosition: {x: 1.12, y: 2.78, z: -89.99998}
   m_LocalScale: {x: 0.09843901, y: 0.098439, z: 0.098439}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -404,6 +404,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canPress: 0
   keyToPress: 275
+  otherKeyToPress: 100
   moveBandMember: {fileID: 0}
 --- !u!1 &112318935
 GameObject:
@@ -433,7 +434,7 @@ Transform:
   m_GameObject: {fileID: 112318935}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.6458716, y: 20.18, z: -89.99998}
+  m_LocalPosition: {x: -0.34862414, y: 20.18, z: -89.99998}
   m_LocalScale: {x: 0.0866341, y: 0.08663409, z: 0.08663409}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -498,6 +499,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canPress: 0
   keyToPress: 273
+  otherKeyToPress: 119
   moveBandMember: {fileID: 0}
 --- !u!212 &112318939
 SpriteRenderer:
@@ -579,7 +581,7 @@ Transform:
   m_GameObject: {fileID: 136640664}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.9357793, y: 1.33, z: -89.99997}
+  m_LocalPosition: {x: -1.07, y: 1.33, z: -89.99997}
   m_LocalScale: {x: 0.089601, y: 0.089600995, z: 0.089600995}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -696,6 +698,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canPress: 0
   keyToPress: 276
+  otherKeyToPress: 97
   moveBandMember: {fileID: 0}
 --- !u!1 &161061444
 GameObject:
@@ -844,9 +847,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Welcome to the Main Stage! Now that you're all ready to perform, all that's
     left is to, well, perform! How you did in the pre-show determines how quickly
-    you must play! Press each key when it reaches it's box to land the note! Blue
-    = UP, Purple = LEFT, Pink = RIGHT, Yellow = DOWN. Once you're ready, press SPACE
-    to begin and let the notes fly!
+    you must play! Press each key when it reaches it's box to land the note! Purple
+    = LEFT/A, Blue = UP/W,  Yellow = DOWN/S, Pink = RIGHT/D. Once you're ready, press
+    SPACE to begin and let the notes fly!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -909,7 +912,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -280.75644, y: -42.011024, z: -282.80588, w: -231.57292}
+  m_margin: {x: -296.24136, y: -42.011024, z: -325.13156, w: -231.57292}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -951,7 +954,7 @@ Transform:
   m_GameObject: {fileID: 296418391}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.8073394, y: 7.29, z: -89.99998}
+  m_LocalPosition: {x: 1.1199996, y: 7.29, z: -89.99998}
   m_LocalScale: {x: 0.09843901, y: 0.098439, z: 0.098439}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1016,6 +1019,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canPress: 0
   keyToPress: 275
+  otherKeyToPress: 100
   moveBandMember: {fileID: 0}
 --- !u!212 &296418395
 SpriteRenderer:
@@ -1097,7 +1101,7 @@ Transform:
   m_GameObject: {fileID: 366977596}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.9357793, y: 10.38, z: -89.99997}
+  m_LocalPosition: {x: -1.07, y: 10.38, z: -89.99997}
   m_LocalScale: {x: 0.089601, y: 0.089600995, z: 0.089600995}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1162,6 +1166,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canPress: 0
   keyToPress: 276
+  otherKeyToPress: 97
   moveBandMember: {fileID: 0}
 --- !u!212 &366977600
 SpriteRenderer:
@@ -1243,7 +1248,7 @@ Transform:
   m_GameObject: {fileID: 373058189}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.6458716, y: 2.06, z: -89.99998}
+  m_LocalPosition: {x: -0.34862414, y: 2.06, z: -89.99998}
   m_LocalScale: {x: 0.0866341, y: 0.08663409, z: 0.08663409}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1308,6 +1313,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canPress: 0
   keyToPress: 273
+  otherKeyToPress: 119
   moveBandMember: {fileID: 0}
 --- !u!212 &373058193
 SpriteRenderer:
@@ -1389,7 +1395,7 @@ Transform:
   m_GameObject: {fileID: 400011365}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.8073394, y: 14.219998, z: -89.99998}
+  m_LocalPosition: {x: 1.1199996, y: 14.219998, z: -89.99998}
   m_LocalScale: {x: 0.09843901, y: 0.098439, z: 0.098439}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1454,6 +1460,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canPress: 0
   keyToPress: 275
+  otherKeyToPress: 100
   moveBandMember: {fileID: 0}
 --- !u!212 &400011369
 SpriteRenderer:
@@ -1535,7 +1542,7 @@ Transform:
   m_GameObject: {fileID: 415260463}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.6458716, y: 17.490002, z: -89.99998}
+  m_LocalPosition: {x: -0.34862414, y: 17.490002, z: -89.99998}
   m_LocalScale: {x: 0.0866341, y: 0.08663409, z: 0.08663409}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1600,6 +1607,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canPress: 0
   keyToPress: 273
+  otherKeyToPress: 119
   moveBandMember: {fileID: 0}
 --- !u!212 &415260467
 SpriteRenderer:
@@ -1740,7 +1748,7 @@ Transform:
   m_GameObject: {fileID: 453985023}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.6458716, y: 0.71, z: -89.99998}
+  m_LocalPosition: {x: -0.34862414, y: 0.71, z: -89.99998}
   m_LocalScale: {x: 0.0866341, y: 0.08663409, z: 0.08663409}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1805,6 +1813,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canPress: 0
   keyToPress: 273
+  otherKeyToPress: 119
   moveBandMember: {fileID: 0}
 --- !u!212 &453985027
 SpriteRenderer:
@@ -1886,7 +1895,7 @@ Transform:
   m_GameObject: {fileID: 479876062}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.642201, y: 17.49, z: -89.99998}
+  m_LocalPosition: {x: 0.39000043, y: 17.49, z: -89.99998}
   m_LocalScale: {x: 0.090942316, y: 0.09094231, z: 0.09094231}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1951,6 +1960,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canPress: 0
   keyToPress: 274
+  otherKeyToPress: 115
   moveBandMember: {fileID: 0}
 --- !u!212 &479876066
 SpriteRenderer:
@@ -2120,7 +2130,7 @@ Transform:
   m_GameObject: {fileID: 520419195}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.6458716, y: 8.61, z: -89.99998}
+  m_LocalPosition: {x: -0.34862414, y: 8.61, z: -89.99998}
   m_LocalScale: {x: 0.0866341, y: 0.08663409, z: 0.08663409}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2185,6 +2195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canPress: 0
   keyToPress: 273
+  otherKeyToPress: 119
   moveBandMember: {fileID: 0}
 --- !u!212 &520419199
 SpriteRenderer:
@@ -2271,7 +2282,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 284.7, y: 12.6}
+  m_AnchoredPosition: {x: 186.5, y: -30.1}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &528431170
@@ -2354,7 +2365,7 @@ Transform:
   m_GameObject: {fileID: 550357872}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.8073394, y: 14.7699995, z: -89.99998}
+  m_LocalPosition: {x: 1.1199996, y: 14.7699995, z: -89.99998}
   m_LocalScale: {x: 0.09843901, y: 0.098439, z: 0.098439}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2419,6 +2430,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canPress: 0
   keyToPress: 275
+  otherKeyToPress: 100
   moveBandMember: {fileID: 0}
 --- !u!212 &550357876
 SpriteRenderer:
@@ -2503,6 +2515,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 0}
   currentScore: 0
+  showScore: 0
 --- !u!4 &551062106
 Transform:
   m_ObjectHideFlags: 0
@@ -2551,7 +2564,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -291.1, y: 27.8}
+  m_AnchoredPosition: {x: -193.9, y: -14.9}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &559203850
@@ -2634,7 +2647,7 @@ Transform:
   m_GameObject: {fileID: 649718304}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.642201, y: 21.2, z: -89.99998}
+  m_LocalPosition: {x: 0.39000043, y: 21.2, z: -89.99998}
   m_LocalScale: {x: 0.090942316, y: 0.09094231, z: 0.09094231}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2699,6 +2712,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canPress: 0
   keyToPress: 274
+  otherKeyToPress: 115
   moveBandMember: {fileID: 0}
 --- !u!212 &649718308
 SpriteRenderer:
@@ -2790,7 +2804,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -160, y: 71}
+  m_AnchoredPosition: {x: -58.315033, y: 71}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &657027494
@@ -2891,6 +2905,7 @@ MonoBehaviour:
   normal: {r: 0, g: 0, b: 0, a: 0}
   pressed: {r: 0, g: 0, b: 0, a: 0}
   keyToPress: 276
+  otherKeyToPress: 97
 --- !u!50 &657027498
 Rigidbody2D:
   serializedVersion: 4
@@ -3169,7 +3184,7 @@ Transform:
   m_GameObject: {fileID: 761259528}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.9357793, y: 18.27, z: -89.99997}
+  m_LocalPosition: {x: -1.07, y: 18.27, z: -89.99997}
   m_LocalScale: {x: 0.089601, y: 0.089600995, z: 0.089600995}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3234,6 +3249,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canPress: 0
   keyToPress: 276
+  otherKeyToPress: 97
   moveBandMember: {fileID: 0}
 --- !u!212 &761259532
 SpriteRenderer:
@@ -3365,7 +3381,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 153, y: 71}
+  m_AnchoredPosition: {x: 61.039978, y: 71}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &805169147
@@ -3466,6 +3482,7 @@ MonoBehaviour:
   normal: {r: 0, g: 0, b: 0, a: 0}
   pressed: {r: 0, g: 0, b: 0, a: 0}
   keyToPress: 275
+  otherKeyToPress: 100
 --- !u!50 &805169151
 Rigidbody2D:
   serializedVersion: 4
@@ -3566,7 +3583,7 @@ Transform:
   m_GameObject: {fileID: 820363607}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.642201, y: 16.819998, z: -89.99998}
+  m_LocalPosition: {x: 0.39000043, y: 16.819998, z: -89.99998}
   m_LocalScale: {x: 0.090942316, y: 0.09094231, z: 0.09094231}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3631,6 +3648,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canPress: 0
   keyToPress: 274
+  otherKeyToPress: 115
   moveBandMember: {fileID: 0}
 --- !u!212 &820363611
 SpriteRenderer:
@@ -3712,7 +3730,7 @@ Transform:
   m_GameObject: {fileID: 918841509}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.9357793, y: 22.25, z: -89.99997}
+  m_LocalPosition: {x: -1.07, y: 22.25, z: -89.99997}
   m_LocalScale: {x: 0.089601, y: 0.089600995, z: 0.089600995}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3777,6 +3795,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canPress: 0
   keyToPress: 276
+  otherKeyToPress: 97
   moveBandMember: {fileID: 0}
 --- !u!212 &918841513
 SpriteRenderer:
@@ -3858,7 +3877,7 @@ Transform:
   m_GameObject: {fileID: 923960247}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.642201, y: 13.06, z: -89.99998}
+  m_LocalPosition: {x: 0.39000043, y: 13.06, z: -89.99998}
   m_LocalScale: {x: 0.090942316, y: 0.09094231, z: 0.09094231}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3923,6 +3942,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canPress: 0
   keyToPress: 274
+  otherKeyToPress: 115
   moveBandMember: {fileID: 0}
 --- !u!212 &923960251
 SpriteRenderer:
@@ -4004,7 +4024,7 @@ Transform:
   m_GameObject: {fileID: 930938607}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.8073394, y: 19.21, z: -89.99998}
+  m_LocalPosition: {x: 1.1199996, y: 19.21, z: -89.99998}
   m_LocalScale: {x: 0.09843901, y: 0.098439, z: 0.098439}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4069,6 +4089,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canPress: 0
   keyToPress: 275
+  otherKeyToPress: 100
   moveBandMember: {fileID: 0}
 --- !u!212 &930938611
 SpriteRenderer:
@@ -4150,7 +4171,7 @@ Transform:
   m_GameObject: {fileID: 935433781}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.9357793, y: 14.22, z: -89.99997}
+  m_LocalPosition: {x: -1.07, y: 14.22, z: -89.99997}
   m_LocalScale: {x: 0.089601, y: 0.089600995, z: 0.089600995}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4215,6 +4236,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canPress: 0
   keyToPress: 276
+  otherKeyToPress: 97
   moveBandMember: {fileID: 0}
 --- !u!212 &935433785
 SpriteRenderer:
@@ -4296,7 +4318,7 @@ Transform:
   m_GameObject: {fileID: 936484377}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.9357793, y: 5.78, z: -89.99997}
+  m_LocalPosition: {x: -1.07, y: 5.78, z: -89.99997}
   m_LocalScale: {x: 0.089601, y: 0.089600995, z: 0.089600995}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4361,6 +4383,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canPress: 0
   keyToPress: 276
+  otherKeyToPress: 97
   moveBandMember: {fileID: 0}
 --- !u!212 &936484381
 SpriteRenderer:
@@ -4442,7 +4465,7 @@ Transform:
   m_GameObject: {fileID: 1057744824}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.642201, y: 16.18, z: -89.99998}
+  m_LocalPosition: {x: 0.39000043, y: 16.18, z: -89.99998}
   m_LocalScale: {x: 0.090942316, y: 0.09094231, z: 0.09094231}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4507,6 +4530,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canPress: 0
   keyToPress: 274
+  otherKeyToPress: 115
   moveBandMember: {fileID: 0}
 --- !u!212 &1057744828
 SpriteRenderer:
@@ -4588,7 +4612,7 @@ Transform:
   m_GameObject: {fileID: 1067547770}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.6458716, y: 12.21, z: -89.99998}
+  m_LocalPosition: {x: -0.34862414, y: 12.21, z: -89.99998}
   m_LocalScale: {x: 0.0866341, y: 0.08663409, z: 0.08663409}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4653,6 +4677,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canPress: 0
   keyToPress: 273
+  otherKeyToPress: 119
   moveBandMember: {fileID: 0}
 --- !u!212 &1067547774
 SpriteRenderer:
@@ -4839,7 +4864,7 @@ Transform:
   m_GameObject: {fileID: 1114460698}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.8073394, y: 6.62, z: -89.99998}
+  m_LocalPosition: {x: 1.1199996, y: 6.62, z: -89.99998}
   m_LocalScale: {x: 0.09843901, y: 0.098439, z: 0.098439}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4904,6 +4929,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canPress: 0
   keyToPress: 275
+  otherKeyToPress: 100
   moveBandMember: {fileID: 0}
 --- !u!212 &1114460702
 SpriteRenderer:
@@ -4985,7 +5011,7 @@ Transform:
   m_GameObject: {fileID: 1154938907}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.6458716, y: -0.09, z: -89.99998}
+  m_LocalPosition: {x: -0.34862366, y: -0.09, z: -89.99998}
   m_LocalScale: {x: 0.0866341, y: 0.08663409, z: 0.08663409}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5102,6 +5128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canPress: 0
   keyToPress: 273
+  otherKeyToPress: 119
   moveBandMember: {fileID: 0}
 --- !u!1 &1211664286
 GameObject:
@@ -5242,6 +5269,7 @@ MonoBehaviour:
   normal: {r: 0, g: 0, b: 0, a: 0}
   pressed: {r: 0, g: 0, b: 0, a: 0}
   keyToPress: 32
+  otherKeyToPress: 0
 --- !u!50 &1211664292
 Rigidbody2D:
   serializedVersion: 4
@@ -5342,7 +5370,7 @@ Transform:
   m_GameObject: {fileID: 1231564990}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.642201, y: 9.46, z: -89.99998}
+  m_LocalPosition: {x: 0.39000043, y: 9.46, z: -89.99998}
   m_LocalScale: {x: 0.090942316, y: 0.09094231, z: 0.09094231}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5407,6 +5435,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canPress: 0
   keyToPress: 274
+  otherKeyToPress: 115
   moveBandMember: {fileID: 0}
 --- !u!212 &1231564994
 SpriteRenderer:
@@ -5488,7 +5517,7 @@ Transform:
   m_GameObject: {fileID: 1242068777}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.8073394, y: 5.02, z: -89.99998}
+  m_LocalPosition: {x: 1.1199996, y: 5.02, z: -89.99998}
   m_LocalScale: {x: 0.09843901, y: 0.098439, z: 0.098439}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5553,6 +5582,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canPress: 0
   keyToPress: 275
+  otherKeyToPress: 100
   moveBandMember: {fileID: 0}
 --- !u!212 &1242068781
 SpriteRenderer:
@@ -5639,7 +5669,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -99, y: 26.3}
+  m_AnchoredPosition: {x: -370.7, y: -17.4}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &1282141563
@@ -5722,7 +5752,7 @@ Transform:
   m_GameObject: {fileID: 1323214423}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.642201, y: 4.27, z: -89.99998}
+  m_LocalPosition: {x: 0.39000043, y: 4.27, z: -89.99998}
   m_LocalScale: {x: 0.090942316, y: 0.09094231, z: 0.09094231}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5787,6 +5817,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canPress: 0
   keyToPress: 274
+  otherKeyToPress: 115
   moveBandMember: {fileID: 0}
 --- !u!212 &1323214427
 SpriteRenderer:
@@ -5868,7 +5899,7 @@ Transform:
   m_GameObject: {fileID: 1452434408}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.8073394, y: 22.249996, z: -89.99998}
+  m_LocalPosition: {x: 1.1199996, y: 22.249996, z: -89.99998}
   m_LocalScale: {x: 0.09843901, y: 0.098439, z: 0.098439}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5933,6 +5964,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canPress: 0
   keyToPress: 275
+  otherKeyToPress: 100
   moveBandMember: {fileID: 0}
 --- !u!212 &1452434412
 SpriteRenderer:
@@ -6014,7 +6046,7 @@ Transform:
   m_GameObject: {fileID: 1466902282}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.8073394, y: 11.13, z: -89.99998}
+  m_LocalPosition: {x: 1.1199996, y: 11.13, z: -89.99998}
   m_LocalScale: {x: 0.09843901, y: 0.098439, z: 0.098439}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6079,6 +6111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canPress: 0
   keyToPress: 275
+  otherKeyToPress: 100
   moveBandMember: {fileID: 0}
 --- !u!212 &1466902286
 SpriteRenderer:
@@ -6170,7 +6203,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 362, y: 71}
+  m_AnchoredPosition: {x: 21.255066, y: 71}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1481781459
@@ -6271,6 +6304,7 @@ MonoBehaviour:
   normal: {r: 0, g: 0, b: 0, a: 0}
   pressed: {r: 0, g: 0, b: 0, a: 0}
   keyToPress: 274
+  otherKeyToPress: 115
 --- !u!50 &1481781463
 Rigidbody2D:
   serializedVersion: 4
@@ -6371,7 +6405,7 @@ Transform:
   m_GameObject: {fileID: 1494185599}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.9357793, y: 14.77, z: -89.99997}
+  m_LocalPosition: {x: -1.07, y: 14.77, z: -89.99997}
   m_LocalScale: {x: 0.089601, y: 0.089600995, z: 0.089600995}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6436,6 +6470,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canPress: 0
   keyToPress: 276
+  otherKeyToPress: 97
   moveBandMember: {fileID: 0}
 --- !u!212 &1494185603
 SpriteRenderer:
@@ -6522,7 +6557,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 91.2, y: 27.2}
+  m_AnchoredPosition: {x: 357.1, y: -17.5}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &1526305068
@@ -6605,7 +6640,7 @@ Transform:
   m_GameObject: {fileID: 1569963368}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.8073394, y: 15.359997, z: -89.99998}
+  m_LocalPosition: {x: 1.1199996, y: 15.359997, z: -89.99998}
   m_LocalScale: {x: 0.09843901, y: 0.098439, z: 0.098439}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6670,6 +6705,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canPress: 0
   keyToPress: 275
+  otherKeyToPress: 100
   moveBandMember: {fileID: 0}
 --- !u!212 &1569963372
 SpriteRenderer:
@@ -6903,7 +6939,7 @@ Transform:
   m_GameObject: {fileID: 1721725716}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.6458716, y: 16.18, z: -89.99998}
+  m_LocalPosition: {x: -0.34862414, y: 16.18, z: -89.99998}
   m_LocalScale: {x: 0.0866341, y: 0.08663409, z: 0.08663409}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6968,6 +7004,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canPress: 0
   keyToPress: 273
+  otherKeyToPress: 119
   moveBandMember: {fileID: 0}
 --- !u!212 &1721725720
 SpriteRenderer:
@@ -7059,7 +7096,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -362.2, y: 71}
+  m_AnchoredPosition: {x: -19, y: 71}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1857296682
@@ -7160,6 +7197,7 @@ MonoBehaviour:
   normal: {r: 0, g: 0, b: 0, a: 0}
   pressed: {r: 0, g: 0, b: 0, a: 0}
   keyToPress: 273
+  otherKeyToPress: 119
 --- !u!50 &1857296686
 Rigidbody2D:
   serializedVersion: 4
@@ -7260,7 +7298,7 @@ Transform:
   m_GameObject: {fileID: 1902091297}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.9357793, y: 7.89, z: -89.99997}
+  m_LocalPosition: {x: -1.07, y: 7.89, z: -89.99997}
   m_LocalScale: {x: 0.089601, y: 0.089600995, z: 0.089600995}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7325,6 +7363,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canPress: 0
   keyToPress: 276
+  otherKeyToPress: 97
   moveBandMember: {fileID: 0}
 --- !u!212 &1902091301
 SpriteRenderer:
@@ -7406,7 +7445,7 @@ Transform:
   m_GameObject: {fileID: 1908498173}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.6458716, y: 16.82, z: -89.99998}
+  m_LocalPosition: {x: -0.34862414, y: 16.82, z: -89.99998}
   m_LocalScale: {x: 0.0866341, y: 0.08663409, z: 0.08663409}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7471,6 +7510,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canPress: 0
   keyToPress: 273
+  otherKeyToPress: 119
   moveBandMember: {fileID: 0}
 --- !u!212 &1908498177
 SpriteRenderer:
@@ -7552,7 +7592,7 @@ Transform:
   m_GameObject: {fileID: 2057522599}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.9357793, y: 15.36, z: -89.99997}
+  m_LocalPosition: {x: -1.07, y: 15.36, z: -89.99997}
   m_LocalScale: {x: 0.089601, y: 0.089600995, z: 0.089600995}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7617,6 +7657,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canPress: 0
   keyToPress: 276
+  otherKeyToPress: 97
   moveBandMember: {fileID: 0}
 --- !u!212 &2057522603
 SpriteRenderer:
@@ -7698,7 +7739,7 @@ Transform:
   m_GameObject: {fileID: 2132487280}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.642201, y: 3.52, z: -89.99998}
+  m_LocalPosition: {x: 0.39, y: 3.52, z: -89.99998}
   m_LocalScale: {x: 0.090942316, y: 0.09094231, z: 0.09094231}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7815,6 +7856,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canPress: 0
   keyToPress: 274
+  otherKeyToPress: 115
   moveBandMember: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

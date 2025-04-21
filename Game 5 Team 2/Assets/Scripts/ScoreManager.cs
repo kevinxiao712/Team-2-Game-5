@@ -11,6 +11,7 @@ public class ScoreManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
 
     public int currentScore;
+    public int showScore;
 
     //default, will go up based on streak
     private int scorePerNote = 10;
@@ -43,7 +44,7 @@ public class ScoreManager : MonoBehaviour
     public void AddNoteHit()
     {
         notesHit++;
-        currentScore += scorePerNote;
+        showScore += scorePerNote;
     }
 
     private void UpdateScoreText()

@@ -8,6 +8,7 @@ public class NoteObject : MonoBehaviour
     public bool canPress;
 
     public KeyCode keyToPress;
+    public KeyCode otherKeyToPress;
 
     public MoveBandMember moveBandMember;
 
@@ -21,7 +22,7 @@ public class NoteObject : MonoBehaviour
     void Update()
     {
         //if arrow is pressed while inside a button, disable it
-        if(Input.GetKeyDown(keyToPress))
+        if(Input.GetKeyDown(keyToPress) || Input.GetKeyDown(otherKeyToPress))
         {
             if(canPress)
             {

@@ -18,6 +18,7 @@ public class ButtonController : MonoBehaviour
     private Color pressed;
 
     public KeyCode keyToPress;
+    public KeyCode otherKeyToPress;
 
     // Start is called before the first frame update
     void Start()
@@ -30,12 +31,12 @@ public class ButtonController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(keyToPress))
+        if (Input.GetKeyDown(keyToPress) || Input.GetKeyDown(otherKeyToPress))
         {
             img.color = pressed;
         }
 
-        if (Input.GetKeyUp(keyToPress))
+        if (Input.GetKeyUp(keyToPress) || Input.GetKeyUp(otherKeyToPress))
         {
             img.color = normal;
         }
