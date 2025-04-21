@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5611650919629991188}
   - component: {fileID: 6964915500549429797}
+  - component: {fileID: 4050490362577666921}
+  - component: {fileID: 8193924465151512031}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -84,3 +86,53 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4050490362577666921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7463142550146629625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca3a4b2c1859f0d4faf0ef3e08090dbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doorStates:
+  - {fileID: 874205728, guid: 261e6dd456930954abbd538a7710c832, type: 3}
+  - {fileID: -272849720, guid: 261e6dd456930954abbd538a7710c832, type: 3}
+--- !u!58 &8193924465151512031
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7463142550146629625}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.40233532, y: 0.5495617}
+  serializedVersion: 2
+  m_Radius: 1.52
