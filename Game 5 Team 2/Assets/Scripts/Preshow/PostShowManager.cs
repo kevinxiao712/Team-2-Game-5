@@ -109,6 +109,8 @@ public class PostShowManager : MonoBehaviour
             resultCanvas.gameObject.SetActive(true);
             resultCanvas.GetComponentInChildren<TMPro.TMP_Text>().text = $"{correct} / 5 correct!";
         }
+        // For now, each correct drug adds 15 points to the current score and hard-cuts to the endgame canvas
+        FindAnyObjectByType<ScoreManager>().AddScore(correct * 15);
 
         Debug.Log($"Player matched {correct} of 5.");
     }

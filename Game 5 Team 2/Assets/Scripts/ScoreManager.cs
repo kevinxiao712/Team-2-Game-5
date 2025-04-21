@@ -10,12 +10,21 @@ public class ScoreManager : MonoBehaviour
     [Header("Score UI")]
     public TextMeshProUGUI scoreText;
 
+    [Header("Endgame Canvas UI")]
+    [SerializeField]
+    private Canvas endgameCanvas;
+    [SerializeField]
+    private TextMeshProUGUI endgameTextbox;
+
+    [HideInInspector]
     public int currentScore;
+    private int totalScore;
 
     //default, will go up based on streak
     private int scorePerNote = 10;
     private int notesHit;
 
+    [Header("Item Unlock Thresholds")]
     [SerializeField]
     private int[] scoreThresholds;
     [SerializeField]
@@ -47,6 +56,7 @@ public class ScoreManager : MonoBehaviour
     private void Start()
     {
         currentScore = 0;
+        totalScore = 0;
         UpdateScoreText();
     }
 
@@ -62,6 +72,15 @@ public class ScoreManager : MonoBehaviour
         currentScore += scorePerNote;
     }
 
+    public void DisplayEndgameCanvas()
+    {
+        totalScore += currentScore;
+        endgameTextbox.text = "Nightly Score: " + currentScore +
+            "\n\nTotal Score: " + totalScore + "\n\n";
+        AddItemsByScore();
+        endgameCanvas.enabled = true;
+    }
+
     private void UpdateScoreText()
     {
         if (scoreText != null)
@@ -72,11 +91,14 @@ public class ScoreManager : MonoBehaviour
 
     private void AddItemsByScore()
     {
+        string newItemText = "";
         while (currentScoreThreshold < scoreThresholds.Length &&
-            currentScore <= scoreThresholds[currentScoreThreshold])
+            totalScore <= scoreThresholds[currentScoreThreshold])
         {
             statManager.AddItemToInventory(itemsPerScore[currentScoreThreshold]);
+            newItemText += itemsPerScore[currentScoreThreshold].unlockFlavorText + "\n";
             currentScoreThreshold++;
         }
+        endgameTextbox.text += newItemText;
     }
 }
