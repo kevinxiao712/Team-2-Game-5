@@ -15,7 +15,6 @@ public class GameManager : MonoBehaviour
     public GameObject ThirdPhaseObject;
     public GameObject instructionsCanvas;
 
-
     [Header("Preshow Timer UI")]
     public TextMeshPro preshowTimerText;
 
@@ -138,10 +137,37 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void PausePreshow(bool isPaused)
+    {
+        //instru
+    }
+
     private string FormatTime(float time)
     {
         int minutes = Mathf.FloorToInt(time / 60f);
         int seconds = Mathf.FloorToInt(time % 60f);
         return string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
+
+    public void ResetPreshow()
+    {
+
+        if (PrepmainCanvas != null) PrepmainCanvas.gameObject.SetActive(true);
+        if (PreshowCanvas != null) PreshowCanvas.SetActive(false);
+        if (ThirdPhaseObject != null) ThirdPhaseObject.SetActive(false);
+        if (instructionsCanvas != null) instructionsCanvas.SetActive(false);
+
+        isPreshowActive = false;
+        isInstructionOpen = false;
+        preshowTimeLeft = preshowDuration;
+        if (preshowTimerText != null)
+            preshowTimerText.text = FormatTime(preshowTimeLeft);
+
+        if (currentActive != null)
+            currentActive.SetActive(false);
+
+        currentActive = characterA;
+        characterA.SetActive(true);
+        characterB.SetActive(false);
     }
 }

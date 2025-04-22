@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 2130848976160250320}
   - component: {fileID: 3416461307066431637}
   - component: {fileID: -4308551669247815446}
-  m_Layer: 0
+  - component: {fileID: 2996903622552983213}
+  m_Layer: 6
   m_Name: Band 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +178,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6df05e88ac138cf4a85baf6a877840fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 1
+  id: 3
+--- !u!114 &2996903622552983213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5067983831362432461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9fb1a0048ec0bc48866e8c77e21d9ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6012579183217425548
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,7 +202,7 @@ GameObject:
   - component: {fileID: 3483090383355606076}
   - component: {fileID: 621049153366610985}
   - component: {fileID: 2147641211729915740}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Press F
   m_TagString: Untagged
   m_Icon: {fileID: 0}

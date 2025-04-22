@@ -10,29 +10,56 @@ public class ScoreManager : MonoBehaviour
     [Header("Score UI")]
     public TextMeshProUGUI scoreText;
 
+    [Header("Endgame Canvas UI")]
+    [SerializeField]
+    private GameObject endgameCanvas;
+    [SerializeField]
+    private TextMeshProUGUI endgameTextbox;
+
+    [HideInInspector]
     public int currentScore;
     public int showScore;
+    private int totalScore;
 
     //default, will go up based on streak
     private int scorePerNote = 10;
     private int notesHit;
+
+    [Header("Item Unlock Thresholds")]
+    [SerializeField]
+    private int[] scoreThresholds;
+    [SerializeField]
+    private ItemScriptableObject[] itemsPerScore;
+    private int currentScoreThreshold;
+    private StatManager statManager;
     
     private void Awake()
     {
-
         if (Instance != null && Instance != this)
         {
             Destroy(this.gameObject);
             return;
         }
         Instance = this;
+        currentScoreThreshold = 0;
+        statManager = FindAnyObjectByType<StatManager>();
+    }
+
+    private void Update()
+    {
+        //if (Input.GetKeyDown(KeyCode.K))
+        //{
+        //    AddScore(75);
+        //    AddItemsByScore();
+        //}
     }
 
     private void Start()
     {
-
         currentScore = 0;
+        totalScore = 0;
         UpdateScoreText();
+        endgameCanvas.SetActive(false);
     }
 
     public void AddScore(int amount)
@@ -47,11 +74,39 @@ public class ScoreManager : MonoBehaviour
         showScore += scorePerNote;
     }
 
+    public void DisplayEndgameCanvas()
+    {
+        totalScore += currentScore;
+        endgameTextbox.text = "Nightly Score: " + currentScore +
+            "\n\nTotal Score: " + totalScore + "\n\n";
+        AddItemsByScore();
+        endgameCanvas.SetActive(true);
+    }
+
+    public void ResetDailyScore()
+    {
+        currentScore = 0;
+        endgameCanvas.SetActive(false);
+    }
+
     private void UpdateScoreText()
     {
         if (scoreText != null)
         {
             scoreText.text = "Score: " + currentScore;
         }
+    }
+
+    private void AddItemsByScore()
+    {
+        string newItemText = "";
+        while (currentScoreThreshold < scoreThresholds.Length &&
+            totalScore >= scoreThresholds[currentScoreThreshold])
+        {
+            statManager.AddItemToInventory(itemsPerScore[currentScoreThreshold]);
+            newItemText += itemsPerScore[currentScoreThreshold].unlockFlavorText + "\n";
+            currentScoreThreshold++;
+        }
+        endgameTextbox.text += newItemText;
     }
 }

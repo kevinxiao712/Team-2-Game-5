@@ -10,21 +10,24 @@ public class DropdownInteractable : MonoBehaviour
     private GameObject descriptionBox;
     private string itemName;
     private StatManager statManager;
+    [SerializeField]
+    private bool isInstrumentDropdown;
     // Start is called before the first frame update
     void Start()
     {
         itemName = GetComponentInChildren<TextMeshProUGUI>().text;
-        if (itemName == "None") return;
-        Toggle toggle = GetComponent<Toggle>();
         statManager = FindAnyObjectByType<StatManager>();
+        if (descriptionBox != null)
+            descriptionBox.SetActive(false);
+
+        if (itemName == "None" || isInstrumentDropdown) return;
+        Toggle toggle = GetComponent<Toggle>();
         foreach (ItemScriptableObject item in statManager.ManagerItems)
         {
             if (item != null && item.itemName == itemName)
                 toggle.interactable = false;
         }
 
-        if (descriptionBox != null)
-            descriptionBox.SetActive(false);
     }
 
     // Update is called once per frame
@@ -35,9 +38,15 @@ public class DropdownInteractable : MonoBehaviour
 
     public void OnPointerEnter()
     {
-        if (itemName == "None" || descriptionBox == null) return; 
-        descriptionBox.GetComponentInChildren<TextMeshProUGUI>().text =
-            statManager.FindItemOfName(itemName).description;
+        if (itemName == "None" || descriptionBox == null) return;
+
+        string descriptionText;
+        if (isInstrumentDropdown)
+            descriptionText = statManager.FindInstrumentOfName(itemName).description;
+        else
+            descriptionText = statManager.FindItemOfName(itemName).description;
+
+        descriptionBox.GetComponentInChildren<TextMeshProUGUI>().text = descriptionText;
         descriptionBox.SetActive(true);
     }
 

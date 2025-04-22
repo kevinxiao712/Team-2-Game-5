@@ -9,12 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83740c49102e0454bb8cc1c2afa7503a, type: 3}
-  m_Name: Guitar
+  m_Script: {fileID: 11500000, guid: 076c844c4e75481499270c7d15ce3a78, type: 3}
+  m_Name: FloorPlans
   m_EditorClassIdentifier: 
-  itemName: Guitar
-  description: A basic acoustic guitar.
-  unlockFlavorText: 
-  instrumentType: 0
-  minigameLeniency: 1
-  minigameScoreScale: 1
+  itemName: Floor Plans
+  description: A detailed layout of the venue. Helps with the lights task in the
+    pre-show.
+  unlockFlavorText: Floor plans
