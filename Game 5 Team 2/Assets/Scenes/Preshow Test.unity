@@ -17506,6 +17506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e166ec616caca6248b98669b624f2059, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  postShowCanvas: {fileID: 1332652649}
   spawnPoint: {fileID: 207479337}
   characterPrefabs:
   - {fileID: 5067983831362432461, guid: 4e0947c69a9ec1e41acf0633c85a6ca1, type: 3}
@@ -20904,6 +20905,7 @@ MonoBehaviour:
   - {fileID: 762987381}
   - {fileID: 382047593}
   nextSceneName: MainMenu
+  prepMenu: {fileID: 1922713559}
 --- !u!4 &1516154110
 Transform:
   m_ObjectHideFlags: 0
@@ -26536,6 +26538,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1516154109}
         m_TargetAssemblyTypeName: StatManager, Assembly-CSharp
         m_MethodName: ShowPrepScreen
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1219403831}
+        m_TargetAssemblyTypeName: PostShowManager, Assembly-CSharp
+        m_MethodName: ResetPostShow
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
