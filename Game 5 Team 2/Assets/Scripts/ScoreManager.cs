@@ -9,6 +9,7 @@ public class ScoreManager : MonoBehaviour
 
     [Header("Score UI")]
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI showScoreText;
 
     [Header("Endgame Canvas UI")]
     [SerializeField]
@@ -72,6 +73,7 @@ public class ScoreManager : MonoBehaviour
     {
         notesHit++;
         showScore += scorePerNote;
+        UpdateShowScoreText();
     }
 
     public void DisplayEndgameCanvas()
@@ -94,6 +96,18 @@ public class ScoreManager : MonoBehaviour
         if (scoreText != null)
         {
             scoreText.text = "Score: " + currentScore;
+        }
+    }
+
+    private void UpdateShowScoreText()
+    {
+        if (showScoreText != null)
+        {
+            showScoreText.text = "Show Score: " + showScore;
+        }
+        else
+        {
+            Debug.Log("SHOW SCORE TEXT IS NULL");
         }
     }
 

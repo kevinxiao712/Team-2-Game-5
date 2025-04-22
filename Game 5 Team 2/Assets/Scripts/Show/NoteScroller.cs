@@ -1,6 +1,8 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class NoteScroller : MonoBehaviour
 {
@@ -9,6 +11,10 @@ public class NoteScroller : MonoBehaviour
     public int currentScore;
 
     public Canvas instructions;
+    [SerializeField]
+    private List<GameObject> activeNotes;
+    [SerializeField]
+    private List<GameObject> inactiveNotes;
 
     // Start is called before the first frame update
     void Start()
@@ -71,6 +77,49 @@ public class NoteScroller : MonoBehaviour
         {
             transform.position -= new Vector3(0f, speed * Time.deltaTime, 0f);
         }
+
+        //add note to new list and remove it from old one if it is inactive
+        foreach (GameObject go in activeNotes)
+        {
+            if (go.activeSelf == false)
+            {
+                inactiveNotes.Add(go);
+                activeNotes.Remove(go);
+            }
+        }
+
+        //whatever transition goes here (put it in the coroutine actually)
+        if (activeNotes.Count <= 0)
+        {
+            StartCoroutine(Change());
+        }
         
+    }
+
+    //reset all of the notes
+    public void ResetScroller()
+    {
+        hasStarted = false;
+        instructions.enabled = true;
+
+        foreach (GameObject go in inactiveNotes)
+        {
+            activeNotes.Add(go);
+            go.GetComponent<NoteObject>().ResetNote();
+            Debug.Log(go.name + "has been reset");
+        }
+
+        inactiveNotes.Clear();
+        ScoreManager.Instance.showScore = 0;
+        if (ScoreManager.Instance.showScoreText != null)
+        {
+            ScoreManager.Instance.showScoreText.text = "Show Score: " + ScoreManager.Instance.showScore;
+        }
+    }
+
+    public IEnumerator Change()
+    {
+        yield return new WaitForSeconds(3);
+        ResetScroller();
     }
 }

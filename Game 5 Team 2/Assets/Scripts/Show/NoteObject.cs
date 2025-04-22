@@ -11,10 +11,12 @@ public class NoteObject : MonoBehaviour
     public KeyCode otherKeyToPress;
 
     public MoveBandMember moveBandMember;
+    private Vector3 startPos;
 
     // Start is called before the first frame update
     void Start()
     {
+        startPos = gameObject.transform.position;
         moveBandMember = GetComponent<MoveBandMember>();
     }
 
@@ -63,5 +65,19 @@ public class NoteObject : MonoBehaviour
     {
         Debug.Log("Note Missed");
         gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+        StartCoroutine(Despawn());
+    }
+
+    private IEnumerator Despawn()
+    {
+        yield return new WaitForSeconds(3);
+        gameObject.SetActive(false);
+    }
+
+    public void ResetNote()
+    {
+        gameObject.transform.position = startPos;
+        gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+        gameObject.SetActive(true);
     }
 }
