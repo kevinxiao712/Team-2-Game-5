@@ -121,20 +121,18 @@ public class NoteScroller : MonoBehaviour
         }
     }
 
-    public IEnumerator Change()
+    private IEnumerator Change()
     {
+        yield return new WaitForSeconds(3f);
 
-            yield return new WaitForSeconds(3f);
-
-
-            if (showPhaseObject != null)
-                showPhaseObject.SetActive(false);
-
-
-            if (postShowPhaseObject != null)
-                postShowPhaseObject.SetActive(true);
-
-
+        // 1) Kick off the PostShow while we're still active
         PostShowManager.Instance.BeginPostShow();
+
+        // 2) Switch UI
+        if (postShowPhaseObject != null)
+            postShowPhaseObject.SetActive(true);
+
+        if (showPhaseObject != null)
+            showPhaseObject.SetActive(false);
     }
 }

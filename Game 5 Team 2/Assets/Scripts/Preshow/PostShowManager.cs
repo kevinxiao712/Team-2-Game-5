@@ -19,8 +19,16 @@ public class PostShowManager : MonoBehaviour
     private int wrongRemaining;
     public GameObject managerPrefab;
 
+    private bool isPostShowStarted = false;
+    private bool isInstructionOpen = false;
 
-    void Awake() => Instance = this;
+    [Header("UI / Instructions")]
+    public Canvas instructionsCanvas;
+
+    void Awake()
+    {
+        Instance = this;
+    }
     void Start()
     {
 
@@ -43,24 +51,47 @@ public class PostShowManager : MonoBehaviour
         wrongCharacters.Clear();
         wrongRemaining = 0;
         activeIndex = 0;
+        if (instructionsCanvas != null)
+        {
+            instructionsCanvas.gameObject.SetActive(true);
+            isInstructionOpen = true;
+        }
 
-        SpawnNextCharacter();
+        isPostShowStarted = true;
     }
 
 
     void Update()
     {
-        if (currentChar == null) return;
+        if (!isPostShowStarted)
+            return;
+
+        // waiting on instructions?
+        if (isInstructionOpen)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                // close instructions and spawn first character
+                instructionsCanvas.gameObject.SetActive(false);
+                isInstructionOpen = false;
+                SpawnNextCharacter();
+            }
+            return;
+        }
+
+        // after instructions, normal post‑show input
+        if (currentChar == null)
+            return;
 
         if (Input.GetKeyDown(KeyCode.F))
         {
-            Collider2D hitCol = DetectClosestSlot(currentChar.transform.position);
+            var hitCol = DetectClosestSlot(currentChar.transform.position);
             if (hitCol == null) return;
 
-            CharacterSlot slot = hitCol.GetComponent<CharacterSlot>();
+            var slot = hitCol.GetComponent<CharacterSlot>();
             if (slot == null) return;
 
-            LockCurrentInSlot(slot);   // this already increments and spawns
+            LockCurrentInSlot(slot);
         }
     }
 
