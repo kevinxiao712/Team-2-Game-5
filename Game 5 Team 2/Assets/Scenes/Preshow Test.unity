@@ -4263,8 +4263,8 @@ Transform:
   m_GameObject: {fileID: 254933796}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.36, y: -3.79, z: 10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -1.96, y: -3.65, z: 10}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2137885196}
@@ -4370,7 +4370,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 4
 --- !u!50 &254933801
 Rigidbody2D:
   serializedVersion: 4
@@ -20182,6 +20182,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e32ca815355824f468c2883608353536, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  showPhaseObject: {fileID: 651903982}
+  postShowPhaseObject: {fileID: 1332652649}
   speed: 0
   hasStarted: 0
   currentScore: 0
@@ -30160,7 +30162,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.18, y: 0.73}
+  m_AnchoredPosition: {x: 1.18, y: 13.3}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2137885197
