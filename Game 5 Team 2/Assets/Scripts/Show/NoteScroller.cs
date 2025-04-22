@@ -119,6 +119,8 @@ public class NoteScroller : MonoBehaviour
         {
             ScoreManager.Instance.showScoreText.text = "Show Score: " + ScoreManager.Instance.showScore;
         }
+        
+        PostShowManager.Instance.ResetPostShow();
     }
 
     private IEnumerator Change()
