@@ -12962,7 +12962,7 @@ GameObject:
   - component: {fileID: 843630050}
   - component: {fileID: 843630049}
   m_Layer: 5
-  m_Name: Preshowinstructions (1)
+  m_Name: postshowinstructions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15322,12 +15322,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Welcome to the Post show!\nThere are a few activities scattered around.
-    Press F to interact with them. Some activities will only allow the manager to
-    interact, others only the band, and some require both. Every now and then, fans
-    will come to interrupt you. When that happens, the manager must deal with them.
-    Your score here will affect your performance during the show.\nOnce you\u2019re
-    ready, press SPACE to begin."
+  m_text: "Welcome to the Post show!\nAs bang memebers find the right box to press
+    f against. Once all band members are there the manager must come and pick up
+    the ones who found the wrong box.\nOnce you\u2019re ready, press SPACE to begin."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -17841,7 +17838,7 @@ MonoBehaviour:
   - {fileID: 2071848014}
   resultCanvas: {fileID: 0}
   managerPrefab: {fileID: 5067983831362432461, guid: fd4b78e0870649e41af01c33dd347986, type: 3}
-  instructionsCanvas: {fileID: 0}
+  instructionsCanvas: {fileID: 843630051}
 --- !u!4 &1219403832
 Transform:
   m_ObjectHideFlags: 0

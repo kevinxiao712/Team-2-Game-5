@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
+//using static UnityEditor.Progress;
 
 public class StatManager : MonoBehaviour
 {
@@ -23,10 +23,10 @@ public class StatManager : MonoBehaviour
     [SerializeField]
     private int fanInteractions = 5; // Improves efficiency for fan interactions
     [SerializeField]
-    private int vocalControl = 5; // Decreases time spent during practice, improves final score
+ //   private int vocalControl = 5; // Decreases time spent during practice, improves final score
 
     // Currently equipped items
-    [SerializeField]
+  //  [SerializeField]
     private ItemScriptableObject[] managerItems = new ItemScriptableObject[3];
     // Index 0 is for guitar, index 1 is for bass, and index 2 is for drums
     [SerializeField]
@@ -74,11 +74,11 @@ public class StatManager : MonoBehaviour
         get { return fanInteractions; } 
     }
 
-    public int VocalControl
+/*    public int VocalControl
     { 
         get { return vocalControl; } 
     }
-
+*/
     public ItemScriptableObject[] ManagerItems
     {
         get
