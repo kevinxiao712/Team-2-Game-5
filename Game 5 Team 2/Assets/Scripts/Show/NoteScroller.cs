@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class NoteScroller : MonoBehaviour
 {
+
+    public GameObject showPhaseObject;    
+    public GameObject postShowPhaseObject;
     public float speed;
     public bool hasStarted;
     public int currentScore;
@@ -79,12 +82,13 @@ public class NoteScroller : MonoBehaviour
         }
 
         //add note to new list and remove it from old one if it is inactive
-        foreach (GameObject go in activeNotes)
+        for (int i = activeNotes.Count - 1; i >= 0; i--)
         {
-            if (go.activeSelf == false)
+            var go = activeNotes[i];
+            if (!go.activeSelf)
             {
                 inactiveNotes.Add(go);
-                activeNotes.Remove(go);
+                activeNotes.RemoveAt(i);
             }
         }
 
@@ -119,7 +123,18 @@ public class NoteScroller : MonoBehaviour
 
     public IEnumerator Change()
     {
-        yield return new WaitForSeconds(3);
-        ResetScroller();
+
+            yield return new WaitForSeconds(3f);
+
+
+            if (showPhaseObject != null)
+                showPhaseObject.SetActive(false);
+
+
+            if (postShowPhaseObject != null)
+                postShowPhaseObject.SetActive(true);
+
+
+        PostShowManager.Instance.BeginPostShow();
     }
 }

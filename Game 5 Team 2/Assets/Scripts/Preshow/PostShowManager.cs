@@ -29,9 +29,24 @@ public class PostShowManager : MonoBehaviour
             var col = child.GetComponent<Collider2D>();
             if (col != null) slotColliders.Add(col);
         }
+    }
+
+    public void BeginPostShow()
+    {
+        gameObject.SetActive(true);
+
+
+        if (resultCanvas != null)
+            resultCanvas.gameObject.SetActive(false);
+
+
+        wrongCharacters.Clear();
+        wrongRemaining = 0;
+        activeIndex = 0;
 
         SpawnNextCharacter();
     }
+
 
     void Update()
     {
@@ -79,7 +94,6 @@ public class PostShowManager : MonoBehaviour
         wrongRemaining = 0;
         activeIndex = 0;
 
-        // 5) Respawn the very first character
         SpawnNextCharacter();
     }
 
@@ -104,7 +118,7 @@ public class PostShowManager : MonoBehaviour
         currentChar.transform.position = slot.transform.position;
         currentChar.GetComponent<CharacterController2D>().SetActive(false);
         var rb = currentChar.GetComponent<Rigidbody2D>();
-        if (rb != null && rb.bodyType != RigidbodyType2D.Static)
+        if (rb != null)
         {
             rb.velocity = Vector2.zero;
             rb.angularVelocity = 0f;
@@ -169,8 +183,6 @@ public class PostShowManager : MonoBehaviour
             }
         }
 
-        // For now, each correct drug adds 15 points to the current score
-        FindAnyObjectByType<ScoreManager>().AddScore(correct * 15);
 
         if (resultCanvas != null)
         {
@@ -218,7 +230,6 @@ public class PostShowManager : MonoBehaviour
     {
         Debug.Log("No more postshow");
         // TODO: put any cleanup or next‑step logic here
-        FindAnyObjectByType<ScoreManager>().DisplayEndgameCanvas();
     }
 
 }

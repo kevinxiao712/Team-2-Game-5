@@ -26,12 +26,14 @@ public class NoteObject : MonoBehaviour
         //if arrow is pressed while inside a button, disable it
         if(Input.GetKeyDown(keyToPress) || Input.GetKeyDown(otherKeyToPress))
         {
-            if(canPress)
-            {
-                gameObject.SetActive(false);
+            /*            if(canPress)
+                        {
+                            gameObject.SetActive(false);
 
-                NoteHit();
-            }
+                            NoteHit();
+                        }*/
+            NoteHit();
+            gameObject.SetActive(false);
         }
     }
 
@@ -64,7 +66,8 @@ public class NoteObject : MonoBehaviour
     public void NoteMiss()
     {
         Debug.Log("Note Missed");
-        gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+        var sr = GetComponent<SpriteRenderer>();
+        if (sr != null) sr.color = Color.red;
         StartCoroutine(Despawn());
     }
 
@@ -76,8 +79,10 @@ public class NoteObject : MonoBehaviour
 
     public void ResetNote()
     {
-        gameObject.transform.position = startPos;
-        gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+        transform.position = startPos;
+        var sr = GetComponent<SpriteRenderer>();
+        if (sr != null) sr.color = Color.white;
         gameObject.SetActive(true);
+        canPress = false;
     }
 }
