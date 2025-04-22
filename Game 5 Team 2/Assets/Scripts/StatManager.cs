@@ -47,6 +47,8 @@ public class StatManager : MonoBehaviour
     // TEMPORARY: The scene to load when the "next" button is pressed
     [SerializeField]
     private string nextSceneName;
+    [SerializeField]
+    private GameObject prepMenu;
 
     // Getters for the current stats, will incorporate the currently equipped items at some point
     public int StagePrep
@@ -118,7 +120,7 @@ public class StatManager : MonoBehaviour
 
     public void ShowPrepScreen()
     {
-        gameObject.SetActive(true);
+        prepMenu.SetActive(true);
     }
 
     public void SetInventoryItem(int slot)

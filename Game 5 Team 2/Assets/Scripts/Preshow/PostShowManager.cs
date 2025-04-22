@@ -4,6 +4,8 @@ using Unity.VisualScripting.Antlr3.Runtime.Misc;
 
 public class PostShowManager : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject postShowCanvas;
     public static PostShowManager Instance { get; private set; }
     [Header("Spawn / Prefabs")]
     public Transform spawnPoint;
@@ -261,6 +263,7 @@ public class PostShowManager : MonoBehaviour
     {
         Debug.Log("No more postshow");
         // TODO: put any cleanup or next‑step logic here
+        ScoreManager.Instance.DisplayEndgameCanvas();
+        postShowCanvas.SetActive(false);
     }
-
 }
