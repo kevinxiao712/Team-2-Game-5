@@ -97,6 +97,8 @@ public class GameManager : MonoBehaviour
     }
     public void OnSwitchCanvasButtonClicked()
     {
+        ResetPreshow();
+
         // Disable the Prep canvas
         PrepmainCanvas.gameObject.SetActive(false);
 

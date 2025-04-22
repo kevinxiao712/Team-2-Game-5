@@ -78,7 +78,7 @@ public class ScoreManager : MonoBehaviour
 
     public void DisplayEndgameCanvas()
     {
-        totalScore += currentScore;
+        totalScore += currentScore + showScore;
         endgameTextbox.text = "Nightly Score: " + currentScore +
             "\n\nTotal Score: " + totalScore + "\n\n";
         AddItemsByScore();
@@ -88,6 +88,7 @@ public class ScoreManager : MonoBehaviour
     public void ResetDailyScore()
     {
         currentScore = 0;
+        showScore = 0;
         endgameCanvas.SetActive(false);
     }
 
