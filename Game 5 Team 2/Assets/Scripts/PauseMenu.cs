@@ -4,58 +4,56 @@ using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
 {
-    public enum GamePhase
+    public enum CurrentPhase
     {
         Prep,
-        PreShow,
+        Preshow,
         Show,
-        Postshow
+        Postshow,
+        End
     }
 
     [SerializeField]
     private GameObject menu;
-    private GamePhase currentPhase;
 
-    // Kinda scuffed implementation because we don't have a universal manager script
     [SerializeField]
-    private Canvas preShowCanvas;
-    private GameManager preShowManager;
+    private GameObject prepCanvas;
     [SerializeField]
-    private Canvas showCanvas;
-    // Insert showManager when that's a thing
+    private GameObject preshowCanvas;
     [SerializeField]
-    private Canvas postShowCanvas; 
-    private PostShowManager postShowManager;
+    private GameObject showCanvas;
+    [SerializeField]
+    private GameObject postshowCanvas;
+
+    private CurrentPhase currentPhase;
 
     // Start is called before the first frame update
     void Start()
     {
-        currentPhase = GamePhase.Prep;
-        preShowManager = FindAnyObjectByType<GameManager>();
-        postShowManager = FindAnyObjectByType<PostShowManager>();
+        menu.SetActive(false);
+        currentPhase = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            TogglePauseMenu(!menu.activeSelf);
+        }
     }
 
     public void TogglePauseMenu(bool enabled)
     {
         menu.SetActive(enabled);
-        switch (currentPhase)
-        {
-            case GamePhase.Prep:
-                return;
-            case GamePhase.PreShow:
-                preShowCanvas.enabled = false;
-                return;
-        }
+        if (enabled)
+            Time.timeScale = 0;
+        else
+            Time.timeScale = 1;
     }
 
     public void IncrementPhase()
     {
-        currentPhase = (GamePhase)((int)(currentPhase + 1) % 4);
+        currentPhase = (CurrentPhase)((int)(currentPhase + 1) % 5);
     }
 }
