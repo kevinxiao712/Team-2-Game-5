@@ -24,6 +24,8 @@ public class PauseMenu : MonoBehaviour
     private GameObject showCanvas;
     [SerializeField]
     private GameObject postshowCanvas;
+    [SerializeField]
+    private GameObject endgameCanvas;
 
     private CurrentPhase currentPhase;
 
@@ -46,6 +48,24 @@ public class PauseMenu : MonoBehaviour
     public void TogglePauseMenu(bool enabled)
     {
         menu.SetActive(enabled);
+        switch (currentPhase) // Required since there's no universal game manager
+        {
+            case CurrentPhase.Prep:
+                prepCanvas.SetActive(!enabled);
+                break;
+            case CurrentPhase.Preshow:
+                preshowCanvas.SetActive(!enabled); 
+                break;
+            case CurrentPhase.Show:
+                showCanvas.SetActive(!enabled);
+                break;
+            case CurrentPhase.Postshow:
+                postshowCanvas.SetActive(!enabled);
+                break;
+            case CurrentPhase.End:
+                endgameCanvas.SetActive(!enabled);
+                break;
+        }
         if (enabled)
             Time.timeScale = 0;
         else
@@ -55,5 +75,6 @@ public class PauseMenu : MonoBehaviour
     public void IncrementPhase()
     {
         currentPhase = (CurrentPhase)((int)(currentPhase + 1) % 5);
+        Debug.Log(currentPhase.ToString());
     }
 }

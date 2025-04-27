@@ -264,6 +264,7 @@ public class PostShowManager : MonoBehaviour
         Debug.Log("No more postshow");
         // TODO: put any cleanup or next‑step logic here
         ScoreManager.Instance.DisplayEndgameCanvas();
+        FindAnyObjectByType<PauseMenu>().IncrementPhase();
         postShowCanvas.SetActive(false);
     }
 }

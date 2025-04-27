@@ -7979,9 +7979,10 @@ GameObject:
   m_Component:
   - component: {fileID: 541918866}
   - component: {fileID: 541918865}
+  - component: {fileID: 541918867}
   m_Layer: 0
   m_Name: BoyBandEnvironmentPostshowProps_0
-  m_TagString: Untagged
+  m_TagString: Exit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8053,6 +8054,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1191057954}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &541918867
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 541918864}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.5231482, y: 1.5370371}
+    newSize: {x: 1.5231482, y: 1.5370371}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.5231482, y: 1.5370371}
+  m_EdgeRadius: 0
 --- !u!1 &546735135
 GameObject:
   m_ObjectHideFlags: 0
@@ -12417,7 +12463,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &843630048
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17322,7 +17368,6 @@ MonoBehaviour:
   - {fileID: 1950240649}
   - {fileID: 1163652445}
   - {fileID: 1170274926}
-  - {fileID: 0}
   resultCanvas: {fileID: 0}
   managerPrefab: {fileID: 5067983831362432461, guid: fd4b78e0870649e41af01c33dd347986, type: 3}
   instructionsCanvas: {fileID: 843630051}
@@ -18018,7 +18063,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1289193896}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1864899193}
+        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+        m_MethodName: TogglePauseMenu
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1289193896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26229,6 +26286,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menu: {fileID: 1024753755}
+  prepCanvas: {fileID: 1922713559}
+  preshowCanvas: {fileID: 1563164873}
+  showCanvas: {fileID: 651903982}
+  postshowCanvas: {fileID: 1332652649}
+  endgameCanvas: {fileID: 378001824}
 --- !u!114 &1864899194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30499,12 +30561,12 @@ SceneRoots:
   - {fileID: 1922713560}
   - {fileID: 304628536}
   - {fileID: 1563164874}
-  - {fileID: 1332652650}
   - {fileID: 651903983}
+  - {fileID: 1332652650}
   - {fileID: 1027037049}
-  - {fileID: 1219403832}
-  - {fileID: 665143825}
   - {fileID: 2130568459}
+  - {fileID: 665143825}
+  - {fileID: 1219403832}
   - {fileID: 1516154110}
   - {fileID: 378001828}
   - {fileID: 1864899197}

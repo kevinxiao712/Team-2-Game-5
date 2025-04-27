@@ -99,6 +99,8 @@ public class GameManager : MonoBehaviour
     {
         ResetPreshow();
 
+        FindAnyObjectByType<PauseMenu>().IncrementPhase();
+
         // Disable the Prep canvas
         PrepmainCanvas.gameObject.SetActive(false);
 
@@ -134,14 +136,10 @@ public class GameManager : MonoBehaviour
         // Enable the next (third) phase
         if (ThirdPhaseObject != null)
         {
+            FindAnyObjectByType<PauseMenu>().IncrementPhase();
             ThirdPhaseObject.SetActive(true);
         }
 
-    }
-
-    public void PausePreshow(bool isPaused)
-    {
-        //instru
     }
 
     private string FormatTime(float time)

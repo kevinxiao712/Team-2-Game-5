@@ -90,6 +90,7 @@ public class ScoreManager : MonoBehaviour
         currentScore = 0;
         showScore = 0;
         endgameCanvas.SetActive(false);
+        FindAnyObjectByType<PauseMenu>().IncrementPhase();
     }
 
     private void UpdateScoreText()
