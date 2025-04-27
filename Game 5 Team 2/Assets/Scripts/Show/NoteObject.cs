@@ -26,12 +26,12 @@ public class NoteObject : MonoBehaviour
         //if arrow is pressed while inside a button, disable it
         if(Input.GetKeyDown(keyToPress) || Input.GetKeyDown(otherKeyToPress))
         {
-            /*            if(canPress)
-                        {
-                            gameObject.SetActive(false);
+            if(canPress)
+            {
+                 gameObject.SetActive(false);
 
-                            NoteHit();
-                        }*/
+                 NoteHit();
+            }
             NoteHit();
             gameObject.SetActive(false);
         }
