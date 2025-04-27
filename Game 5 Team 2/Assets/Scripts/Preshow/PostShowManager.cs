@@ -206,6 +206,7 @@ public class PostShowManager : MonoBehaviour
             if (right)
             {
                 correct++;
+                ScoreManager.Instance.postshowScore += 20; // 20 points per correct drug/twink placement
             }
             else
             {

@@ -24,9 +24,9 @@ public class NoteScroller : MonoBehaviour
     {
 
         //if there is a score manager and the score is greater than 0, set the speed to that score (not sure how score works yet)
-        if (ScoreManager.Instance != null && ScoreManager.Instance.currentScore >= 0) //change this to just > 0 if you wanna test on 2 (intended speed), 4 is DIFFICULT
+        if (ScoreManager.Instance != null && ScoreManager.Instance.preshowScore >= 0) //change this to just > 0 if you wanna test on 2 (intended speed), 4 is DIFFICULT
         {
-            currentScore = ScoreManager.Instance.currentScore;
+            currentScore = ScoreManager.Instance.preshowScore;
 
             //make the game easier the higher the score the player has (right now it is VERY hard if it's above 2)
             if (currentScore >= 0 && currentScore <= 20)

@@ -18,8 +18,9 @@ public class ScoreManager : MonoBehaviour
     private TextMeshProUGUI endgameTextbox;
 
     [HideInInspector]
-    public int currentScore;
+    public int preshowScore;
     public int showScore;
+    public int postshowScore;
     private int totalScore;
 
     //default, will go up based on streak
@@ -57,7 +58,7 @@ public class ScoreManager : MonoBehaviour
 
     private void Start()
     {
-        currentScore = 0;
+        preshowScore = 0;
         totalScore = 0;
         UpdateScoreText();
         endgameCanvas.SetActive(false);
@@ -65,7 +66,7 @@ public class ScoreManager : MonoBehaviour
 
     public void AddScore(int amount)
     {
-        currentScore += amount;
+        preshowScore += amount;
         UpdateScoreText();
     }
 
@@ -78,8 +79,10 @@ public class ScoreManager : MonoBehaviour
 
     public void DisplayEndgameCanvas()
     {
-        totalScore += currentScore + showScore;
-        endgameTextbox.text = "Nightly Score: " + currentScore +
+        totalScore += preshowScore + showScore + postshowScore;
+        endgameTextbox.text = "Preshow Score: " + preshowScore +
+            "\nShow score: " + showScore +
+            "\nPostshow score: " + postshowScore +
             "\n\nTotal Score: " + totalScore + "\n\n";
         AddItemsByScore();
         endgameCanvas.SetActive(true);
@@ -87,8 +90,9 @@ public class ScoreManager : MonoBehaviour
 
     public void ResetDailyScore()
     {
-        currentScore = 0;
+        preshowScore = 0;
         showScore = 0;
+        postshowScore = 0;
         endgameCanvas.SetActive(false);
         FindAnyObjectByType<PauseMenu>().IncrementPhase();
     }
@@ -97,7 +101,7 @@ public class ScoreManager : MonoBehaviour
     {
         if (scoreText != null)
         {
-            scoreText.text = "Score: " + currentScore;
+            scoreText.text = "Score: " + preshowScore;
         }
     }
 

@@ -9658,8 +9658,9 @@ MonoBehaviour:
   showScoreText: {fileID: 337428227}
   endgameCanvas: {fileID: 378001824}
   endgameTextbox: {fileID: 454903037}
-  currentScore: 0
+  preshowScore: 0
   showScore: 0
+  postshowScore: 0
   scoreThresholds: 64000000c80000002c01000090010000f4010000
   itemsPerScore:
   - {fileID: 11400000, guid: 63b360b48934ba845a78b4f1ddae173b, type: 2}
