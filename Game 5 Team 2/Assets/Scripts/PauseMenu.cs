@@ -15,7 +15,10 @@ public class PauseMenu : MonoBehaviour
 
     [SerializeField]
     private GameObject menu;
+    [SerializeField]
+    private GameObject optionsMenu;
 
+    [Header("Game Phase Canvases")]
     [SerializeField]
     private GameObject prepCanvas;
     [SerializeField]
@@ -33,6 +36,7 @@ public class PauseMenu : MonoBehaviour
     void Start()
     {
         menu.SetActive(false);
+        optionsMenu.SetActive(false);
         currentPhase = 0;
     }
 
@@ -76,5 +80,16 @@ public class PauseMenu : MonoBehaviour
     {
         currentPhase = (CurrentPhase)((int)(currentPhase + 1) % 5);
         Debug.Log(currentPhase.ToString());
+    }
+
+    public void ToggleOptions(bool enabled)
+    {
+        optionsMenu.SetActive(enabled);
+        menu.SetActive(!enabled);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
