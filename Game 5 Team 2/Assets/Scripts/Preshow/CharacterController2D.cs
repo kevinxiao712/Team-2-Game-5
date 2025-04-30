@@ -12,6 +12,8 @@ public class CharacterController2D : MonoBehaviour
     public Sprite activeSprite;
     public Sprite inactiveSprite;
     public bool IsActive { get { return isActive; } }
+
+    public bool IsBusy { get; private set; }
     SpriteRenderer sr;
     void Awake()
     {
@@ -75,5 +77,12 @@ public class CharacterController2D : MonoBehaviour
         {
             pressFIndicator.SetActive(false);
         }
+    }
+
+    public void FreezeForTask() { IsBusy = true; SetActive(false); }
+    public void Unfreeze(bool makeActive = false)
+    {
+        IsBusy = false;
+        if (makeActive) SetActive(true);    // only if caller really wants control back
     }
 }

@@ -86,22 +86,18 @@ public class GameManager : MonoBehaviour
     }
     public void SwitchActiveCharacter()
     {
-        // Deactivate the current
+
+        CharacterController2D candidate =
+            (currentActive == characterA) ? characterB : characterA;
+
+        if (candidate.IsBusy) return;
+
+
         currentActive.SetActive(false);
-
-        // Switch references
-        if (currentActive == characterA)
-        {
-            currentActive = characterB;
-        }
-        else
-        {
-            currentActive = characterA;
-        }
-
-        // Activate the newly selected character
+        currentActive = candidate;
         currentActive.SetActive(true);
     }
+
     public void OnSwitchCanvasButtonClicked()
     {
         ResetPreshow();

@@ -1,26 +1,26 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(SpriteRenderer), typeof(Collider2D))]
 public class CoOpMinigameBox : MonoBehaviour
 {
     [Header("Required Characters")]
     public CharacterController2D characterA;
     public CharacterController2D characterB;
 
-    [Header("Interaction Settings")]
-    public float interactionRange = 2f;    
+    [Header("Interaction")]
+    public float interactionRange = 2f;
     public KeyCode interactKey = KeyCode.F;
-    public float fillDuration = 3f;       
+    public float fillDuration = 15f;          // seconds bar fills
 
-    [Header("UI Elements")]
-    public Image fillBar;                
+    [Header("UI")]
+    public Image fillBar;                         // Filled Image
 
-    private bool isFilling = false;
-    private float currentFillTime = 0f;
+    bool isFilling = false;
+    float fillTimer = 0f;
 
-    private void Start()
+    void Start()
     {
-        // Hide the fill bar at start
         if (fillBar != null)
         {
             fillBar.gameObject.SetActive(false);
@@ -28,93 +28,82 @@ public class CoOpMinigameBox : MonoBehaviour
         }
     }
 
-    private void Update()
+    void Update()
     {
-        if (!isFilling)
+        if (isFilling)
         {
-            // Only start if both are in range and we press F
-            if (BothPlayersInRange() && Input.GetKeyDown(interactKey))
-            {
-                StartFilling();
-            }
+            if (!BothInRange()) CancelFilling();
+            else FillingTick();
         }
-        else
-        {
-            if (!BothPlayersInRange())
-            {
-                CancelFilling();
-                return;
-            }
-
-            // Update fill time
-            currentFillTime += Time.deltaTime;
-            float progress = currentFillTime / fillDuration;
-            fillBar.fillAmount = Mathf.Clamp01(progress);
-
-            // If filled up completely, success
-            if (progress >= 1f)
-            {
-                OnFillComplete();
-            }
-        }
+        else TryStart();
     }
 
-    private bool BothPlayersInRange()
+    bool BothInRange()
     {
-        if (characterA == null || characterB == null)
-            return false;
+        if (characterA == null || characterB == null) return false;
 
-        float distA = Vector2.Distance(transform.position, characterA.transform.position);
-        float distB = Vector2.Distance(transform.position, characterB.transform.position);
-
-        return distA <= interactionRange && distB <= interactionRange;
+        return Vector2.Distance(transform.position, characterA.transform.position) <= interactionRange
+            && Vector2.Distance(transform.position, characterB.transform.position) <= interactionRange;
     }
 
-    private void StartFilling()
+    void TryStart()
     {
+        if (!BothInRange()) return;
+
+        // Only the active player may press F to begin
+        CharacterController2D active =
+            characterA.IsActive ? characterA :
+            characterB.IsActive ? characterB : null;
+
+        if (active == null) return;
+        if (!Input.GetKeyDown(interactKey)) return;
+
+        /* freeze both characters */
+        characterA.FreezeForTask();
+        characterB.FreezeForTask();
+
+        /* begin filling */
         isFilling = true;
-        currentFillTime = 0f;
+        fillTimer = 0f;
 
         if (fillBar != null)
         {
             fillBar.gameObject.SetActive(true);
             fillBar.fillAmount = 0f;
         }
-
-        Debug.Log("Remain in Range");
     }
 
-    private void CancelFilling()
+    void FillingTick()
     {
-        isFilling = false;
-        currentFillTime = 0f;
-
+        fillTimer += Time.deltaTime;
         if (fillBar != null)
-        {
-            fillBar.gameObject.SetActive(false);
-        }
+            fillBar.fillAmount = Mathf.Clamp01(fillTimer / fillDuration);
 
-        Debug.Log("Out of Range");
+        if (fillTimer >= fillDuration)
+            Complete();
     }
 
-    private void OnFillComplete()
+    void CancelFilling()
     {
         isFilling = false;
+        fillTimer = 0f;
+        fillBar?.gameObject.SetActive(false);
 
-        if (fillBar != null)
-        {
-            fillBar.gameObject.SetActive(false);
-        }
+        characterA.Unfreeze();
+        characterB.Unfreeze();
 
-        // Simple random success/failure example
-        float chance = Random.value; // 0.0 to 1.0
-        if (chance < 0.5f)
-        {
-            ScoreManager.Instance.AddScore(10);
-        }
-        else
-        {
-            Debug.Log("FAILURE");
-        }
+        Debug.Log("Co-op minigame cancelled ¨C one player stepped away.");
+    }
+
+    void Complete()
+    {
+        isFilling = false;
+        fillBar?.gameObject.SetActive(false);
+
+        characterA.Unfreeze();
+        characterB.Unfreeze();
+
+        ScoreManager.Instance.AddScore(10);      // always succeed
+        gameObject.SetActive(false);             // one-shot
     }
 }

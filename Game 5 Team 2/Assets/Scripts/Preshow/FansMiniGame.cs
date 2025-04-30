@@ -4,7 +4,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(SpriteRenderer), typeof(Collider2D))]
 public class FansMiniGame : MonoBehaviour
 {
-    /* ©¤©¤©¤©¤©¤ Inspector fields ©¤©¤©¤©¤©¤ */
+
     [Header("Instant-win item")]
     public ItemScriptableObject guaranteedItem;
 
@@ -24,7 +24,7 @@ public class FansMiniGame : MonoBehaviour
     [Header("UI")]
     public Image fillBar;            // Filled-type Image
 
-    /* ©¤©¤©¤©¤©¤ private state ©¤©¤©¤©¤©¤ */
+
     SpriteRenderer sr;
     Collider2D col;
 
@@ -71,7 +71,6 @@ public class FansMiniGame : MonoBehaviour
         }
     }
 
-    /* ©¤©¤©¤©¤©¤ Hidden ¡ú Countdown ©¤©¤©¤©¤©¤ */
     void HiddenTick()
     {
         spawnTimer -= Time.deltaTime;
@@ -99,7 +98,6 @@ public class FansMiniGame : MonoBehaviour
         }
     }
 
-    /* ©¤©¤©¤©¤©¤ Countdown logic ©¤©¤©¤©¤©¤ */
     void CountdownTick()
     {
         // update bar
@@ -125,25 +123,40 @@ public class FansMiniGame : MonoBehaviour
         if (Vector2.Distance(transform.position, chr.transform.position) > 2f) return;
         if (!Input.GetKeyDown(KeyCode.F)) return;
 
-        // freeze this character
         actor = chr;
-        actor.SetActive(false);
+        actor.FreezeForTask();            // sets IsBusy = true
+        swapped = false;
 
-        // swap to the other char so player can still roam
-        swapped = true;
-        FindObjectOfType<GameManager>()?.SwitchActiveCharacter();
+        CharacterController2D other =
+            (actor == allowedCharacterA) ? allowedCharacterB : allowedCharacterA;
 
-        // switch to filling phase
+        bool otherBusy = false;
+
+        // is the other char already filling another FansMiniGame?
+        foreach (FansMiniGame box in FindObjectsOfType<FansMiniGame>())
+        {
+            if (box != this && box.state == State.Filling && box.actor == other)
+            {
+                otherBusy = true;
+                break;
+            }
+        }
+
+        if (!otherBusy && other != null)
+        {
+            FindObjectOfType<GameManager>()?.SwitchActiveCharacter();
+            swapped = true;
+        }
+
+
         fillTimer = 0f;
         state = State.Filling;
 
         if (fillBar != null)
-        {
-            fillBar.fillAmount = 0f;           // empty bar grows
-        }
+            fillBar.fillAmount = 0f;   // bar grows from 0 ¡ú 1
     }
 
-    /* ©¤©¤©¤©¤©¤ Filling logic ©¤©¤©¤©¤©¤ */
+
     void FillingTick()
     {
         fillTimer += Time.deltaTime;
@@ -154,15 +167,14 @@ public class FansMiniGame : MonoBehaviour
             Complete(success: true);
     }
 
-    /* ©¤©¤©¤©¤©¤ Wrap-up ©¤©¤©¤©¤©¤ */
     void Complete(bool success)
     {
         state = State.Done;
 
-        if (fillBar != null) fillBar.gameObject.SetActive(false);
+        fillBar?.gameObject.SetActive(false);
 
-        if (!swapped && actor != null)
-            actor.SetActive(true);
+        if (actor != null)
+            actor.Unfreeze(makeActive: !swapped);
 
         int delta = success ? successReward : -failPenalty;
         ScoreManager.Instance.AddScore(delta);
@@ -173,7 +185,7 @@ public class FansMiniGame : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    /* ©¤©¤©¤©¤©¤ Item check ©¤©¤©¤©¤©¤ */
+
     bool PlayerHasGuaranteedItem()
     {
         if (guaranteedItem == null) return false;
