@@ -8,7 +8,7 @@ public class CharacterController2D : MonoBehaviour
     public GameObject pressFIndicator;
     public bool isActive;
     private int boxesInRangeCount = 0;
-
+    public bool IsFrozen => !isActive;
     public Sprite activeSprite;
     public Sprite inactiveSprite;
     public bool IsActive { get { return isActive; } }

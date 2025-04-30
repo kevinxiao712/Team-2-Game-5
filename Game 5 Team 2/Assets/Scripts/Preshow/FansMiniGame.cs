@@ -1,207 +1,184 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TimedMinigameBox : MonoBehaviour
+[RequireComponent(typeof(SpriteRenderer), typeof(Collider2D))]
+public class FansMiniGame : MonoBehaviour
 {
-    [Header("Who Can Interact?")]
+    /* ©¤©¤©¤©¤©¤ Inspector fields ©¤©¤©¤©¤©¤ */
+    [Header("Instant-win item")]
+    public ItemScriptableObject guaranteedItem;
+
+    [Header("Characters")]
     public CharacterController2D allowedCharacterA;
     public CharacterController2D allowedCharacterB;
 
-    [Header("Guaranteed Item (Instant Success)")]
-    public ItemScriptableObject guaranteedItem;
+    [Header("Timers")]
+    public float spawnDelay = 5f;   // how long after scene-load the box appears
+    public float timeToDeal = 10f;  // countdown before auto-fail
+    public float fillDuration = 15f; // bar-fill time after F press
 
-    [Header("Interaction Settings")]
-    public float interactionRange = 2f;
-    public KeyCode interactKey = KeyCode.F;
-
-    [Header("Timer Settings")]
-    public float timeToDeal = 10f;
+    [Header("Scoring")]
     public int successReward = 10;
     public int failPenalty = 10;
 
-    [Header("UI Elements")]
-    public Image fillBar; // assign in Inspector (Filled Image)
+    [Header("UI")]
+    public Image fillBar;            // Filled-type Image
 
-    [Header("Respawn Settings")]
-    public float minRespawnTime = 5f;
-    public float maxRespawnTime = 15f;
+    /* ©¤©¤©¤©¤©¤ private state ©¤©¤©¤©¤©¤ */
+    SpriteRenderer sr;
+    Collider2D col;
 
-    // Internal state
-    bool isDealTimerRunning = false;
-    bool completed = false;
-    bool isCooldown = false;
+    float spawnTimer;
     float dealTimer;
-    float cooldownTimer;
-    Color originalBarColor;
-    CharacterController2D actor;
-    SpriteRenderer spriteRenderer;
-    Collider2D boxCollider;
+    float fillTimer;
 
-    void Start()
+    enum State { Hidden, Countdown, Filling, Done }
+    State state = State.Hidden;
+
+    CharacterController2D actor;   // the one we freeze
+    bool swapped = false;
+
+    void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        boxCollider = GetComponent<Collider2D>();
+        sr = GetComponent<SpriteRenderer>();
+        col = GetComponent<Collider2D>();
+
+        sr.enabled = false;     // hidden at scene start
+        col.enabled = false;
 
         if (fillBar != null)
         {
-            originalBarColor = fillBar.color;
             fillBar.gameObject.SetActive(false);
             fillBar.fillAmount = 0f;
         }
 
-        // kick off the first random spawn
-        StartCooldown();
+        spawnTimer = spawnDelay;
     }
 
     void Update()
     {
-        // 1) Cooldown countdown
-        if (isCooldown)
+        switch (state)
         {
-            cooldownTimer -= Time.deltaTime;
-            if (cooldownTimer <= 0f)
-                EndCooldown();
-            return;
-        }
-
-        // 2) If completed, wait for next cooldown
-        if (completed) return;
-
-        // 3) Handle "Press F" indicator when timer NOT running
-        if (!isDealTimerRunning)
-        {
-            HandleIndicator(allowedCharacterA);
-            HandleIndicator(allowedCharacterB);
-        }
-
-        // 4) Countdown the deal timer
-        if (isDealTimerRunning)
-        {
-            dealTimer -= Time.deltaTime;
-            if (fillBar != null)
-                fillBar.fillAmount = Mathf.Clamp01(dealTimer / timeToDeal);
-
-            // check for early success
-            TryInteract(allowedCharacterA);
-            TryInteract(allowedCharacterB);
-
-            // time up ¡ú fail
-            if (dealTimer <= 0f)
-                OnFail();
+            case State.Hidden:
+                HiddenTick();
+                break;
+            case State.Countdown:
+                CountdownTick();
+                break;
+            case State.Filling:
+                FillingTick();
+                break;
         }
     }
 
-    void HandleIndicator(CharacterController2D character)
+    /* ©¤©¤©¤©¤©¤ Hidden ¡ú Countdown ©¤©¤©¤©¤©¤ */
+    void HiddenTick()
     {
-        if (character == null) return;
-        bool inRange = character.IsActive
-                   && Vector2.Distance(transform.position, character.transform.position) <= interactionRange
-                   && !isDealTimerRunning
-                   && !isCooldown
-                   && !completed;
+        spawnTimer -= Time.deltaTime;
+        if (spawnTimer > 0f) return;
 
-        character.pressFIndicator?.SetActive(inRange);
-    }
-
-    void TryInteract(CharacterController2D character)
-    {
-        if (!isDealTimerRunning || character == null || !character.IsActive) return;
-
-        if (Vector2.Distance(transform.position, character.transform.position) <= interactionRange
-         && Input.GetKeyDown(interactKey))
-        {
-
-            actor = character;
-            actor.SetActive(false);
-            OnSuccess();
-        }
-    }
-
-    void ActivateBox()
-    {
         // show visuals
-        spriteRenderer.enabled = true;
-        if (boxCollider != null) boxCollider.enabled = true;
+        sr.enabled = true;
+        col.enabled = true;
 
-        // instant success if item present
+        /* instant success if player already has item */
         if (PlayerHasGuaranteedItem())
         {
-            Debug.Log("Instant minigame success via item!");
-            OnSuccess();
+            Complete(success: true);
             return;
         }
 
-        // otherwise start the timer
-        completed = false;
+        // start main countdown
         dealTimer = timeToDeal;
-        isDealTimerRunning = true;
+        state = State.Countdown;
 
         if (fillBar != null)
         {
             fillBar.gameObject.SetActive(true);
-            fillBar.fillAmount = 1f;
-            fillBar.color = originalBarColor;
+            fillBar.fillAmount = 1f;          // bar shows time left
+        }
+    }
+
+    /* ©¤©¤©¤©¤©¤ Countdown logic ©¤©¤©¤©¤©¤ */
+    void CountdownTick()
+    {
+        // update bar
+        dealTimer -= Time.deltaTime;
+        if (fillBar != null)
+            fillBar.fillAmount = Mathf.Clamp01(dealTimer / timeToDeal);
+
+        if (dealTimer <= 0f)
+        {
+            Complete(success: false);          // time ran out
+            return;
         }
 
-        Debug.Log($"Minigame box activated¡ªpress F within {timeToDeal}s");
+        // check the one active character
+        if (allowedCharacterA && allowedCharacterA.IsActive)
+            TryPressF(allowedCharacterA);
+        else if (allowedCharacterB && allowedCharacterB.IsActive)
+            TryPressF(allowedCharacterB);
     }
 
-    void OnSuccess()
+    void TryPressF(CharacterController2D chr)
     {
-        isDealTimerRunning = false;
-        completed = true;
+        if (Vector2.Distance(transform.position, chr.transform.position) > 2f) return;
+        if (!Input.GetKeyDown(KeyCode.F)) return;
 
-        // hide UI
-        fillBar?.gameObject.SetActive(false);
+        // freeze this character
+        actor = chr;
+        actor.SetActive(false);
 
-        // reward
-        ScoreManager.Instance.AddScore(successReward);
-        Debug.Log($"Minigame SUCCESS! +{successReward}");
+        // swap to the other char so player can still roam
+        swapped = true;
+        FindObjectOfType<GameManager>()?.SwitchActiveCharacter();
 
-        // unfreeze
-        actor?.SetActive(true);
+        // switch to filling phase
+        fillTimer = 0f;
+        state = State.Filling;
 
-        // start next cooldown
-        StartCooldown();
+        if (fillBar != null)
+        {
+            fillBar.fillAmount = 0f;           // empty bar grows
+        }
     }
 
-    void OnFail()
+    /* ©¤©¤©¤©¤©¤ Filling logic ©¤©¤©¤©¤©¤ */
+    void FillingTick()
     {
-        isDealTimerRunning = false;
-        completed = true;
+        fillTimer += Time.deltaTime;
+        if (fillBar != null)
+            fillBar.fillAmount = Mathf.Clamp01(fillTimer / fillDuration);
 
-        fillBar?.gameObject.SetActive(false);
-
-        ScoreManager.Instance.AddScore(-failPenalty);
-        Debug.Log($"Minigame FAIL! ¨C{failPenalty}");
-
-        actor?.SetActive(true);
-
-        StartCooldown();
+        if (fillTimer >= fillDuration)
+            Complete(success: true);
     }
 
-    void StartCooldown()
+    /* ©¤©¤©¤©¤©¤ Wrap-up ©¤©¤©¤©¤©¤ */
+    void Complete(bool success)
     {
-        isCooldown = true;
-        cooldownTimer = Random.Range(minRespawnTime, maxRespawnTime);
-        isDealTimerRunning = false;
+        state = State.Done;
 
-        // hide box
-        spriteRenderer.enabled = false;
-        if (boxCollider != null) boxCollider.enabled = false;
+        if (fillBar != null) fillBar.gameObject.SetActive(false);
+
+        if (!swapped && actor != null)
+            actor.SetActive(true);
+
+        int delta = success ? successReward : -failPenalty;
+        ScoreManager.Instance.AddScore(delta);
+
+        // hide forever
+        sr.enabled = false;
+        col.enabled = false;
+        gameObject.SetActive(false);
     }
 
-    void EndCooldown()
-    {
-        isCooldown = false;
-        ActivateBox();
-    }
-
+    /* ©¤©¤©¤©¤©¤ Item check ©¤©¤©¤©¤©¤ */
     bool PlayerHasGuaranteedItem()
     {
         if (guaranteedItem == null) return false;
-        foreach (var item in StatManager.Instance.ManagerItems)
-            if (item == guaranteedItem) return true;
+        foreach (var it in StatManager.Instance.ManagerItems)
+            if (it == guaranteedItem) return true;
         return false;
     }
 }

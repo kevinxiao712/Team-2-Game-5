@@ -967,7 +967,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8948007955419827054, guid: 3e23cac07e69faa4aa92e2fd3513c49d, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6454,9 +6454,11 @@ MonoBehaviour:
   guaranteedItem: {fileID: 11400000, guid: f643fba6ea57b824d93ec63259793af7, type: 2}
   allowedCharacterA: {fileID: 1674558716}
   allowedCharacterB: {fileID: 1674558716}
-  interactionRange: 2
-  interactKey: 102
+  spawnDelay: 5
+  timeToDeal: 10
   fillDuration: 15
+  successReward: 10
+  failPenalty: 10
   fillBar: {fileID: 1570009809}
 --- !u!61 &427413944
 BoxCollider2D:
@@ -9568,9 +9570,11 @@ MonoBehaviour:
   guaranteedItem: {fileID: 0}
   allowedCharacterA: {fileID: 1674558716}
   allowedCharacterB: {fileID: 0}
-  interactionRange: 2
-  interactKey: 102
+  spawnDelay: 5
+  timeToDeal: 10
   fillDuration: 15
+  successReward: 10
+  failPenalty: 10
   fillBar: {fileID: 1988914892}
 --- !u!61 &657662890
 BoxCollider2D:
@@ -11999,7 +12003,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8948007955419827054, guid: 3e23cac07e69faa4aa92e2fd3513c49d, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12455,7 +12459,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &843630048
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16117,9 +16121,11 @@ MonoBehaviour:
   guaranteedItem: {fileID: 11400000, guid: 7ee01aaf357892d4d8aebadf5ac32928, type: 2}
   allowedCharacterA: {fileID: 254933798}
   allowedCharacterB: {fileID: 0}
-  interactionRange: 2
-  interactKey: 102
+  spawnDelay: 5
+  timeToDeal: 10
   fillDuration: 15
+  successReward: 10
+  failPenalty: 10
   fillBar: {fileID: 595649816}
 --- !u!61 &1169567866
 BoxCollider2D:
@@ -18366,7 +18372,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1332652650
 Transform:
   m_ObjectHideFlags: 0
@@ -21889,9 +21895,11 @@ MonoBehaviour:
   guaranteedItem: {fileID: 11400000, guid: 9db2b07d0edf980469765869322bbf3c, type: 2}
   allowedCharacterA: {fileID: 254933798}
   allowedCharacterB: {fileID: 0}
-  interactionRange: 2
-  interactKey: 102
+  spawnDelay: 5
+  timeToDeal: 10
   fillDuration: 3
+  successReward: 10
+  failPenalty: 10
   fillBar: {fileID: 22873014}
 --- !u!1 &1613226059
 GameObject:
@@ -22453,7 +22461,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8948007955419827054, guid: 3e23cac07e69faa4aa92e2fd3513c49d, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -22622,9 +22630,11 @@ MonoBehaviour:
   guaranteedItem: {fileID: 11400000, guid: 9db2b07d0edf980469765869322bbf3c, type: 2}
   allowedCharacterA: {fileID: 1674558716}
   allowedCharacterB: {fileID: 254933798}
-  interactionRange: 2
-  interactKey: 102
+  spawnDelay: 5
+  timeToDeal: 10
   fillDuration: 15
+  successReward: 10
+  failPenalty: 10
   fillBar: {fileID: 22873014}
 --- !u!1 &1661186461
 GameObject:
@@ -27315,9 +27325,11 @@ MonoBehaviour:
   guaranteedItem: {fileID: 0}
   allowedCharacterA: {fileID: 1674558716}
   allowedCharacterB: {fileID: 0}
-  interactionRange: 2
-  interactKey: 102
+  spawnDelay: 5
+  timeToDeal: 10
   fillDuration: 15
+  successReward: 10
+  failPenalty: 10
   fillBar: {fileID: 1555056997}
 --- !u!61 &1939645737
 BoxCollider2D:
@@ -27486,7 +27498,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8948007955419827054, guid: 3e23cac07e69faa4aa92e2fd3513c49d, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -28493,17 +28505,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02a0963e92bfcbc459b6d6dd604d09bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  guaranteedItem: {fileID: 11400000, guid: 7ee01aaf357892d4d8aebadf5ac32928, type: 2}
   allowedCharacterA: {fileID: 254933798}
   allowedCharacterB: {fileID: 1674558716}
-  guaranteedItem: {fileID: 11400000, guid: 7ee01aaf357892d4d8aebadf5ac32928, type: 2}
-  interactionRange: 2
-  interactKey: 102
+  spawnDelay: 5
   timeToDeal: 10
+  fillDuration: 10
   successReward: 10
   failPenalty: 10
   fillBar: {fileID: 821335381}
-  minRespawnTime: 5
-  maxRespawnTime: 15
 --- !u!1 &2046615639
 GameObject:
   m_ObjectHideFlags: 0

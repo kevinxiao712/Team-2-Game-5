@@ -66,21 +66,20 @@ public class MinigameBox : MonoBehaviour
 
     void TryBeginFill(CharacterController2D character)
     {
-        float dist = Vector2.Distance(transform.position, character.transform.position);
-        if (dist > interactionRange || !Input.GetKeyDown(interactKey))
-            return;
+        // must be close and press F
+        if (Vector2.Distance(transform.position, character.transform.position) > interactionRange) return;
+        if (!Input.GetKeyDown(interactKey)) return;
 
-        // start!
-        actor = character;
+        actor = character;             
+        actor.SetActive(false);
         isFilling = true;
         fillTime = 0f;
-        swapped = false;           // reset
+        swapped = false;
 
-        // instant if they have the item
         bool hasItem = PlayerHasGuaranteedItem();
         targetTime = hasItem ? 0f : fillDuration;
 
-        // show bar
+        // UI
         if (fillBar != null)
         {
             fillBar.gameObject.SetActive(true);
@@ -88,21 +87,41 @@ public class MinigameBox : MonoBehaviour
             fillBar.color = originalBar;
         }
 
-        // freeze the actor
-        actor.SetActive(false);
-
-
         if (!hasItem)
         {
-            swapped = true;          
-            var gm = FindObjectOfType<GameManager>();
-            gm.SwitchActiveCharacter(); 
+            CharacterController2D other = (actor == allowedCharacterA) ? allowedCharacterB : allowedCharacterA;
+
+            bool otherBusy = other == null || !other.IsActive || other.GetComponent<CharacterController2D>().IsFrozen;
+            if (!otherBusy)
+            {
+                FindObjectOfType<GameManager>()?.SwitchActiveCharacter();
+                swapped = true;
+            }
+            foreach (MinigameBox box in FindObjectsOfType<MinigameBox>())
+            {
+                if (box != this && box.isFilling && box.actor == other)
+                {
+                    otherBusy = true;
+                    break;
+                }
+            }
+
+            if (!otherBusy && other != null)
+            {
+                FindObjectOfType<GameManager>()?.SwitchActiveCharacter();
+                swapped = true;                      // remember we swapped
+            }
         }
 
-        // instant complete if guaranteed
+        // now freeze the actor
+        actor.SetActive(false);
+
+        // instant-win path
         if (targetTime <= 0f)
             CompleteMinigame();
     }
+
+
 
     void CompleteMinigame()
     {

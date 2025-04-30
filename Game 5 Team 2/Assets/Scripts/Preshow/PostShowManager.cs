@@ -188,39 +188,31 @@ public class PostShowManager : MonoBehaviour
 
         foreach (CharacterSlot slot in slots)
         {
+
             if (slot.occupant == null) continue;
 
             CharacterID placed =
                 slot.occupant.GetComponent<CharacterIdentity>().id;
 
-            bool right;
+            bool right = slot.correctCharacter != CharacterID.None
+                      && placed == slot.correctCharacter;
 
 
-            if (slot.correctCharacter == CharacterID.None)
-            {
-
-                right = false;
-            }
-            else
-            {
-                right = (placed == slot.correctCharacter);
-            }
-
-            SpriteRenderer sr = slot.GetComponent<SpriteRenderer>();
             if (slot.sr != null)
             {
                 Color c = right ? slot.correctColour : slot.wrongColour;
-                c.a = 1f;                      // fully opaque now
+                c.a = 1f;         // make slot fully opaque
                 slot.sr.color = c;
             }
 
             if (right)
             {
                 correct++;
-                ScoreManager.Instance.postshowScore += 20; // 20 points per correct drug/twink placement
+                ScoreManager.Instance.postshowScore += 10;  
             }
             else
             {
+                ScoreManager.Instance.postshowScore -= 10;  
                 wrongCharacters.Add(slot.occupant);
 
                 if (slot.occupant.GetComponent<PickUpable>() == null)
