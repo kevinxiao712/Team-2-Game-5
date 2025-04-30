@@ -63,12 +63,16 @@ public class RoadieController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Exit zone has tag "Exit"
         if (other.CompareTag("Exit") && carried != null)
         {
-            Destroy(carried);    
-            PostShowManager.Instance.ReportWrongRemoved(); 
+            Destroy(carried);
             carried = null;
+
+            if (PostShowManager.Instance != null)
+                PostShowManager.Instance.ReportWrongRemoved();
+            else
+                Debug.LogWarning("PostShowManager.Instance is null");
         }
     }
+
 }

@@ -149,7 +149,7 @@ public class GameManager : MonoBehaviour
         // Enable the next (third) phase
         if (ThirdPhaseObject != null)
         {
-            FindAnyObjectByType<PauseMenu>().IncrementPhase();
+        //    FindAnyObjectByType<PauseMenu>().IncrementPhase();
             ThirdPhaseObject.SetActive(true);
         }
 

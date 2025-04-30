@@ -129,7 +129,7 @@ public class NoteScroller : MonoBehaviour
 
         // 1) Kick off the PostShow while we're still active
         PostShowManager.Instance.BeginPostShow();
-        FindAnyObjectByType<PauseMenu>().IncrementPhase();
+     //   FindAnyObjectByType<PauseMenu>().IncrementPhase();
 
         // 2) Switch UI
         if (postShowPhaseObject != null)

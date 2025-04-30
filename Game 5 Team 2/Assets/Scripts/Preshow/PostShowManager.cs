@@ -20,7 +20,7 @@ public class PostShowManager : MonoBehaviour
     private List<GameObject> wrongCharacters = new List<GameObject>();
     private int wrongRemaining;
     public GameObject managerPrefab;
-
+    private bool placementPhase = false;
     private bool isPostShowStarted = false;
     private bool isInstructionOpen = false;
 
@@ -43,6 +43,7 @@ public class PostShowManager : MonoBehaviour
 
     public void BeginPostShow()
     {
+        Debug.Log("BeginPostShow called");
         gameObject.SetActive(true);
 
 
@@ -57,6 +58,8 @@ public class PostShowManager : MonoBehaviour
         {
             instructionsCanvas.gameObject.SetActive(true);
             isInstructionOpen = true;
+            Time.timeScale = 0f;
+            Debug.Log("Instructions shown");
         }
 
         isPostShowStarted = true;
@@ -65,27 +68,28 @@ public class PostShowManager : MonoBehaviour
 
     void Update()
     {
-        if (!isPostShowStarted)
-            return;
+        if (!isPostShowStarted) return;
 
-        // waiting on instructions?
+        // 1) while instructions are showing, look for Space
         if (isInstructionOpen)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                // close instructions and spawn first character
+                Debug.Log("Space pressed – closing instructions");
+                Time.timeScale = 1f;
+
                 instructionsCanvas.gameObject.SetActive(false);
                 isInstructionOpen = false;
-                SpawnNextCharacter();
+
+                SpawnNextCharacter();      
             }
-            return;
+            return;                   
         }
 
-        // after instructions, normal post‑show input
-        if (currentChar == null)
-            return;
+        // 2) normal post-show handling after instructions are closed
+        if (currentChar == null) return;
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (placementPhase && Input.GetKeyDown(KeyCode.F))
         {
             var hitCol = DetectClosestSlot(currentChar.transform.position);
             if (hitCol == null) return;
@@ -96,6 +100,7 @@ public class PostShowManager : MonoBehaviour
             LockCurrentInSlot(slot);
         }
     }
+
 
     public void ResetPostShow()
     {
@@ -170,6 +175,7 @@ public class PostShowManager : MonoBehaviour
 
     void SpawnNextCharacter()
     {
+        if (!placementPhase) placementPhase = true;
         currentChar = Instantiate(characterPrefabs[activeIndex], spawnPoint.position, Quaternion.identity);
         currentChar.GetComponent<CharacterController2D>().SetActive(true);
         Debug.Log($"Spawned {currentChar.name}");
@@ -201,7 +207,12 @@ public class PostShowManager : MonoBehaviour
             }
 
             SpriteRenderer sr = slot.GetComponent<SpriteRenderer>();
-            if (sr != null) sr.color = right ? Color.green : Color.red;
+            if (slot.sr != null)
+            {
+                Color c = right ? slot.correctColour : slot.wrongColour;
+                c.a = 1f;                      // fully opaque now
+                slot.sr.color = c;
+            }
 
             if (right)
             {
@@ -226,7 +237,7 @@ public class PostShowManager : MonoBehaviour
         }
 
         wrongRemaining = wrongCharacters.Count;
-
+        placementPhase = false;
         if (wrongRemaining > 0 && managerPrefab != null)
         {
 

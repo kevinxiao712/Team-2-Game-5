@@ -962,6 +962,10 @@ PrefabInstance:
       value: DrugSlot (4)
       objectReference: {fileID: 0}
     - target: {fileID: 8948007955419827054, guid: 3e23cac07e69faa4aa92e2fd3513c49d, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8948007955419827054, guid: 3e23cac07e69faa4aa92e2fd3513c49d, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
@@ -4478,7 +4482,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 8
+  m_Radius: 5
 --- !u!50 &254933801
 Rigidbody2D:
   serializedVersion: 4
@@ -11990,6 +11994,10 @@ PrefabInstance:
       value: DrugSlot (5)
       objectReference: {fileID: 0}
     - target: {fileID: 8948007955419827054, guid: 3e23cac07e69faa4aa92e2fd3513c49d, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8948007955419827054, guid: 3e23cac07e69faa4aa92e2fd3513c49d, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
@@ -12447,7 +12455,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &843630048
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18358,7 +18366,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1332652650
 Transform:
   m_ObjectHideFlags: 0
@@ -21056,7 +21064,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1563164874
 Transform:
   m_ObjectHideFlags: 0
@@ -22438,6 +22446,10 @@ PrefabInstance:
     - target: {fileID: 8830057492701158861, guid: 3e23cac07e69faa4aa92e2fd3513c49d, type: 3}
       propertyPath: m_Name
       value: DrugSlot (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8948007955419827054, guid: 3e23cac07e69faa4aa92e2fd3513c49d, type: 3}
+      propertyPath: m_Color.a
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8948007955419827054, guid: 3e23cac07e69faa4aa92e2fd3513c49d, type: 3}
       propertyPath: m_Enabled
@@ -25458,8 +25470,12 @@ PrefabInstance:
       value: DrugSlot (1)
       objectReference: {fileID: 0}
     - target: {fileID: 8948007955419827054, guid: 3e23cac07e69faa4aa92e2fd3513c49d, type: 3}
-      propertyPath: m_Enabled
+      propertyPath: m_Color.a
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8948007955419827054, guid: 3e23cac07e69faa4aa92e2fd3513c49d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -27463,6 +27479,10 @@ PrefabInstance:
     - target: {fileID: 8830057492701158861, guid: 3e23cac07e69faa4aa92e2fd3513c49d, type: 3}
       propertyPath: m_Name
       value: DrugSlot (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8948007955419827054, guid: 3e23cac07e69faa4aa92e2fd3513c49d, type: 3}
+      propertyPath: m_Color.a
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8948007955419827054, guid: 3e23cac07e69faa4aa92e2fd3513c49d, type: 3}
       propertyPath: m_Enabled
@@ -29477,8 +29497,24 @@ PrefabInstance:
       value: DrugSlot
       objectReference: {fileID: 0}
     - target: {fileID: 8948007955419827054, guid: 3e23cac07e69faa4aa92e2fd3513c49d, type: 3}
-      propertyPath: m_Enabled
+      propertyPath: m_Color.a
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8948007955419827054, guid: 3e23cac07e69faa4aa92e2fd3513c49d, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8948007955419827054, guid: 3e23cac07e69faa4aa92e2fd3513c49d, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8948007955419827054, guid: 3e23cac07e69faa4aa92e2fd3513c49d, type: 3}
+      propertyPath: m_Color.r
+      value: 0.00499475
+      objectReference: {fileID: 0}
+    - target: {fileID: 8948007955419827054, guid: 3e23cac07e69faa4aa92e2fd3513c49d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -30491,12 +30527,12 @@ SceneRoots:
   - {fileID: 1922713560}
   - {fileID: 304628536}
   - {fileID: 1563164874}
+  - {fileID: 2130568459}
+  - {fileID: 1027037049}
   - {fileID: 651903983}
   - {fileID: 1332652650}
-  - {fileID: 1027037049}
-  - {fileID: 2130568459}
-  - {fileID: 665143825}
   - {fileID: 1219403832}
+  - {fileID: 665143825}
   - {fileID: 1516154110}
   - {fileID: 378001828}
   - {fileID: 1864899197}
