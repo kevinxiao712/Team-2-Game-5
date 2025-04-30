@@ -106,7 +106,7 @@ public class GameManager : MonoBehaviour
     {
         ResetPreshow();
 
-   //     FindAnyObjectByType<PauseMenu>().IncrementPhase();
+        FindAnyObjectByType<PauseMenu>().IncrementPhase();
 
         // Disable the Prep canvas
         PrepmainCanvas.gameObject.SetActive(false);
