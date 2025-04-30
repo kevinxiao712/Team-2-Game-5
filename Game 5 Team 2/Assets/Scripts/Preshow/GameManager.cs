@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Preshow Timer UI")]
     public TextMeshPro preshowTimerText;
+    private bool gamePaused = false;
 
 
     [Header("Timer Settings")]
@@ -72,12 +73,18 @@ public class GameManager : MonoBehaviour
     private void CloseInstructions()
     {
         if (instructionsCanvas != null)
-        {
             instructionsCanvas.SetActive(false);
+
+        isInstructionOpen = false;
+
+        if (gamePaused)
+        {
+            gamePaused = false;
+            Time.timeScale = 1f;           // resume everything
+            currentActive.SetActive(true);
         }
-        isInstructionOpen = false; // Now the timer can run
     }
-    private void SwitchActiveCharacter()
+    public void SwitchActiveCharacter()
     {
         // Deactivate the current
         currentActive.SetActive(false);
@@ -99,7 +106,7 @@ public class GameManager : MonoBehaviour
     {
         ResetPreshow();
 
-        FindAnyObjectByType<PauseMenu>().IncrementPhase();
+   //     FindAnyObjectByType<PauseMenu>().IncrementPhase();
 
         // Disable the Prep canvas
         PrepmainCanvas.gameObject.SetActive(false);
@@ -112,7 +119,13 @@ public class GameManager : MonoBehaviour
         {
             instructionsCanvas.SetActive(true);
             isInstructionOpen = true;
+
+            gamePaused = true;
+            Time.timeScale = 0f;             
+            characterA.SetActive(false); 
+            characterB.SetActive(false);
         }
+
 
         // Initialize the timer but don't start counting down yet
         preshowTimeLeft = preshowDuration;

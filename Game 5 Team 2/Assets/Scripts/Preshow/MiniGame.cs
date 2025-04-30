@@ -1,233 +1,133 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class MinigameBox : MonoBehaviour
 {
-
+    [Header("Item for Instant Completion")]
     public ItemScriptableObject guaranteedItem;
 
-
-    [Header("Which Character(s) Can Interact?")]
+    [Header("Who Can Interact?")]
     public CharacterController2D allowedCharacterA;
     public CharacterController2D allowedCharacterB;
 
-    [Header("Interaction Settings")]
+    [Header("Interaction")]
     public float interactionRange = 2f;
     public KeyCode interactKey = KeyCode.F;
     public float fillDuration = 3f;
 
-    [Header("Cooldown Settings")]
-    public float cooldownDuration = 5f;   // How long it stays disabled after success/fail
-    private bool isOnCooldown = false;
-    private float cooldownTimer = 0f;
+    [Header("UI")]
+    public Image fillBar;
 
-    [Header("UI Elements")]
-    public Image fillBar; 
+    // Internal
+    bool isFilling = false;
+    bool completed = false;
+    bool swapped = false;           
+    float fillTime = 0f;
+    float targetTime = 0f;
+    Color originalBar;
+    CharacterController2D actor;
 
-    // Internal state
-    private bool isFilling = false;
-    private float currentFillTime = 0f;
-    private CharacterController2D currentInteractingCharacter = null;
-    private bool wasInRangeLastFrame = false;
-
-    private Color originalFillBarColor;
-
-    private SpriteRenderer spriteRenderer;
-
-
-
-    private void Start()
+    void Start()
     {
         if (fillBar != null)
         {
+            originalBar = fillBar.color;
             fillBar.gameObject.SetActive(false);
             fillBar.fillAmount = 0f;
-            originalFillBarColor = fillBar.color;
         }
-
-        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    private void Update()
+    void Update()
     {
-        if (isOnCooldown)
+        if (completed) return;
+
+        // Only check the one active character
+        if (!isFilling)
         {
-            cooldownTimer -= Time.deltaTime;
-            if (cooldownTimer <= 0f)
-            {
-                EndCooldown();
-            }
+            if (allowedCharacterA != null && allowedCharacterA.IsActive)
+                TryBeginFill(allowedCharacterA);
+
+            if (allowedCharacterB != null && allowedCharacterB.IsActive)
+                TryBeginFill(allowedCharacterB);
         }
 
-
-        if (allowedCharacterA == null) return;
-
-        float distance = Vector2.Distance(transform.position, allowedCharacterA.transform.position);
-        bool closeEnough = distance <= interactionRange;
-
-        // Range logic for "AddInRange" / "RemoveInRange"
-        if (closeEnough && !wasInRangeLastFrame)
-        {
-            allowedCharacterA.AddInRange();
-        }
-        else if (!closeEnough && wasInRangeLastFrame)
-        {
-            allowedCharacterA.RemoveInRange();
-        }
-        wasInRangeLastFrame = closeEnough;
-
-        // If not on cooldown and not filling, check if we can start filling
-        if (!isOnCooldown && !isFilling)
-        {
-            CheckForPlayerInRange(allowedCharacterA);
-        }
-
-        // If filling, update bar
+        // If we¡¯re filling, advance the bar
         if (isFilling)
         {
-            currentFillTime += Time.deltaTime;
-            float progress = currentFillTime / fillDuration;
-
+            fillTime += Time.deltaTime;
             if (fillBar != null)
-                fillBar.fillAmount = Mathf.Clamp01(progress);
+                fillBar.fillAmount = Mathf.Clamp01(fillTime / targetTime);
 
-            // Fill complete
-            if (progress >= 1f)
-            {
-                OnFillComplete();
-            }
+            if (fillTime >= targetTime)
+                CompleteMinigame();
         }
     }
 
-    private void CheckForPlayerInRange(CharacterController2D character)
+    void TryBeginFill(CharacterController2D character)
     {
-        if (character == null) return;
+        float dist = Vector2.Distance(transform.position, character.transform.position);
+        if (dist > interactionRange || !Input.GetKeyDown(interactKey))
+            return;
 
-        float distance = Vector2.Distance(transform.position, character.transform.position);
-        bool closeEnough = distance <= interactionRange;
-
-        if (closeEnough && Input.GetKeyDown(interactKey))
-        {
-            StartFilling(character);
-        }
-    }
-
-    private void StartFilling(CharacterController2D character)
-    {
+        // start!
+        actor = character;
         isFilling = true;
-        currentFillTime = 0f;
-        currentInteractingCharacter = character;
+        fillTime = 0f;
+        swapped = false;           // reset
 
+        // instant if they have the item
+        bool hasItem = PlayerHasGuaranteedItem();
+        targetTime = hasItem ? 0f : fillDuration;
+
+        // show bar
         if (fillBar != null)
         {
             fillBar.gameObject.SetActive(true);
             fillBar.fillAmount = 0f;
-            fillBar.color = originalFillBarColor;  // Ensure it's the normal color
+            fillBar.color = originalBar;
         }
 
-        // Hide "F" indicator
-        if (character.pressFIndicator != null)
+        // freeze the actor
+        actor.SetActive(false);
+
+
+        if (!hasItem)
         {
-            character.pressFIndicator.SetActive(false);
+            swapped = true;          
+            var gm = FindObjectOfType<GameManager>();
+            gm.SwitchActiveCharacter(); 
         }
 
-        Debug.Log("Minigame started by " + character.name);
+        // instant complete if guaranteed
+        if (targetTime <= 0f)
+            CompleteMinigame();
     }
 
-    private void OnFillComplete()
+    void CompleteMinigame()
     {
         isFilling = false;
+        completed = true;
 
-        // Decide success or fail
-        float chance = Random.value;
-        bool success = (chance < 0.5f);
-
-        if (PlayerHasGuaranteedItem())
-        {
-            Debug.Log("Auto-Success! Player has the guaranteed item for this minigame.");
-            // e.g., add points or do success logic
-            ScoreManager.Instance.AddScore(10);
-        }
-        else
-        {
-            if (success)
-            {
-                // success
-                ScoreManager.Instance.AddScore(10);
-            }
-            else
-            {
-                Debug.Log("Minigame FAILURE");
-            }
-        }
-
-        // Start a coroutine to flash the fill bar color 
-        StartCoroutine(FlashFillBar(success));
-
-        currentInteractingCharacter = null;
-    }
-
-    private System.Collections.IEnumerator FlashFillBar(bool success)
-    {
+        // hide bar
         if (fillBar != null)
-        {
-            // Choose green if success, red if fail
-            fillBar.color = success ? Color.green : Color.red;
-        }
-
-        // Keep the fill bar visible for 1 second
-        yield return new WaitForSeconds(1f);
-
-        // Revert fill bar color
-        if (fillBar != null)
-        {
-            fillBar.color = originalFillBarColor;
-            // Now hide the bar entirely
             fillBar.gameObject.SetActive(false);
-        }
 
-        // Then go to cooldown
-        StartCooldown();
+        // only re-enable the actor if we did NOT swap
+        if (!swapped && actor != null)
+            actor.SetActive(true);
+
+        ScoreManager.Instance.AddScore(10);
+
+        // disable this box forever
+        gameObject.SetActive(false);
     }
 
-    private void StartCooldown()
+    bool PlayerHasGuaranteedItem()
     {
-        isOnCooldown = true;
-        cooldownTimer = cooldownDuration;
-
-        if (spriteRenderer != null)
-        {
-            Color c = spriteRenderer.color;
-            c.a = 0.5f;
-            spriteRenderer.color = c;
-        }
-    }
-
-    private void EndCooldown()
-    {
-        isOnCooldown = false;
-
-        if (spriteRenderer != null)
-        {
-            Color c = spriteRenderer.color;
-            c.a = 1f;
-            spriteRenderer.color = c;
-        }
-
-        Debug.Log("Minigame is active again.");
-    }
-
-    private bool PlayerHasGuaranteedItem()
-    {
-        var items = StatManager.Instance.ManagerItems;
         if (guaranteedItem == null) return false;
-        foreach (var item in items)
-        {
-            if (item == guaranteedItem)
-            {
-                return true;
-            }
-        }
+        foreach (var item in StatManager.Instance.ManagerItems)
+            if (item == guaranteedItem) return true;
         return false;
     }
 }

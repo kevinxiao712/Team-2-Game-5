@@ -6,18 +6,43 @@ public class CharacterController2D : MonoBehaviour
     public float moveSpeed = 5f;
     private Rigidbody2D rb;
     public GameObject pressFIndicator;
-    private bool isActive;
+    public bool isActive;
     private int boxesInRangeCount = 0;
+
+    public Sprite activeSprite;
+    public Sprite inactiveSprite;
+    public bool IsActive { get { return isActive; } }
+    SpriteRenderer sr;
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
+        if (sr == null)
+            sr = GetComponentInChildren<SpriteRenderer>();
+
+        if (sr == null)
+        {
+            Debug.LogError($"[{name}] No SpriteRenderer found on this GameObject or its children.");
+        }
+        else if (inactiveSprite != null)
+        {
+            sr.sprite = inactiveSprite;
+        }
+
         if (pressFIndicator != null)
             pressFIndicator.SetActive(false);
     }
 
+
     public void SetActive(bool active)
     {
         isActive = active;
+
+        if (sr != null)
+            sr.sprite = active && activeSprite != null ? activeSprite: inactiveSprite;
+
+        if (pressFIndicator != null)
+            pressFIndicator.SetActive(false);
     }
 
     void Update()
