@@ -6454,11 +6454,9 @@ MonoBehaviour:
   guaranteedItem: {fileID: 11400000, guid: f643fba6ea57b824d93ec63259793af7, type: 2}
   allowedCharacterA: {fileID: 1674558716}
   allowedCharacterB: {fileID: 1674558716}
-  spawnDelay: 5
-  timeToDeal: 10
+  interactionRange: 2
+  interactKey: 102
   fillDuration: 15
-  successReward: 10
-  failPenalty: 10
   fillBar: {fileID: 1570009809}
 --- !u!61 &427413944
 BoxCollider2D:
@@ -9570,11 +9568,9 @@ MonoBehaviour:
   guaranteedItem: {fileID: 0}
   allowedCharacterA: {fileID: 1674558716}
   allowedCharacterB: {fileID: 0}
-  spawnDelay: 5
-  timeToDeal: 10
+  interactionRange: 2
+  interactKey: 102
   fillDuration: 15
-  successReward: 10
-  failPenalty: 10
   fillBar: {fileID: 1988914892}
 --- !u!61 &657662890
 BoxCollider2D:
@@ -16121,11 +16117,9 @@ MonoBehaviour:
   guaranteedItem: {fileID: 11400000, guid: 7ee01aaf357892d4d8aebadf5ac32928, type: 2}
   allowedCharacterA: {fileID: 254933798}
   allowedCharacterB: {fileID: 0}
-  spawnDelay: 5
-  timeToDeal: 10
+  interactionRange: 2
+  interactKey: 102
   fillDuration: 15
-  successReward: 10
-  failPenalty: 10
   fillBar: {fileID: 595649816}
 --- !u!61 &1169567866
 BoxCollider2D:
@@ -21895,11 +21889,9 @@ MonoBehaviour:
   guaranteedItem: {fileID: 11400000, guid: 9db2b07d0edf980469765869322bbf3c, type: 2}
   allowedCharacterA: {fileID: 254933798}
   allowedCharacterB: {fileID: 0}
-  spawnDelay: 5
-  timeToDeal: 10
-  fillDuration: 3
-  successReward: 10
-  failPenalty: 10
+  interactionRange: 2
+  interactKey: 102
+  fillDuration: 15
   fillBar: {fileID: 22873014}
 --- !u!1 &1613226059
 GameObject:
@@ -22630,11 +22622,9 @@ MonoBehaviour:
   guaranteedItem: {fileID: 11400000, guid: 9db2b07d0edf980469765869322bbf3c, type: 2}
   allowedCharacterA: {fileID: 1674558716}
   allowedCharacterB: {fileID: 254933798}
-  spawnDelay: 5
-  timeToDeal: 10
+  interactionRange: 2
+  interactKey: 102
   fillDuration: 15
-  successReward: 10
-  failPenalty: 10
   fillBar: {fileID: 22873014}
 --- !u!1 &1661186461
 GameObject:
@@ -27325,11 +27315,9 @@ MonoBehaviour:
   guaranteedItem: {fileID: 0}
   allowedCharacterA: {fileID: 1674558716}
   allowedCharacterB: {fileID: 0}
-  spawnDelay: 5
-  timeToDeal: 10
+  interactionRange: 2
+  interactKey: 102
   fillDuration: 15
-  successReward: 10
-  failPenalty: 10
   fillBar: {fileID: 1555056997}
 --- !u!61 &1939645737
 BoxCollider2D:
