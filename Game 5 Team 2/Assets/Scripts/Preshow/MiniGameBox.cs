@@ -162,8 +162,9 @@ public class MinigameBox : MonoBehaviour
         completed = true;
         fillBar?.gameObject.SetActive(false);
 
-        actor.Unfreeze(!swapped);       
+        actor.Unfreeze(!swapped);
 
+        FindObjectOfType<GameManager>()?.ForceControlTo(actor);
         ScoreManager.Instance.AddScore(10);   // or ¨C10 on fail
         gameObject.SetActive(false);          // one-shot
     }

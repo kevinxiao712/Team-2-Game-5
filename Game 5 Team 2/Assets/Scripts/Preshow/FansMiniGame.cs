@@ -175,17 +175,30 @@ public class FansMiniGame : MonoBehaviour
 
         fillBar?.gameObject.SetActive(false);
 
-        if (actor != null)
-            actor.Unfreeze(makeActive: !swapped);
+        CharacterController2D other =
+            (actor == allowedCharacterA) ? allowedCharacterB : allowedCharacterA;
+
+
+        if (swapped)
+            actor.Unfreeze(makeActive: false);    // other char already active
+        else
+        {
+            // make actor active but be sure to deactivate the other one
+            other?.SetActive(false);
+            actor.Unfreeze(makeActive: true);
+        }
 
         int delta = success ? successReward : -failPenalty;
         ScoreManager.Instance.AddScore(delta);
 
-        // hide forever
+        FindObjectOfType<GameManager>()?.ForceControlTo(actor);
         sr.enabled = false;
         col.enabled = false;
         gameObject.SetActive(false);
+
+        FindObjectOfType<GameManager>()?.ForceSingleActive();
     }
+
 
 
     bool PlayerHasGuaranteedItem()

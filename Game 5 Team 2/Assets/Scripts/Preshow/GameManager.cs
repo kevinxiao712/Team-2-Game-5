@@ -179,4 +179,40 @@ public class GameManager : MonoBehaviour
         characterA.SetActive(true);
         characterB.SetActive(false);
     }
+
+    public void ForceSingleActive()
+    {
+        // if the currentActive is still valid, nothing to do
+        if (currentActive != null && currentActive.IsActive) return;
+
+        // pick whichever character is free
+        CharacterController2D pick =
+            (!characterA.IsBusy) ? characterA :
+            (!characterB.IsBusy) ? characterB :
+            null;             
+
+        if (pick != null)
+        {
+            // deactivate the previous reference
+            if (currentActive != null)
+                currentActive.SetActive(false);
+
+            currentActive = pick;
+            currentActive.SetActive(true);
+        }
+    }
+    public void ForceControlTo(CharacterController2D target)
+    {
+        if (target == null) return;
+
+        // If currentActive is null OR still busy, switch.
+        if (currentActive == null || currentActive.IsBusy)
+        {
+            if (currentActive != null)
+                currentActive.SetActive(false);
+
+            currentActive = target;
+            currentActive.SetActive(true);
+        }
+    }
 }
