@@ -20851,11 +20851,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 32afef756f7026a45b274e4b0f31bf34, type: 2}
   - {fileID: 11400000, guid: c3b6f0972b9930b4fa434e637a166e67, type: 2}
   managerItemChoices:
-  - {fileID: 11400000, guid: eeead33e2cdd20e4eb69c662cf951448, type: 2}
+  - {fileID: 11400000, guid: 0af6b75851ed5174e9e6a8d3ab53ef2e, type: 2}
   - {fileID: 11400000, guid: 7ee01aaf357892d4d8aebadf5ac32928, type: 2}
   - {fileID: 11400000, guid: 9db2b07d0edf980469765869322bbf3c, type: 2}
   - {fileID: 11400000, guid: ef2b84627ad50f1418f423db8f4d8791, type: 2}
   - {fileID: 11400000, guid: 49883ef137567ee438b902879e091341, type: 2}
+  - {fileID: 11400000, guid: f643fba6ea57b824d93ec63259793af7, type: 2}
+  - {fileID: 11400000, guid: f9b7d49b345832949b35413f6487be34, type: 2}
   instrumentChoices:
   - {fileID: 11400000, guid: 32afef756f7026a45b274e4b0f31bf34, type: 2}
   - {fileID: 11400000, guid: 3ceb549d0f2aa534e8b05fb5bdff5c35, type: 2}
