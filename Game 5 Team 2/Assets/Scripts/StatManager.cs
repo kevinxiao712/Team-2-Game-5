@@ -33,8 +33,6 @@ public class StatManager : MonoBehaviour
     private InstrumentScriptableObject[] bandInstruments = new InstrumentScriptableObject[3];
 
     // Manager item inventory
-    // This stuff will cause problems when StatManager becomes a singleton, will move some of this
-    // to a SetupPhaseScene script when needed but for now I just want to make sure it works
     [SerializeField]
     private List<ItemScriptableObject> managerItemChoices = new();
     [SerializeField]
@@ -89,6 +87,13 @@ public class StatManager : MonoBehaviour
         }
     }
 
+    public InstrumentScriptableObject[] BandInstruments
+    {
+        get
+        {
+            return bandInstruments;
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {

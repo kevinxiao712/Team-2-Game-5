@@ -86,6 +86,7 @@ public class ScoreManager : MonoBehaviour
             "\n\nTotal Score: " + totalScore + "\n\n";
         AddItemsByScore();
         endgameCanvas.SetActive(true);
+        FindAnyObjectByType<DataManager>().WriteToJson();
     }
 
     public void ResetDailyScore()
