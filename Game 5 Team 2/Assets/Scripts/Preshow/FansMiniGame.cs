@@ -57,6 +57,8 @@ public class FansMiniGame : MonoBehaviour
 
     void Update()
     {
+
+
         switch (state)
         {
             case State.Hidden:
