@@ -101,7 +101,25 @@ public class ScoreManager : MonoBehaviour
     {
         if (scoreText != null)
         {
-            scoreText.text = "Score: " + preshowScore;
+            if (preshowScore <= 10)
+            {
+                scoreText.text = "Prep: BAD";
+            }
+
+            if (preshowScore > 10 && preshowScore <= 20)
+            {
+                scoreText.text = "Prep: PASSABLE";
+            }
+
+            if (preshowScore > 20 && preshowScore <= 50)
+            {
+                scoreText.text = "Prep: GOOD";
+            }
+
+            if (preshowScore > 50)
+            {
+                scoreText.text = "Prep: PERFECT";
+            }
         }
     }
 
@@ -109,7 +127,25 @@ public class ScoreManager : MonoBehaviour
     {
         if (showScoreText != null)
         {
-            showScoreText.text = "Show Score: " + showScore;
+            if (showScore <= 90)
+            {
+                showScoreText.text = "Performance: NAUSEATING";
+            }
+
+            if (showScore > 90 && showScore < 180)
+            {
+                showScoreText.text = "Performance: PASSABLE";
+            }
+
+            if (showScore > 180 && showScore < 270)
+            {
+                showScoreText.text = "Performance: GOOD";
+            }
+
+            if (showScore > 270)
+            {
+                showScoreText.text = "Performance: PERFECT";
+            }
         }
         else
         {
