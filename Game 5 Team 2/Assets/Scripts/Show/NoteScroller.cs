@@ -11,6 +11,7 @@ public class NoteScroller : MonoBehaviour
     public GameObject postShowPhaseObject;
     public float speed;
     public bool hasStarted;
+    public bool hasNotesEnded;
     public int currentScore;
 
     public Canvas instructions;
@@ -18,53 +19,25 @@ public class NoteScroller : MonoBehaviour
     private List<GameObject> activeNotes;
     [SerializeField]
     private List<GameObject> inactiveNotes;
+    [SerializeField]
+    private List<GameObject> activeMinigames;
+    [SerializeField]
+    private List<GameObject> inactiveMinigames;
+
+    public CharacterController2D CharacterController;
 
     // Start is called before the first frame update
     void Start()
     {
-
-        //if there is a score manager and the score is greater than 0, set the speed to that score (not sure how score works yet)
-        if (ScoreManager.Instance != null && ScoreManager.Instance.preshowScore >= 0) //change this to just > 0 if you wanna test on 2 (intended speed), 4 is DIFFICULT
-        {
-            currentScore = ScoreManager.Instance.preshowScore;
-
-            //make the game easier the higher the score the player has (right now it is VERY hard if it's above 2)
-            if (currentScore >= 0 && currentScore <= 20)
-            {
-                Debug.Log("Score Manager found, setting speed to 4bps");
-                speed = 4;
-            }
-
-            if (currentScore > 20 && currentScore <= 50)
-            {
-                Debug.Log("Score Manager found, setting speed to 3bps");
-                speed = 3;
-            }
-
-            if (currentScore > 50 && currentScore <= 100)
-            {
-                Debug.Log("Score Manager found, setting speed to 2bps");
-                speed = 2;
-            }
-
-            if (currentScore > 100)
-            {
-                Debug.Log("Score Manager found, setting speed to 1bps");
-                speed = 1;
-            }
-        }
-        //if currentScore isn't available, just make it 2
-        else
-        {
-            //normal tempo = 120bpm, 120bpm/60s = 2bps
-            speed = 2;
-            Debug.Log("Score Manager not found, setting speed to 2bps");
-        }
+        hasNotesEnded = false;
+        CharacterController.isActive = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        SetTempo();
+
         //when space is pressed, start the scrolling
         if(!hasStarted)
         {
@@ -88,6 +61,7 @@ public class NoteScroller : MonoBehaviour
             if (!go.activeSelf)
             {
                 inactiveNotes.Add(go);
+                Debug.Log("Removed Note " + go.name);
                 activeNotes.RemoveAt(i);
             }
         }
@@ -95,7 +69,31 @@ public class NoteScroller : MonoBehaviour
         //whatever transition goes here (put it in the coroutine actually)
         if (activeNotes.Count <= 0)
         {
-            StartCoroutine(Change());
+            hasNotesEnded = true;
+        }
+
+        //allow manager to begin moving around
+        if (hasNotesEnded)
+        {
+            CharacterController.isActive = true;
+
+            //add minigame to new list and remove it from old one if it is inactive
+            for (int i = activeMinigames.Count - 1; i >= 0; i--)
+            {
+                var go = activeMinigames[i];
+                if (!go.activeSelf)
+                {
+                    inactiveMinigames.Add(go);
+                    Debug.Log("Removed Note " + go.name);
+                    activeMinigames.RemoveAt(i);
+                }
+            }
+
+            //if there are no more active minigames, move player to post show
+            if (activeMinigames.Count <= 0)
+            {
+                StartCoroutine(Change());
+            }
         }
         
     }
@@ -137,5 +135,47 @@ public class NoteScroller : MonoBehaviour
 
         if (showPhaseObject != null)
             showPhaseObject.SetActive(false);
+    }
+
+    //determines speed that the notes move
+    public void SetTempo()
+    {
+        //if there is a score manager and the score is greater than 0, set the speed to that score (not sure how score works yet)
+        if (ScoreManager.Instance != null && ScoreManager.Instance.preshowScore >= 0) //change this to just > 0 if you wanna test on 2 (intended speed), 4 is DIFFICULT
+        {
+            currentScore = ScoreManager.Instance.preshowScore;
+
+            //make the game easier the higher the score the player has (right now it is VERY hard if it's above 2)
+            if (currentScore >= 0 && currentScore <= 10)
+            {
+                //Debug.Log("Score Manager found, setting speed to 4bps");
+                speed = 4;
+            }
+
+            if (currentScore > 10 && currentScore <= 20)
+            {
+                //Debug.Log("Score Manager found, setting speed to 3bps");
+                speed = 3;
+            }
+
+            if (currentScore > 20 && currentScore <= 50)
+            {
+                //Debug.Log("Score Manager found, setting speed to 2bps");
+                speed = 2;
+            }
+
+            if (currentScore > 50)
+            {
+                //Debug.Log("Score Manager found, setting speed to 1bps");
+                speed = 1;
+            }
+        }
+        //if currentScore isn't available, just make it 2
+        else
+        {
+            //normal tempo = 120bpm, 120bpm/60s = 2bps
+            speed = 2;
+            //Debug.Log("Score Manager not found, setting speed to 2bps");
+        }
     }
 }
