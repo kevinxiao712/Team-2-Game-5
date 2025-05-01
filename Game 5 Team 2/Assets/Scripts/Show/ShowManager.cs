@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ShowManager : MonoBehaviour
 {
+    private bool managerActive;
+    public CharacterController2D characterController;
     // Start is called before the first frame update
     void Start()
     {

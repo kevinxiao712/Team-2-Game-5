@@ -32,7 +32,7 @@ public class CharacterController2D : MonoBehaviour
         }
 
         if (pressFIndicator != null)
-            pressFIndicator.SetActive(false);
+            pressFIndicator.SetActive(isActive && boxesInRangeCount > 0);
     }
 
 
@@ -61,23 +61,8 @@ public class CharacterController2D : MonoBehaviour
 
         rb.velocity = new Vector2(moveX, moveY) * moveSpeed;
     }
-    public void AddInRange()
-    {
-        boxesInRangeCount++;
-        if (boxesInRangeCount > 0 && pressFIndicator != null)
-        {
-            pressFIndicator.SetActive(true);
-        }
-    }
-    public void RemoveInRange()
-    {
-        boxesInRangeCount = Mathf.Max(0, boxesInRangeCount - 1);
-
-        if (boxesInRangeCount == 0 && pressFIndicator != null)
-        {
-            pressFIndicator.SetActive(false);
-        }
-    }
+    public void AddInRange() { boxesInRangeCount++; }
+    public void RemoveInRange() { boxesInRangeCount = Mathf.Max(0, boxesInRangeCount - 1); }
 
     public void FreezeForTask() { IsBusy = true; SetActive(false); }
     public void Unfreeze(bool makeActive = false)

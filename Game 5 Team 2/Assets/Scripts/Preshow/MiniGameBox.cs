@@ -46,7 +46,13 @@ public class MinigameBox : MonoBehaviour
 
     void Update()
     {
+
+
         if (completed) return;
+
+
+        UpdatePressFIndicator(allowedCharacterA);
+        UpdatePressFIndicator(allowedCharacterB);
         ShowOrHideProximityObject();
         // Only check the one active character
         if (!isFilling)
@@ -135,7 +141,18 @@ public class MinigameBox : MonoBehaviour
             CompleteMinigame();
     }
 
+    void UpdatePressFIndicator(CharacterController2D chr)
+    {
+        if (chr == null) return;
 
+        bool inside = Vector2.Distance(transform.position, chr.transform.position)
+                      <= interactionRange
+                      && !isFilling                    // don¡¯t show while bar filling
+                      && !completed;                   // or after done
+
+        if (inside) chr.AddInRange();
+        else chr.RemoveInRange();
+    }
 
 
     void CompleteMinigame()
@@ -145,8 +162,9 @@ public class MinigameBox : MonoBehaviour
         completed = true;
         fillBar?.gameObject.SetActive(false);
 
-        actor.Unfreeze(!swapped);       
+        actor.Unfreeze(!swapped);
 
+        FindObjectOfType<GameManager>()?.ForceControlTo(actor);
         ScoreManager.Instance.AddScore(10);   // or ¨C10 on fail
         gameObject.SetActive(false);          // one-shot
     }

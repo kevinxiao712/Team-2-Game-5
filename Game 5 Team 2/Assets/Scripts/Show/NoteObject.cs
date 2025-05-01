@@ -32,8 +32,6 @@ public class NoteObject : MonoBehaviour
 
                  NoteHit();
             }
-            NoteHit();
-            gameObject.SetActive(false);
         }
     }
 
@@ -68,7 +66,10 @@ public class NoteObject : MonoBehaviour
         Debug.Log("Note Missed");
         var sr = GetComponent<SpriteRenderer>();
         if (sr != null) sr.color = Color.red;
-        StartCoroutine(Despawn());
+        if (gameObject.activeSelf == true)
+        {
+            StartCoroutine(Despawn());
+        }
     }
 
     private IEnumerator Despawn()

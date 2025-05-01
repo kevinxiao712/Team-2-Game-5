@@ -13,23 +13,31 @@ public class DataManager : MonoBehaviour
         ScoreManager scoreManager = FindAnyObjectByType<ScoreManager>();
         StatManager statManager = FindAnyObjectByType<StatManager>();
 
-        // Create a new TrackedData class and fill it out
-        TrackedData data = new TrackedData();
-        data.item1 = statManager.ManagerItems[0].itemName;
-        data.item2 = statManager.ManagerItems[1].itemName;
-        data.item3 = statManager.ManagerItems[2].itemName;
-        data.guitar = statManager.BandInstruments[0].itemName;
-        data.bass = statManager.BandInstruments[1].itemName;
-        data.drums = statManager.BandInstruments[2].itemName;
-        data.preshowScore = scoreManager.preshowScore;
-        data.showScore = scoreManager.showScore;
-        data.postshowScore = scoreManager.postshowScore;
+        // Create a new instances of the data classes and fill them out
+        EquipData equipData = new EquipData();
+        equipData.item1 = statManager.ManagerItems[0].itemName;
+        equipData.item2 = statManager.ManagerItems[1].itemName;
+        equipData.item3 = statManager.ManagerItems[2].itemName;
+        equipData.guitar = statManager.BandInstruments[0].itemName;
+        equipData.bass = statManager.BandInstruments[1].itemName;
+        equipData.drums = statManager.BandInstruments[2].itemName;
+
+        ScoreData scoreData = new ScoreData();
+        scoreData.preshowScore = scoreManager.preshowScore;
+        scoreData.showScore = scoreManager.showScore;
+        scoreData.postshowScore = scoreManager.postshowScore;
 
         // Store the data as JSON
-        string json = JsonUtility.ToJson(data);
+        string equipJson = JsonUtility.ToJson(equipData);
+        string scoreJson = JsonUtility.ToJson(scoreData);
 
-        // Write the JSON data to a text file
-        string path = Application.persistentDataPath + "/data.json";
+        // Write the JSON data to their respective text files
+        WriteDataToPath(Application.persistentDataPath + "/equip-data.json", equipJson);
+        WriteDataToPath(Application.persistentDataPath + "/score-data.json", scoreJson);
+    }
+
+    private void WriteDataToPath(string path, string json)
+    {
         if (!File.Exists(path))
             File.WriteAllText(path, json);
         else
@@ -38,8 +46,13 @@ public class DataManager : MonoBehaviour
 }
 
 [System.Serializable]
-public class TrackedData
+public class EquipData
 {
     public string item1, item2, item3, guitar, bass, drums;
+}
+
+[System.Serializable]
+public class ScoreData
+{
     public int preshowScore, showScore, postshowScore;
 }
