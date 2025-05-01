@@ -28,6 +28,9 @@ public class MinigameBox : MonoBehaviour
     Color originalBar;
     CharacterController2D actor;
 
+    [Header("Optional proximity object")]
+    public GameObject proximityObject;
+
     void Start()
     {
         if (fillBar != null)
@@ -36,12 +39,15 @@ public class MinigameBox : MonoBehaviour
             fillBar.gameObject.SetActive(false);
             fillBar.fillAmount = 0f;
         }
+
+        if (proximityObject != null)
+            proximityObject.SetActive(false);
     }
 
     void Update()
     {
         if (completed) return;
-
+        ShowOrHideProximityObject();
         // Only check the one active character
         if (!isFilling)
         {
@@ -62,6 +68,28 @@ public class MinigameBox : MonoBehaviour
             if (fillTime >= targetTime)
                 CompleteMinigame();
         }
+    }
+    void ShowOrHideProximityObject()
+    {
+        if (proximityObject == null) return;
+
+        CharacterController2D active = null;
+
+        if (allowedCharacterA != null && allowedCharacterA.IsActive)
+            active = allowedCharacterA;
+        else if (allowedCharacterB != null && allowedCharacterB.IsActive)
+            active = allowedCharacterB;
+
+        bool show = false;
+
+        if (active != null && PlayerHasGuaranteedItem())
+        {
+            show = Vector2.Distance(transform.position, active.transform.position)
+                   <= interactionRange;
+        }
+
+        if (proximityObject.activeSelf != show)
+            proximityObject.SetActive(show);
     }
 
     void TryBeginFill(CharacterController2D character)
